@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using HolidayMaker.Client.ViewModel;
+using HolidayMaker.Client.Model;
+using System.Security.Cryptography.X509Certificates;
+using System.Collections.ObjectModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -24,6 +27,7 @@ namespace HolidayMaker.Client
     public sealed partial class MainPage : Page
     {
         MainPageViewModel mainPageViewModel;
+        public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,7 +37,21 @@ namespace HolidayMaker.Client
 
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            accListView.SelectedItem.
+            Accommodation ac = accListView.SelectedItem as Accommodation;
+
+            foreach (var item in ac.Rooms)
+            {
+                ListOfRooms.Add(item);
+            }
+        }
+
+        private void BookRoom_Clicked(object sender, RoutedEventArgs e)
+        {
+            Room bookedRoom = roomListView.SelectedItem as Room;
+
+            string roomtype = bookedRoom.RoomType.ToString();
+            string price = bookedRoom.Price.ToString();
+            bookingTextBlock.Text = roomtype + " " + price;
         }
     }
 }

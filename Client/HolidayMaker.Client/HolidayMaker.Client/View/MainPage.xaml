@@ -47,9 +47,9 @@
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
                     <TextBlock
-                        Text="{x:Bind AccommodationName}"/>
+                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
                     <TextBlock
-                        Text="{x:Bind City}"/>
+                        Text="{x:Bind City}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -60,25 +60,31 @@
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
                   x:Name="roomListView"
-                  ItemsSource="{x:Bind mainPageViewModel}">
+                  ItemsSource="{x:Bind ListOfRooms}"
+                  >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Accommodation">
+                <DataTemplate x:DataType="model:Room">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind AccommodationName}"/>
+                        Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
-                        Text="{x:Bind City}"/>
+                        Text="{x:Bind Price}" Foreground="Black"/>
+                        <Button Foreground="Black" Background="Green" Content="BOKA" Click="BookRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
+        </ListView>
 
 
 
-            <TextBlock x:Name="bookingTextBlock"
+
+        <TextBlock x:Name="bookingTextBlock"
                    Grid.Column="11"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Grid.RowSpan="4"
-                   Text="Hej" />
+                   Text="Hej" 
+                   Foreground="Black"
+                   />
     </Grid>
 </Page>
