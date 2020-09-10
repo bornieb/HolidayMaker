@@ -52,6 +52,7 @@ namespace HolidayMaker.Client
             string roomtype = bookedRoom.RoomType.ToString();
             string price = bookedRoom.Price.ToString();
             bookingTextBlock.Text = roomtype + " " + price;
+            var foo = 0;
         }
     }
 }
