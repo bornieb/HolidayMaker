@@ -13,5 +13,17 @@ namespace HolidayMaker.Client.Model
         public string RoomType { get; set; }
         public decimal Price { get; set; }
 
+        public BookedRoom(string accommodationName, string city, string roomType, decimal price)
+        {
+            AccommodationName = accommodationName;
+            City = city;
+            RoomType = roomType;
+            Price = price;
+        }
+        public BookedRoom()
+        {
+
+        }
+
     }
 }
