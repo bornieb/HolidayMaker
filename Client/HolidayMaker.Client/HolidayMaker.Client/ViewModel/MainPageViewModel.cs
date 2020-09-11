@@ -23,7 +23,7 @@ namespace HolidayMaker.Client.ViewModel
             Booking booking = new Booking();
             BookedRoom bookedRoom = new BookedRoom();
 
-            booking.BookingNumber = CreateBookingNumber();
+            //booking.BookingNumber = CreateBookingNumber(); Ska flyttas!
             bookedRoom.AccommodationName = accommodation.AccommodationName;
             bookedRoom.City = accommodation.City;
             bookedRoom.Price = room.Price;
