@@ -45,7 +45,7 @@ namespace HolidayMaker.Client
             }
         }
 
-        private void BookRoom_Clicked(object sender, RoutedEventArgs e)
+        private void AddRoom_Clicked(object sender, RoutedEventArgs e)
         {
             Room clickedRoom = roomListView.SelectedItem as Room;
             Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;

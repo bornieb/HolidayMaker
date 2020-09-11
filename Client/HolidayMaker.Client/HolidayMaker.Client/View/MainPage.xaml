@@ -69,7 +69,7 @@
                         Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        <Button Foreground="Black" Background="Green" Content="BOKA" Click="BookRoom_Clicked"></Button>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
