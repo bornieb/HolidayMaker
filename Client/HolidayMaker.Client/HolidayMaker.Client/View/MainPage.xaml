@@ -37,12 +37,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
+        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Width="100" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click"></Button>
+        
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
                   x:Name="accListView"
-                  ItemsSource="{x:Bind mainPageViewModel.ListOfAccommodations}" SelectionChanged="accListView_SelectionChanged">
+                  ItemsSource="{x:Bind mainPageViewModel.SearchResult}" SelectionChanged="accListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
@@ -74,10 +78,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
-
-
         <TextBlock x:Name="bookingTextBlock"
                    Grid.Column="11"
                    Grid.Row="1"
