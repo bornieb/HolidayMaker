@@ -16,6 +16,7 @@ using HolidayMaker.Client.ViewModel;
 using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,6 +29,7 @@ namespace HolidayMaker.Client
     {
         MainPageViewModel mainPageViewModel;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -57,7 +59,11 @@ namespace HolidayMaker.Client
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mainPageViewModel.SearchFunction(SearchTextBox.Text); 
         }
     }
 }
