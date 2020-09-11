@@ -14,8 +14,11 @@ namespace HolidayMaker.Client.ViewModel
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
         public void MockData()
         {
-            ListOfAccommodations.Add(new Accommodation("Eriks Lya", "Malmö"));
-            ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv"));
+            ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
+            ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
+            ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
+            ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
+            ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
         }
 
         public void SearchFunction(string search)
@@ -33,10 +36,15 @@ namespace HolidayMaker.Client.ViewModel
                     if (s.AccommodationName.ToLower().Contains(search.ToLower())
                         || s.City.ToLower().Contains(search.ToLower()))
                     {
-                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City));
+                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City, s.Rating));
                     }
                 }
             }
+        }
+
+        public void SortingFunction()
+        {
+            var sorted = SearchResult.OrderByDescending(x => x.Rating);
         }
     }
 }

@@ -57,13 +57,16 @@ namespace HolidayMaker.Client
             var foo = 0;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            mainPageViewModel.SearchFunction(SearchTextBox.Text); 
+            accListView.ItemsSource = mainPageViewModel.SearchResult;
+            mainPageViewModel.SearchFunction(SearchTextBox.Text);
+        }
+
+        private void SortingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
+            accListView.ItemsSource = sorted;
         }
     }
 }
