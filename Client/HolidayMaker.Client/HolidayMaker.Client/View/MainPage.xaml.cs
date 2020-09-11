@@ -37,6 +37,19 @@ namespace HolidayMaker.Client
             mainPageViewModel.MockData();
         }
 
+        private void CollapseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SplitviewMenu.IsPaneOpen)
+            {
+                SplitviewMenu.IsPaneOpen = false;
+                CollapseButton.Width = 54;
+            }
+            else
+            {
+                SplitviewMenu.IsPaneOpen = true;
+                CollapseButton.Width = 450;
+            }
+        }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Accommodation ac = accListView.SelectedItem as Accommodation;
@@ -58,8 +71,8 @@ namespace HolidayMaker.Client
             //var foo = 0;
 
             Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
-            string bookingNumber = booking.BookingNumber.ToString();
-            BookingNumberTextBlock.Text = $"Booking Number:\n { bookingNumber}";
+            //string bookingNumber = booking.BookingNumber.ToString();
+            BookingNumberTextBlock.Text = $"Booking Number:\n";
             BookingListview.ItemsSource = booking.BookedRooms;
         }
 
@@ -73,6 +86,7 @@ namespace HolidayMaker.Client
         {
             var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
             accListView.ItemsSource = sorted;
+
         }
     }
 }

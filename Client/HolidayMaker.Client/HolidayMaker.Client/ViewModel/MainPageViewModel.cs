@@ -12,7 +12,9 @@ namespace HolidayMaker.Client.ViewModel
     {
         public ObservableCollection<Accommodation> ListOfAccommodations = new ObservableCollection<Accommodation>();
 
+
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
+
 
         public void MockData()
         {
@@ -29,7 +31,7 @@ namespace HolidayMaker.Client.ViewModel
             Booking booking = new Booking();
             BookedRoom bookedRoom = new BookedRoom();
 
-            booking.BookingNumber = CreateBookingNumber();
+            //booking.BookingNumber = CreateBookingNumber(); Ska flyttas!
             bookedRoom.AccommodationName = accommodation.AccommodationName;
             bookedRoom.City = accommodation.City;
             bookedRoom.Price = room.Price;
@@ -99,6 +101,26 @@ namespace HolidayMaker.Client.ViewModel
         {
             var sorted = SearchResult.OrderByDescending(x => x.Rating);
 
+        }
+        public void SearchFunction(string search)
+        {
+            SearchResult.Clear();
+
+            if (search == "")
+            {
+                SearchResult.Clear();
+            }
+            else
+            {
+                foreach (var s in ListOfAccommodations)
+                {
+                    if (s.AccommodationName.ToLower().Contains(search.ToLower())
+                        || s.City.ToLower().Contains(search.ToLower()))
+                    {
+                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City));
+                    }
+                }
+            }
         }
     }
 }
