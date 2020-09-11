@@ -28,6 +28,7 @@ namespace HolidayMaker.Client
     {
         MainPageViewModel mainPageViewModel;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -79,6 +80,13 @@ namespace HolidayMaker.Client
 
         }
 
-       
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mainPageViewModel.SearchFunction(SearchTextBox.Text); 
+        }
     }
 }
