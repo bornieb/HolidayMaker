@@ -69,12 +69,12 @@ namespace HolidayMaker.Client.ViewModel
         public decimal CalculateTotalPrice(Booking booking)
         {
             decimal totalPrice = 0;
-            foreach(BookedRoom room in booking.BookedRooms)
+            foreach (BookedRoom room in booking.BookedRooms)
             {
                 totalPrice += room.Price;
             }
             return totalPrice;
-            
+        }
 
         public void SearchFunction(string search)
         {
@@ -102,25 +102,6 @@ namespace HolidayMaker.Client.ViewModel
             var sorted = SearchResult.OrderByDescending(x => x.Rating);
 
         }
-        public void SearchFunction(string search)
-        {
-            SearchResult.Clear();
-
-            if (search == "")
-            {
-                SearchResult.Clear();
-            }
-            else
-            {
-                foreach (var s in ListOfAccommodations)
-                {
-                    if (s.AccommodationName.ToLower().Contains(search.ToLower())
-                        || s.City.ToLower().Contains(search.ToLower()))
-                    {
-                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City));
-                    }
-                }
-            }
-        }
     }
 }
+
