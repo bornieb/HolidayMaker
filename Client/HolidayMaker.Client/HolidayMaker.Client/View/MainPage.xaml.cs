@@ -16,6 +16,7 @@ using HolidayMaker.Client.ViewModel;
 using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -59,7 +60,7 @@ namespace HolidayMaker.Client
             }
         }
 
-        private void BookRoom_Clicked(object sender, RoutedEventArgs e)
+        private void AddRoom_Clicked(object sender, RoutedEventArgs e)
         {
             Room clickedRoom = roomListView.SelectedItem as Room;
             Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;
@@ -75,18 +76,17 @@ namespace HolidayMaker.Client
             BookingListview.ItemsSource = booking.BookedRooms;
         }
 
-        private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            mainPageViewModel.SearchFunction(SearchTextBox.Text); 
+            accListView.ItemsSource = mainPageViewModel.SearchResult;
+            mainPageViewModel.SearchFunction(SearchTextBox.Text);
+        }
+
+        private void SortingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
+            accListView.ItemsSource = sorted;
+
         }
     }
 }

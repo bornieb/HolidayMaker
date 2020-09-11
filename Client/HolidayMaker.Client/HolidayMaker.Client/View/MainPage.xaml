@@ -39,7 +39,9 @@
         </Grid.RowDefinitions>
 
         <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
-        <Button x:Name="SearchButton" Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Width="100" Height="50" Content="SEARCH" Foreground="Black" Click="SearchButton_Click"></Button>
+
+        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Width="100" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click"></Button>
+
         
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
@@ -73,7 +75,7 @@
                         Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        <Button Foreground="Black" Background="Green" Content="BOKA" Click="BookRoom_Clicked"></Button>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

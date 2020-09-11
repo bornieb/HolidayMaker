@@ -11,12 +11,14 @@ namespace HolidayMaker.Client.Model
     {
         public string AccommodationName { get; set; }
         public string City { get; set; }
+        public decimal Rating { get; set; }
         public ObservableCollection<Room> Rooms { get; set; }
 
-        public Accommodation(string accommodationName, string city)
+        public Accommodation(string accommodationName, string city, decimal rating)
         {
             AccommodationName = accommodationName;
             City = city;
+            Rating = rating;
             Rooms = new ObservableCollection<Room>();
             Rooms.Add(new Room("Svit", 500));
             Rooms.Add(new Room("Skrubb", 900));
