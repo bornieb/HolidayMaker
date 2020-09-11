@@ -47,14 +47,20 @@ namespace HolidayMaker.Client
             }
         }
 
-        private void BookRoom_Clicked(object sender, RoutedEventArgs e)
+        private void AddRoom_Clicked(object sender, RoutedEventArgs e)
         {
-            Room bookedRoom = roomListView.SelectedItem as Room;
+            Room clickedRoom = roomListView.SelectedItem as Room;
+            Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;
 
-            string roomtype = bookedRoom.RoomType.ToString();
-            string price = bookedRoom.Price.ToString();
-            bookingTextBlock.Text = roomtype + " " + price;
-            var foo = 0;
+            //string roomtype = bookedRoom.RoomType.ToString();
+            //string price = bookedRoom.Price.ToString();
+            //bookingTextBlock.Text = roomtype + " " + price;
+            //var foo = 0;
+
+            Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
+            string bookingNumber = booking.BookingNumber.ToString();
+            BookingNumberTextBlock.Text = $"Booking Number:\n { bookingNumber}";
+            BookingListview.ItemsSource = booking.BookedRooms;
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)

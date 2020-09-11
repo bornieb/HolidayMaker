@@ -73,7 +73,7 @@
                         Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        <Button Foreground="Black" Background="Green" Content="BOKA" Click="BookRoom_Clicked"></Button>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -86,5 +86,32 @@
                    Text="Hej" 
                    Foreground="Black"
                    />
+        <StackPanel 
+            Grid.Column="11" 
+            Grid.Row="5"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="4">
+            <TextBlock 
+                x:Name="BookingNumberTextBlock"
+                />
+            <ListView
+                x:Name="BookingListview">
+                <ListView.ItemTemplate>
+                    <DataTemplate 
+                        x:DataType="model:BookedRoom">
+                        <StackPanel>
+                            <TextBlock
+                            Text="{x:Bind AccommodationName}"/>
+                            <TextBlock
+                                Text="{x:Bind City}"/>
+                            <TextBlock
+                            Text="{x:Bind RoomType}"/>
+                            <TextBlock
+                                Text="{x:Bind Price}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
