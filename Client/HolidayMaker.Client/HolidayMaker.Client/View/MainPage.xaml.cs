@@ -54,5 +54,10 @@ namespace HolidayMaker.Client
             bookingTextBlock.Text = roomtype + " " + price;
             var foo = 0;
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

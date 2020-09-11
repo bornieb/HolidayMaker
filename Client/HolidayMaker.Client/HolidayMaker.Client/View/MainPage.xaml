@@ -37,6 +37,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME"></TextBox>
+        <Button x:Name="SearchButton" Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Width="100" Height="50" Content="SEARCH" Foreground="Black" Click="SearchButton_Click"></Button>
+        
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
@@ -74,10 +78,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
-
-
         <TextBlock x:Name="bookingTextBlock"
                    Grid.Column="11"
                    Grid.Row="1"
