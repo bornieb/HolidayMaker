@@ -88,5 +88,10 @@ namespace HolidayMaker.Client
             accListView.ItemsSource = sorted;
 
         }
+
+        private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
