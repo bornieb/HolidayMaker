@@ -18,6 +18,9 @@ namespace HolidayMakerAPI.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Model.BookingRoom>().HasKey(br => new { br.BookingID, br.RoomID });
+            modelBuilder.Entity<Model.Accommodation>().Property(r => r.Rating).HasColumnType("decimal(10,1)");
+            modelBuilder.Entity<Model.Booking>().Property(tp => tp.TotalPrice).HasColumnType("decimal(10,1)");
+            modelBuilder.Entity<Model.Room>().Property(p => p.Price).HasColumnType("decimal(10,1)");
         }
 
         public DbSet<HolidayMakerAPI.Model.User> User { get; set; }

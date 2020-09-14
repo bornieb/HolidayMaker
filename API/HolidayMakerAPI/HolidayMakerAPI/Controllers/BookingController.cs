@@ -74,8 +74,8 @@ namespace HolidayMakerAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Booking
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        //POST: api/Booking
+        //To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
@@ -86,15 +86,14 @@ namespace HolidayMakerAPI.Controllers
             return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
         }
 
-
         ////UNDER CONSTRUCTION
         //[HttpPost("")]
-        //public async Task<ActionResult<Booking>> PostRoomBooking(Booking booking)
+        //public async Task<ActionResult<Booking>> PostUserRoomBooking(Booking booking)
         //{
         //    //_context.Booking.Add(booking);
         //    //await _context.SaveChangesAsync();
 
-        //    var bookingRoom = new BookingRoom() { Booking = booking, }
+        //    var bookingRoom = new BookingRoom() { BookingID = booking.BookingID}
 
 
         //    return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
