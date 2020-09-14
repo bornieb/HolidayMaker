@@ -7,8 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
- 
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light"
+    >
+
+
     <Grid Background="#e7e7e7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -27,6 +30,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -37,10 +41,93 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <RelativePanel
+            Grid.Row="0"
+            Grid.Column="14"
+            Grid.ColumnSpan="4">
+            <StackPanel 
+                Orientation="Horizontal"
+                       >
+                <Button
+                    x:Name="CollapseButton"
+                    Width="120"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20"
+                    Content="&#xE700;"
+                    Click="CollapseButton_Click"
+                    />
+
+            </StackPanel>
+        </RelativePanel>
+        <SplitView
+            x:Name="SplitviewMenu"
+            Grid.Row="1"
+            Grid.ColumnSpan="4"
+            Grid.Column="14"
+            HorizontalAlignment="Stretch"
+            CompactPaneLength="56"
+            OpenPaneLength="450"
+            IsPaneOpen="True"
+
+            PanePlacement="Right">
+
+
+            <SplitView.Pane>
+                <StackPanel>
+                    <ListBox 
+                    SelectionMode="Single"
+                    x:Name="SplitViewMenuList"
+                    SelectionChanged="SplitViewMenuList_SelectionChanged"
+                        >
+                        <ListBoxItem
+                        x:Name="FirstListBoxItem"
+                        Background="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    FontFamily="Segoe UI Emoji"
+                                    FontSize="24"
+                                    Text="&#x1F61D;"
+                                    HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <StackPanel>
+                            <ListBoxItem>
+                                <StackPanel>
+
+                                    <TextBlock 
+                x:Name="BookingNumberTextBlock"
+                />
+                                    <ListView
+                                    x:Name="BookingListview">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate 
+                                            x:DataType="model:BookedRoom">
+                                                <StackPanel>
+                                                    <TextBlock
+                                                    Text="{x:Bind AccommodationName}"/>
+                                                    <TextBlock
+                                                    Text="{x:Bind City}"/>
+                                                    <TextBlock
+                                                    Text="{x:Bind RoomType}"/>
+                                                    <TextBlock
+                                                    Text="{x:Bind Price}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ListBoxItem>
+                        </StackPanel>
+                    </ListBox>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
 
         <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
-        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" VerticalAlignment="Bottom" Width="100" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click"></Button>
-        
+
+        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" Grid.ColumnSpan="2"/>
+
+
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
@@ -50,9 +137,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
-                    <TextBlock
+                        <TextBlock
                         Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                    <TextBlock
+                        <TextBlock
                         Text="{x:Bind City}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
@@ -73,7 +160,7 @@
                         Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        <Button Foreground="Black" Background="Green" Content="BOKA" Click="BookRoom_Clicked"></Button>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
