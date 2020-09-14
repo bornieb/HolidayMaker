@@ -70,10 +70,11 @@ namespace HolidayMaker.Client
             //bookingTextBlock.Text = roomtype + " " + price;
             //var foo = 0;
 
-            Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
+            //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             //string bookingNumber = booking.BookingNumber.ToString();
-            BookingNumberTextBlock.Text = $"Booking Number:\n";
-            BookingListview.ItemsSource = booking.BookedRooms;
+            //BookingNumberTextBlock.Text = $"Booking Number:\n";
+            mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
+            BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -92,6 +93,11 @@ namespace HolidayMaker.Client
         private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void CreateBooking_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.CreateBooking();
         }
     }
 }

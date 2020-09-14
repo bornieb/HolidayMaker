@@ -15,6 +15,9 @@ namespace HolidayMaker.Client.ViewModel
 
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
 
+        public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
+        public decimal TotalPrice = 0;
+
 
         public void MockData()
         {
@@ -26,21 +29,30 @@ namespace HolidayMaker.Client.ViewModel
         }
 
 
-        public Booking AddToBooking(Room room, Accommodation accommodation)
+        public void AddToBooking(Room room, Accommodation accommodation)
         {
-            Booking booking = new Booking();
+           
             BookedRoom bookedRoom = new BookedRoom();
 
-            //booking.BookingNumber = CreateBookingNumber(); Ska flyttas!
             bookedRoom.AccommodationName = accommodation.AccommodationName;
             bookedRoom.City = accommodation.City;
             bookedRoom.Price = room.Price;
             bookedRoom.RoomType = room.RoomType;
-            booking.BookedRooms.Add(bookedRoom);
-            booking.TotalPrice = CalculateTotalPrice(booking);
+            AddedRooms.Add(bookedRoom);
+            CalculateTotalPrice();
+            //booking.BookedRooms.Add(bookedRoom);
+            //booking.TotalPrice = CalculateTotalPrice(booking);
 
-            return booking;
+            //return booking;
 
+        }
+
+        public void CreateBooking()
+        {
+            Booking booking = new Booking();
+            booking.BookingNumber = CreateBookingNumber();
+            booking.BookedRooms = AddedRooms;
+            AddedRooms.Clear();
         }
 
         public string CreateBookingNumber()
@@ -66,14 +78,12 @@ namespace HolidayMaker.Client.ViewModel
             return myRandomString.ToString();
         }
 
-        public decimal CalculateTotalPrice(Booking booking)
+        public void CalculateTotalPrice()
         {
-            decimal totalPrice = 0;
-            foreach (BookedRoom room in booking.BookedRooms)
+            foreach (BookedRoom room in AddedRooms)
             {
-                totalPrice += room.Price;
+                TotalPrice += room.Price;
             }
-            return totalPrice;
         }
 
         public void SearchFunction(string search)

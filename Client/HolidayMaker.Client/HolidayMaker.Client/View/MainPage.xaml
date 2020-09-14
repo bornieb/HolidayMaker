@@ -46,7 +46,7 @@
             Grid.Column="14"
             Grid.ColumnSpan="4">
             <StackPanel 
-                Orientation="Horizontal"
+                Orientation="Vertical"
                        >
                 <Button
                     x:Name="CollapseButton"
@@ -55,6 +55,11 @@
                     FontSize="20"
                     Content="&#xE700;"
                     Click="CollapseButton_Click"
+                    />
+                <Button
+                    x:Name="CreateBooking"
+                    Content="Skapa bokning"
+                    Click="CreateBooking_Click" 
                     />
 
             </StackPanel>
@@ -66,7 +71,7 @@
             Grid.Column="14"
             HorizontalAlignment="Stretch"
             CompactPaneLength="56"
-            OpenPaneLength="450"
+            OpenPaneLength="130"
             IsPaneOpen="True"
 
             PanePlacement="Right">
