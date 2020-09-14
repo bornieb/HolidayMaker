@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace HolidayMakerAPI.Model
 {
     public class Room
     {
+        [Key]
         public int RoomID { get; set; }
         public int RoomNumber { get; set; }
         public string RoomType { get; set; }
