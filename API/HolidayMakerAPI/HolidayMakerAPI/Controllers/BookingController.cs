@@ -86,6 +86,20 @@ namespace HolidayMakerAPI.Controllers
             return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
         }
 
+
+        ////UNDER CONSTRUCTION
+        //[HttpPost("")]
+        //public async Task<ActionResult<Booking>> PostRoomBooking(Booking booking)
+        //{
+        //    //_context.Booking.Add(booking);
+        //    //await _context.SaveChangesAsync();
+
+        //    var bookingRoom = new BookingRoom() { Booking = booking, }
+
+
+        //    return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
+        //}
+
         // DELETE: api/Booking/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Booking>> DeleteBooking(int id)

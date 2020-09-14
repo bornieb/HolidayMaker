@@ -12,6 +12,8 @@ namespace HolidayMakerAPI.Model
         public int BookingID { get; set; }
         [Key]
         public int RoomID { get; set; }
+        public Booking Booking { get; set; }
+        public Room Room { get; set; }
         public bool ExtraBedBooked { get; set; }
         public bool FullBoard { get; set; }
         public bool HalfBoard { get; set; }
