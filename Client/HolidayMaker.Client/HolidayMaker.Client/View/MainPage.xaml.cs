@@ -47,7 +47,7 @@ namespace HolidayMaker.Client
             else
             {
                 SplitviewMenu.IsPaneOpen = true;
-                CollapseButton.Width = 450;
+                CollapseButton.Width = 130;
             }
         }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
