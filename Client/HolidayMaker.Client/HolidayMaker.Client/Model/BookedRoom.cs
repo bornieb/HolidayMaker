@@ -8,22 +8,14 @@ namespace HolidayMaker.Client.Model
 {
     public class BookedRoom
     {
+        public int RoomId { get; set; }
         public string AccommodationName { get; set; }
         public string City { get; set; }
         public string RoomType { get; set; }
         public decimal Price { get; set; }
-
-        public BookedRoom(string accommodationName, string city, string roomType, decimal price)
-        {
-            AccommodationName = accommodationName;
-            City = city;
-            RoomType = roomType;
-            Price = price;
-        }
-        public BookedRoom()
-        {
-
-        }
-
+        public bool ExtraBedBooked { get; set; } = true;
+        public bool FullBoard { get; set; } = true;
+        public bool HalfBoard { get; set; } = false;
+        public bool AllInclusive { get; set; } = false;
     }
 }

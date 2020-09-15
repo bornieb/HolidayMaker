@@ -19,6 +19,6 @@ namespace HolidayMakerAPI.Model
         //[ForeignKey("User")]
         public virtual User User { get; set; }
         public int UserID { get; set; }
-        public List<Room> BookedRooms { get; set; } = new List<Room>();
+        public List<BookingRoom> BookedRooms { get; set; } = new List<BookingRoom>();
     }
 }

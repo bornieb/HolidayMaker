@@ -39,6 +39,7 @@ namespace HolidayMaker.Client.ViewModel
             bookedRoom.City = accommodation.City;
             bookedRoom.Price = room.Price;
             bookedRoom.RoomType = room.RoomType;
+            bookedRoom.RoomId = room.RoomId;
             AddedRooms.Add(bookedRoom);
             CalculateTotalPrice();
             //booking.BookedRooms.Add(bookedRoom);

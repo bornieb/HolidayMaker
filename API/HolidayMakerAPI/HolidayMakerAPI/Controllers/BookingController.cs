@@ -97,15 +97,22 @@ namespace HolidayMakerAPI.Controllers
 
             foreach (var room in booking.BookedRooms)
             {
-                var bookingRoom = new BookingRoom() { BookingID = booking.BookingID, RoomID = room.RoomID };
-                _context.BookingRoom.Add(bookingRoom);
+                //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID, RoomID = room.RoomID };
+                _context.BookingRoom.Add(room);
             }
 
             //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID };
 
             _context.Booking.Add(booking);
+            try
+            {
+                await _context.SaveChangesAsync();
 
-            await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+            }
 
             return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
         }

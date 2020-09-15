@@ -15,6 +15,7 @@ namespace HolidayMaker.Client.Model
         public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
         public int UserId { get; set; } = 1;
+     
 
         public ObservableCollection<BookedRoom> BookedRooms { get; set; }
 
