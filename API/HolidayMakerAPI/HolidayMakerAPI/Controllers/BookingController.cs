@@ -77,27 +77,38 @@ namespace HolidayMakerAPI.Controllers
         //POST: api/Booking
         //To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //[HttpPost]
+        //public async Task<ActionResult<Booking>> PostBooking(Booking booking)
+        //{
+        //    _context.Booking.Add(booking);
+
+
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
+        //}
+
+        //UNDER CONSTRUCTION
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
+            //var bookingRoom = new BookingRoom() { Booking = booking };
+            //var userRooms = booking.ListOfUserBookedRooms.Select(r => r.RoomID).ToList();
+
+            foreach (var room in booking.ListOfUserBookedRooms)
+            {
+                var bookingRoom = new BookingRoom() { BookingID = booking.BookingID, RoomID = room.RoomID };
+                _context.BookingRoom.Add(bookingRoom);
+            }
+
+            //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID  };
+            
             _context.Booking.Add(booking);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
         }
-
-        ////UNDER CONSTRUCTION
-        //[HttpPost("")]
-        //public async Task<ActionResult<Booking>> PostUserRoomBooking(Booking booking)
-        //{
-        //    //_context.Booking.Add(booking);
-        //    //await _context.SaveChangesAsync();
-
-        //    var bookingRoom = new BookingRoom() { BookingID = booking.BookingID}
-
-
-        //    return CreatedAtAction("GetBooking", new { id = booking.BookingID }, booking);
-        //}
 
         // DELETE: api/Booking/5
         [HttpDelete("{id}")]
