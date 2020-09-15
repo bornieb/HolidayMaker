@@ -46,7 +46,8 @@
             Grid.Column="14"
             Grid.ColumnSpan="4">
             <StackPanel 
-                Orientation="Horizontal"
+                Orientation="Vertical"
+                
                        >
                 <Button
                     x:Name="CollapseButton"
@@ -55,26 +56,39 @@
                     FontSize="20"
                     Content="&#xE700;"
                     Click="CollapseButton_Click"
+                    Background="Transparent"
                     />
-
+ 
             </StackPanel>
         </RelativePanel>
         <SplitView
             x:Name="SplitviewMenu"
             Grid.Row="1"
+            Grid.RowSpan="14"
             Grid.ColumnSpan="4"
             Grid.Column="14"
             HorizontalAlignment="Stretch"
             CompactPaneLength="56"
-            OpenPaneLength="450"
+            OpenPaneLength="130"
             IsPaneOpen="True"
+            PanePlacement="Right"
+           
+            >
 
-            PanePlacement="Right">
 
+ 
+            
 
             <SplitView.Pane>
-                <StackPanel>
-                    <ListBox 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <ListBox Grid.Row="0"
                     SelectionMode="Single"
                     x:Name="SplitViewMenuList"
                     SelectionChanged="SplitViewMenuList_SelectionChanged"
@@ -90,15 +104,13 @@
                                     HorizontalAlignment="Center"/>
                             </StackPanel>
                         </ListBoxItem>
-                        <StackPanel>
-                            <ListBoxItem>
-                                <StackPanel>
 
-                                    <TextBlock 
-                x:Name="BookingNumberTextBlock"
-                />
-                                    <ListView
-                                    x:Name="BookingListview">
+                    </ListBox>
+
+
+
+                    <ListView Grid.Row="1"
+                        x:Name="BookingListview">
                                         <ListView.ItemTemplate>
                                             <DataTemplate 
                                             x:DataType="model:BookedRoom">
@@ -115,12 +127,29 @@
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
-                                </StackPanel>
-                            </ListBoxItem>
+
+                        
+                    
+                    <StackPanel Grid.Row="2">
+                            
+                                <Button
+                                    x:Name="CreateBooking"
+                                    Content="Boka!"
+                                    Click="CreateBooking_Click" 
+                                    Background="Transparent"
+                                    Width="110"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                />
+
+                            
+                            
                         </StackPanel>
-                    </ListBox>
-                </StackPanel>
+                    
+                
+                </Grid>
             </SplitView.Pane>
+
         </SplitView>
 
         <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
