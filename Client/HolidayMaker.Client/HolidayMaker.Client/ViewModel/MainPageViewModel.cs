@@ -54,7 +54,7 @@ namespace HolidayMaker.Client.ViewModel
             booking.BookingNumber = CreateBookingNumber();
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
-            AddedRooms.Clear();
+            //AddedRooms.Clear();
             await PostBookingAsync(booking);
         }
 
