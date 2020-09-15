@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +15,9 @@ namespace HolidayMakerAPI.Model
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
-        public int UserID { get; set; }
+        [ForeignKey("User")]
         public virtual User User { get; set; }
+        public int UserID { get; set; }
         //public List<Room> ListOfUserBookedRooms { get; set; } = new List<Room>();
     }
 }
