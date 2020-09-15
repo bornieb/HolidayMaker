@@ -14,9 +14,9 @@ namespace HolidayMakerAPI.Model
         public string RoomType { get; set; }
         public bool IsAvailable { get; set; }
         public decimal Price { get; set; }
+        public virtual Accommodation Accommodation { get; set; }
         public int AccommodationID { get; set; }
 
-        public virtual Accommodation Accommodation { get; set; }
 
     }
 }

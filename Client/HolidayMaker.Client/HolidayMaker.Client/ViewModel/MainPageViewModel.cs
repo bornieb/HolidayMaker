@@ -52,6 +52,8 @@ namespace HolidayMaker.Client.ViewModel
         {
             Booking booking = new Booking();
             booking.BookingNumber = CreateBookingNumber();
+            booking.CheckIn = DateTime.Now;
+            booking.CheckOut = DateTime.Now;
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
             //AddedRooms.Clear();

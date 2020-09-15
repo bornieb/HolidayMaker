@@ -93,16 +93,16 @@ namespace HolidayMakerAPI.Controllers
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
             //var bookingRoom = new BookingRoom() { Booking = booking };
-            //var userRooms = booking.ListOfUserBookedRooms.Select(r => r.RoomID).ToList();
+            //var userRooms = booking.BookedRooms.Select(r => r.RoomID).ToList();
 
-            foreach (var room in booking.ListOfUserBookedRooms)
+            foreach (var room in booking.BookedRooms)
             {
                 var bookingRoom = new BookingRoom() { BookingID = booking.BookingID, RoomID = room.RoomID };
                 _context.BookingRoom.Add(bookingRoom);
             }
 
-            //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID  };
-            
+            //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID };
+
             _context.Booking.Add(booking);
 
             await _context.SaveChangesAsync();

@@ -10,7 +10,9 @@ namespace HolidayMaker.Client.Model
 {
     public class Booking
     {
-        public string BookingNumber { get; set; } 
+        public string BookingNumber { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
         public int UserId { get; set; } = 1;
 
