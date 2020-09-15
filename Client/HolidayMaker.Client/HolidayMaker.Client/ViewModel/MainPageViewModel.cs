@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HolidayMaker.Client.Model;
+using HolidayMaker.Client.Service;
 
 namespace HolidayMaker.Client.ViewModel
 {
     public class MainPageViewModel
     {
+        public BookingService bookingService = new BookingService();
+
         public ObservableCollection<Accommodation> ListOfAccommodations = new ObservableCollection<Accommodation>();
-
-
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
 
         public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
@@ -47,12 +48,19 @@ namespace HolidayMaker.Client.ViewModel
 
         }
 
-        public void CreateBooking()
+        public async void CreateBooking()
         {
             Booking booking = new Booking();
             booking.BookingNumber = CreateBookingNumber();
+            booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
             AddedRooms.Clear();
+            await PostBookingAsync(booking);
+        }
+
+        public async Task PostBookingAsync(Booking booking)
+        {
+            await bookingService.PostBooking(booking);
         }
 
         public string CreateBookingNumber()

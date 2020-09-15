@@ -10,8 +10,9 @@ namespace HolidayMaker.Client.Model
 {
     public class Booking
     {
-        public string BookingNumber { get; set; } //ändrat till int för att göra det lättare i början
+        public string BookingNumber { get; set; } 
         public decimal TotalPrice { get; set; }
+        public int UserId { get; set; } = 1;
 
         public ObservableCollection<BookedRoom> BookedRooms { get; set; }
 
