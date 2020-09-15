@@ -15,8 +15,8 @@ namespace HolidayMakerAPI.Model
         [Key]
         [Column(Order = 2)]
         public int RoomID { get; set; }
-        public Booking Booking { get; set; }
-        public Room Room { get; set; }
+        public virtual Booking Booking { get; set; }
+        public virtual Room Room { get; set; }
         public bool ExtraBedBooked { get; set; }
         public bool FullBoard { get; set; }
         public bool HalfBoard { get; set; }

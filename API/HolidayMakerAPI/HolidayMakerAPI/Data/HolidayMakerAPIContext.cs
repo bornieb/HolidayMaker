@@ -28,6 +28,7 @@ namespace HolidayMakerAPI.Data
         public DbSet<HolidayMakerAPI.Model.Booking> Booking { get; set; }
 
         public DbSet<HolidayMakerAPI.Model.Room> Room { get; set; }
+        public DbSet<HolidayMakerAPI.Model.BookingRoom> BookingRoom { get; set; }
 
         public DbSet<HolidayMakerAPI.Model.Accommodation> Accommodation { get; set; }
     }
