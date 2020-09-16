@@ -12,7 +12,8 @@
     >
 
 
-    <Grid Background="#e7e7e7">
+    <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -41,6 +42,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <RelativePanel
             Grid.Row="0"
             Grid.Column="14"
@@ -97,11 +99,7 @@
                         x:Name="FirstListBoxItem"
                         Background="Transparent">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    FontFamily="Segoe UI Emoji"
-                                    FontSize="24"
-                                    Text="&#x1F61D;"
-                                    HorizontalAlignment="Center"/>
+                                
                             </StackPanel>
                         </ListBoxItem>
 
@@ -202,5 +200,14 @@
                    Text="Hej" 
                    Foreground="Black"
                    />
+
+        <Button
+                                    FontFamily="Segoe UI Emoji"
+                                    FontSize="24"
+                                    Content="&#x1F61D;"
+                                    HorizontalAlignment="Center"
+                                    Background="Transparent"
+                                    Click="Button_Click"
+                                    />
     </Grid>
 </Page>

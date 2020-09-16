@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="HolidayMaker.Client.View.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HolidayMaker.Client.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox
+            x:Name="EmailTextbox"
+            Grid.Row="2"
+            Grid.Column="4"
+            Grid.ColumnSpan="3"
+            PlaceholderText="E-Mail"
+            />
+        <PasswordBox
+            x:Name="PasswordTextbox"
+            Grid.Row="3"
+            Grid.Column="4"
+            Grid.ColumnSpan="3"
+            PlaceholderText="Password"
+            />
+
+        <PasswordBox
+            x:Name="ConfirmPasswordTextbox"
+            Grid.Row="4"
+            Grid.Column="4"
+            Grid.ColumnSpan="3"
+            PlaceholderText="Confirm Password"
+            />
+        <Button
+            x:Name="RegisterButton"
+            Grid.Row="5"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
+            Height="Auto"
+            FontSize="28"
+            Content="Register User"
+            Click="RegisterButton_Click"
+            />
+
+
+    </Grid>
+</Page>

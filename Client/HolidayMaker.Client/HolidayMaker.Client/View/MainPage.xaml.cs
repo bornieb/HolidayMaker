@@ -17,6 +17,7 @@ using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
 using System.Linq;
+using HolidayMaker.Client.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -98,6 +99,11 @@ namespace HolidayMaker.Client
         private void CreateBooking_Click(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.CreateBooking();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BlankPage1));
         }
     }
 }
