@@ -32,6 +32,13 @@ namespace HolidayMaker.Client.View
             string userEmail = EmailTextbox.Text;
 
             string password = PasswordTextbox.Password;
+
+            string confirmPassword = ConfirmPasswordTextbox.Password;
+
+            if(password == confirmPassword)
+            {
+
+            }
         }
     }
 }
