@@ -95,10 +95,10 @@ namespace HolidayMakerAPI.Controllers
             //var bookingRoom = new BookingRoom() { Booking = booking };
             //var userRooms = booking.BookedRooms.Select(r => r.RoomID).ToList();
 
-            foreach (var room in booking.BookedRooms)
+            foreach (var bookedRoom in booking.BookedRooms)
             {
                 //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID, RoomID = room.RoomID };
-                _context.BookingRoom.Add(room);
+                _context.BookingRoom.Add(bookedRoom);
             }
 
             //var bookingRoom = new BookingRoom() { BookingID = booking.BookingID };
