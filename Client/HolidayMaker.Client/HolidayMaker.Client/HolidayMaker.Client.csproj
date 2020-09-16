@@ -123,7 +123,9 @@
     <Compile Include="Model\BookedRoom.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Room.cs" />
+    <Compile Include="Service\AccommodationService.cs" />
     <Compile Include="Service\BookingService.cs" />
+    <Compile Include="Service\RoomService.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

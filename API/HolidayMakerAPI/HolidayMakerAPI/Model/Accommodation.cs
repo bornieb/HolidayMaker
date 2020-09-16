@@ -20,6 +20,6 @@ namespace HolidayMakerAPI.Model
         public int DistanceToBeach { get; set; }
         public int DistanceToCenter { get; set; }
         public decimal Rating { get; set; }
-       // public List<Room> ListOfAccRooms { get; set; } = new List<Room>();
+        public List<Room> ListOfAccRooms { get; set; } = new List<Room>();
     }
 }
