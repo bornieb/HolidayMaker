@@ -75,6 +75,7 @@ namespace HolidayMaker.Client
             //BookingNumberTextBlock.Text = $"Booking Number:\n";
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
+
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
