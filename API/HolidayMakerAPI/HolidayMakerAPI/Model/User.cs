@@ -15,6 +15,6 @@ namespace HolidayMakerAPI.Model
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public List<Booking> ListOfUserBookings { get; set; } = new List<Booking>();
+        //public List<Booking> ListOfUserBookings { get; set; } = new List<Booking>();
     }
 }
