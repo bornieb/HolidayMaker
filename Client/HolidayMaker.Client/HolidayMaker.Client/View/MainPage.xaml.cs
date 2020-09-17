@@ -60,7 +60,10 @@ namespace HolidayMaker.Client
 
             foreach (var item in ac.Rooms)
             {
-                ListOfRooms.Add(item);
+                if (item.IsAvailable)
+                {
+                    ListOfRooms.Add(item);
+                }
             }
 
         }
@@ -78,6 +81,8 @@ namespace HolidayMaker.Client
             //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             //string bookingNumber = booking.BookingNumber.ToString();
             //BookingNumberTextBlock.Text = $"Booking Number:\n";
+            clickedRoom.IsAvailable = false;
+            ListOfRooms.Remove(clickedRoom);
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
         }
