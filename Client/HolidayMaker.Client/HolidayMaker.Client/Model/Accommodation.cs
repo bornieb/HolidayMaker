@@ -9,6 +9,7 @@ namespace HolidayMaker.Client.Model
 {
     public class Accommodation
     {
+        string foo = "";
         public string AccommodationName { get; set; }
         public string City { get; set; }
         public decimal Rating { get; set; }
