@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
+using HolidayMaker.Client.Service;
+using HolidayMaker.Client.Model;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,13 +25,19 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class BlankPage1 : Page
     {
+        RegisterUserService registerUserService = new RegisterUserService();
         public BlankPage1()
         {
             this.InitializeComponent();
+            
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
+            string userFirstName = FirstNameTextbox.Text;
+
+            string userLastName = LastNameTextbox.Text;
+
             string userEmail = EmailTextbox.Text;
 
             string password = PasswordTextbox.Password;
@@ -46,6 +54,11 @@ namespace HolidayMaker.Client.View
                 PasswordTextBlock.Text = "Passwords don't match";
                 ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
+
+            User user = new User(userFirstName, userLastName, userEmail, password);
+
+            
+            await registerUserService.PostRegisterUser(user);
         }
     }
 }

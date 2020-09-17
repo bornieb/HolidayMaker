@@ -32,7 +32,7 @@ namespace HolidayMakerAPI.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        
+
 
         // GET: api/User
         [HttpGet]
@@ -90,17 +90,17 @@ namespace HolidayMakerAPI.Controllers
         // POST: api/User
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<User>> PostUser(User user)
+        //{
+        //    _context.User.Add(user);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.UserID }, user);
-        }
+        //    return CreatedAtAction("GetUser", new { id = user.UserID }, user);
+        //}
 
 
-        [HttpPost]
+        [HttpPost("AspNetUsers")]
         public async Task<IActionResult> Register(User user)
         {
             var _user = new IdentityUser {NormalizedUserName = $"{user.FirstName} {user.LastName}", UserName = user.Email, Email = user.Email};

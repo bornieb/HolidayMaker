@@ -15,13 +15,13 @@ namespace HolidayMaker.Client.Model
         private string Password { get; set; }
         private string ConfirmPassword { get; set; }
 
-        public User(string firstName, string lastName, string email, string password, string confirmPassword )
+        public User(string firstName, string lastName, string email, string password)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Password = password;
-            ConfirmPassword = confirmPassword;
+            
         }
         public User()
         {

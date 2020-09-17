@@ -42,6 +42,20 @@
             Grid.Column="4"
             Grid.ColumnSpan="2"
             Grid.RowSpan="3">
+            <TextBox
+            x:Name="FirstNameTextbox"
+            PlaceholderText="First name"
+            Height="35"
+            />
+            <TextBlock
+                />
+            <TextBox
+            x:Name="LastNameTextbox"
+            PlaceholderText="Last name"
+            Height="35"
+            />
+            <TextBlock
+                />
         <TextBox
             x:Name="EmailTextbox"
             PlaceholderText="E-Mail"

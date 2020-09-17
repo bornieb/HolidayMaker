@@ -4,14 +4,16 @@ using HolidayMakerAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HolidayMakerAPI.Migrations
 {
     [DbContext(typeof(HolidayMakerAPIContext))]
-    partial class HolidayMakerAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20200917085532_AddingIdentity")]
+    partial class AddingIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
