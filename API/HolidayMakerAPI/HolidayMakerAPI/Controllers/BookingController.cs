@@ -29,59 +29,18 @@ namespace HolidayMakerAPI.Controllers
         }
 
         // GET: api/Booking/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Booking>> GetBooking(int id)
-        //{
-        //    var booking = await _context.Booking.FindAsync(id);
-
-        //    if (booking == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return booking;
-        //}
-
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<Booking>> GetAllUserBookings(int userId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Booking>> GetBooking(int id)
         {
-            var userBookings = await _context.User.Include(u => u.ListOfUserBookings)
-                .ThenInclude(b => b.BookedRooms)
-                .ThenInclude(r => r.Room).ThenInclude(a => a.Accommodation)
-                .Select(u => new
-                {
-                    u.FirstName,
-                    u.LastName,
-                    u.Email,
-                    booking = u.ListOfUserBookings.Select(b => new
-                    {
-                        b.BookingID,
-                        b.BookingNumber,
-                        b.CheckIn,
-                        b.CheckOut,
-                        b.TotalPrice,
-                        room = b.BookedRooms.Select(r => new 
-                        {
-                            r.RoomID,
-                            r.ExtraBedBooked,
-                            r.FullBoard,
-                            r.HalfBoard,
-                            r.AllInclusive
-                        })
-                    })
-                }).ToListAsync();
+            var booking = await _context.Booking.FindAsync(id);
 
-            return Ok(userBookings);
-            //var booking = await _context.Booking.FindAsync(userId);
+            if (booking == null)
+            {
+                return NotFound();
+            }
 
-            //if (booking == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return booking;
+            return booking;
         }
-
 
         // PUT: api/Booking/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
