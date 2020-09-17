@@ -35,7 +35,8 @@ namespace HolidayMaker.Client
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
-            mainPageViewModel.MockData();
+            mainPageViewModel.GetAccommodations();
+            //mainPageViewModel.MockData();
         }
 
         private void CollapseButton_Click(object sender, RoutedEventArgs e)
@@ -53,12 +54,19 @@ namespace HolidayMaker.Client
         }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Accommodation ac = accListView.SelectedItem as Accommodation;
+            //Accommodation ac = accListView.SelectedItem as Accommodation;
+            ListOfRooms.Clear();
+
+            var ac = (Accommodation)accListView.SelectedItem;
 
             foreach (var item in ac.Rooms)
             {
-                ListOfRooms.Add(item);
+                if (item.IsAvailable)
+                {
+                    ListOfRooms.Add(item);
+                }
             }
+
         }
 
         private void AddRoom_Clicked(object sender, RoutedEventArgs e)
@@ -74,6 +82,8 @@ namespace HolidayMaker.Client
             //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             //string bookingNumber = booking.BookingNumber.ToString();
             //BookingNumberTextBlock.Text = $"Booking Number:\n";
+            clickedRoom.IsAvailable = false;
+            ListOfRooms.Remove(clickedRoom);
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
         }
@@ -95,6 +105,7 @@ namespace HolidayMaker.Client
         {
 
         }
+
 
         private void CreateBooking_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +131,5 @@ namespace HolidayMaker.Client
                 accListView.ItemsSource = sorted;
         }
 
-       
     }
 }
