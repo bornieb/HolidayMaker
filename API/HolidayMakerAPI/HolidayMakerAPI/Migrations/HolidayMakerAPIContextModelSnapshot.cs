@@ -29,9 +29,6 @@ namespace HolidayMakerAPI.Migrations
                     b.Property<string>("AccommodationName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("DistanceToBeach")
                         .HasColumnType("int");
 
@@ -49,6 +46,9 @@ namespace HolidayMakerAPI.Migrations
 
                     b.Property<bool>("HasRestaurant")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(10,1)");
@@ -393,7 +393,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.Room", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.Accommodation", "Accommodation")
-                        .WithMany("Rooms")
+                        .WithMany()
                         .HasForeignKey("AccommodationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
