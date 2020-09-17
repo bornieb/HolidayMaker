@@ -100,6 +100,7 @@ namespace HolidayMaker.Client.ViewModel
 
         public void CalculateTotalPrice()
         {
+            TotalPrice = 0;
             foreach (BookedRoom room in AddedRooms)
             {
                 TotalPrice += room.Price;
@@ -121,13 +122,13 @@ namespace HolidayMaker.Client.ViewModel
                     if (s.AccommodationName.ToLower().Contains(search.ToLower())
                         || s.City.ToLower().Contains(search.ToLower()))
                     {
-                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City, s.Rating));
+                        SearchResult.Add(s);
                     }
                 }
             }
         }
 
-
+        //Ta bort då den inte används?
         public void SortingFunction()
         {
             var sorted = SearchResult.OrderByDescending(x => x.Rating);

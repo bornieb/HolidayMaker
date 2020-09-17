@@ -23,5 +23,9 @@ namespace HolidayMaker.Client.Model
             //Rooms.Add(new Room(1, "Svit", 500));
             //Rooms.Add(new Room(2, "Skrubb", 900));
         }
+        public Accommodation()
+        {
+            Rooms = new ObservableCollection<Room>();
+        }
     }
 }

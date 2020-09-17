@@ -23,9 +23,11 @@ namespace HolidayMaker.Client.Service
 
         public async Task<ObservableCollection<Accommodation>> GetAccommodationsAsync()
         {
+            var accommodations = new ObservableCollection<Accommodation>();
             var jsonAccommodations = await httpClient.GetStringAsync(url);
-            var accommodations = JsonConvert.DeserializeObject<ObservableCollection<Accommodation>>(jsonAccommodations);
-    
+            accommodations = JsonConvert.DeserializeObject<ObservableCollection<Accommodation>>(jsonAccommodations);
+
+
             return accommodations;
         }
 

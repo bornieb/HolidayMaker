@@ -53,12 +53,16 @@ namespace HolidayMaker.Client
         }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Accommodation ac = accListView.SelectedItem as Accommodation;
+            //Accommodation ac = accListView.SelectedItem as Accommodation;
+            ListOfRooms.Clear();
+
+            var ac = (Accommodation)accListView.SelectedItem;
 
             foreach (var item in ac.Rooms)
             {
                 ListOfRooms.Add(item);
             }
+
         }
 
         private void AddRoom_Clicked(object sender, RoutedEventArgs e)
@@ -84,21 +88,19 @@ namespace HolidayMaker.Client
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
         }
 
+        //Gjorde den till OrderByDescending
         private void SortingButton_Click(object sender, RoutedEventArgs e)
         {
-            var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
             accListView.ItemsSource = sorted;
-
         }
-
-        private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void CreateBooking_Click(object sender, RoutedEventArgs e)
         {
             mainPageViewModel.CreateBooking();
+        }
+        private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

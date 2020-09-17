@@ -72,6 +72,7 @@
             OpenPaneLength="130"
             IsPaneOpen="True"
             PanePlacement="Right"
+            
            
             >
 
@@ -152,9 +153,10 @@
 
         </SplitView>
 
-        <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
+            <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
 
-        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" Grid.ColumnSpan="2"/>
+            <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+
 
 
         <ListView Grid.Column="2" 
@@ -162,7 +164,7 @@
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
                   x:Name="accListView"
-                  ItemsSource="{x:Bind mainPageViewModel.SearchResult}" SelectionChanged="accListView_SelectionChanged">
+                  ItemsSource="{x:Bind mainPageViewModel.SearchResult}" SelectionChanged="accListView_SelectionChanged" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
@@ -170,6 +172,8 @@
                         Text="{x:Bind AccommodationName}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind City}" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind Rating}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -184,11 +188,13 @@
                   >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Room">
-                    <StackPanel>
+                    <StackPanel Orientation="Vertical">
                         <TextBlock
                         Text="{x:Bind RoomType}" Foreground="Black"/>
+
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
+                        
                         <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
