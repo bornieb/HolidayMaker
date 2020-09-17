@@ -84,12 +84,12 @@ namespace HolidayMaker.Client
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
         }
 
-        private void SortingButton_Click(object sender, RoutedEventArgs e)
-        {
-            var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
-            accListView.ItemsSource = sorted;
+        //private void SortingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
+        //    accListView.ItemsSource = sorted;
 
-        }
+        //}
 
         private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -105,5 +105,21 @@ namespace HolidayMaker.Client
         {
             this.Frame.Navigate(typeof(BlankPage1));
         }
+
+        private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
+        {
+            
+                var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
+                accListView.ItemsSource = sorted;
+            
+        }
+
+        private void MenuFlyoutItem_Click_Name(object sender, RoutedEventArgs e)
+        {
+                var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.AccommodationName);
+                accListView.ItemsSource = sorted;
+        }
+
+       
     }
 }

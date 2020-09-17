@@ -21,10 +21,12 @@ namespace HolidayMakerAPI.Controllers
         private readonly SignInManager<IdentityUser> signInManager;
 
         public UserController(UserManager<IdentityUser> userManager,
-                              SignInManager<IdentityUser> signInManager)
+                              SignInManager<IdentityUser> signInManager, 
+                              HolidayMakerAPIContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _context = context;
         }
 
 
@@ -100,7 +102,7 @@ namespace HolidayMakerAPI.Controllers
             var _user = new IdentityUser {NormalizedUserName = $"{user.FirstName} {user.LastName}", UserName = user.Email, Email = user.Email};
             var result = await userManager.CreateAsync(_user, user.Password);
 
-            if (result.Succeeded) 
+            if (result.Succeeded)
             {
                 await signInManager.SignInAsync(_user, isPersistent: false);
                 return RedirectToAction();
