@@ -25,7 +25,27 @@ namespace HolidayMakerAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccommodation()
         {
-            return await _context.Accommodation.ToListAsync();
+            var result = await _context.Accommodation.Include(r => r.Rooms)//RoomList
+            .Select(r => new
+            {
+                r.AccommodationID,
+                r.AccommodationName,
+                r.City,
+                r.Rating,
+                Rooms = r.Rooms.Select
+                (ac => new
+                {
+                    ac.RoomID,
+                    ac.RoomNumber,
+                    ac.RoomType,
+                    ac.IsAvailable,
+                    ac.Price,
+                }
+                )
+            }).ToListAsync();
+
+            return Ok(result);
+            //return await _context.Accommodation.ToListAsync();
         }
 
         // GET: api/Accommodation/5

@@ -9,10 +9,12 @@
     <Compile Remove="Migrations\20200914114413_Initial.Designer.cs" />
     <Compile Remove="Migrations\20200914114942_Initial.cs" />
     <Compile Remove="Migrations\20200914114942_Initial.Designer.cs" />
+
     <Compile Remove="Migrations\20200916082232_AddingIdentity.cs" />
     <Compile Remove="Migrations\20200916082232_AddingIdentity.Designer.cs" />
     <Compile Remove="Migrations\20200917084854_AddingIdentity.cs" />
     <Compile Remove="Migrations\20200917084854_AddingIdentity.Designer.cs" />
+
   </ItemGroup>
 
   <ItemGroup>
