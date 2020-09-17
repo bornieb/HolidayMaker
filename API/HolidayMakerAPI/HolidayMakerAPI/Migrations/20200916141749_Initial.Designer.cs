@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HolidayMakerAPI.Migrations
 {
     [DbContext(typeof(HolidayMakerAPIContext))]
-    [Migration("20200915123152_Initial")]
+    [Migration("20200916141749_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace HolidayMakerAPI.Migrations
                     b.Property<string>("AccommodationName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DistanceToBeach")
                         .HasColumnType("int");
 
@@ -48,9 +51,6 @@ namespace HolidayMakerAPI.Migrations
 
                     b.Property<bool>("HasRestaurant")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(10,1)");
@@ -73,10 +73,10 @@ namespace HolidayMakerAPI.Migrations
                     b.Property<string>("BookingNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CheckIn")
+                    b.Property<DateTime?>("CheckIn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("CheckOut")
+                    b.Property<DateTime?>("CheckOut")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("TotalPrice")
@@ -184,7 +184,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.BookingRoom", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.Booking", "Booking")
-                        .WithMany()
+                        .WithMany("BookedRooms")
                         .HasForeignKey("BookingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -199,7 +199,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.Room", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.Accommodation", "Accommodation")
-                        .WithMany()
+                        .WithMany("Rooms")
                         .HasForeignKey("AccommodationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
