@@ -86,6 +86,7 @@ namespace HolidayMaker.Client
             ListOfRooms.Remove(clickedRoom);
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
+
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
