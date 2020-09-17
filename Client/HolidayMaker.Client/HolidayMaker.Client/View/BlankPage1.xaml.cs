@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -37,7 +38,13 @@ namespace HolidayMaker.Client.View
 
             if(password == confirmPassword)
             {
-
+                PasswordTextBlock.Text = "";
+                ConfirmPasswordTextBlock.Text = "";
+            }
+            else
+            {
+                PasswordTextBlock.Text = "Passwords don't match";
+                ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
         }
     }

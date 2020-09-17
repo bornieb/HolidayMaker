@@ -125,6 +125,7 @@
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Service\BookingService.cs" />
+    <Compile Include="Service\RegisterUserService.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="View\BlankPage1.xaml.cs">
       <DependentUpon>BlankPage1.xaml</DependentUpon>
