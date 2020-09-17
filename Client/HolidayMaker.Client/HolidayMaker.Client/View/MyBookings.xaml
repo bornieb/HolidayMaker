@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="HolidayMaker.Client.View.MyBookings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HolidayMaker.Client.View"
+    xmlns:local1="using:HolidayMaker.Client.ViewModel"
+    xmlns:model="using:HolidayMaker.Client.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#e7e7e7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Column="2" 
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5"
+                  x:Name="bookingsListview"
+                  ItemsSource="{x:Bind mainPageViewModel.b}" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Booking">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                        <Button Name="DeleteBookingButton"
+                        Content="X"
+                        Background="Red"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="6" 
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5"
+                  x:Name="bookingsRoomListview"
+                  ItemsSource="{x:Bind myBookingsViewModel.}" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Booking">
+                        <StackPanel>
+                            <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                            <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                            <TextBlock
+                        Text="{x:Bind }" Foreground="Black"/>
+                            <Button Name="DeleteRoomButton"
+                        Content="X"
+                        Background="Red"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+    </Grid>
+</Page>
