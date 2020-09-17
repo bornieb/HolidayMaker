@@ -37,6 +37,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Button
+            x:Name="BackButton"
+            Content="⬅"
+            Click="BackButton_Click"
+            />
         <StackPanel
             Grid.Row="2"
             Grid.Column="4"

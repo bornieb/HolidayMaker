@@ -119,6 +119,10 @@ namespace HolidayMaker.Client
                 accListView.ItemsSource = sorted;
         }
 
-       
+        private void MenuFlyoutItem_Click_Name_Descend(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.AccommodationName);
+            accListView.ItemsSource = sorted;
+        }
     }
 }

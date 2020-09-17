@@ -141,6 +141,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Media\backgroundHoliday.jpg" />
     <Content Include="Assets\Media\vacation7.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
