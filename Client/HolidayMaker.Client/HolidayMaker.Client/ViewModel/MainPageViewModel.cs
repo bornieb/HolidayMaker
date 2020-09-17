@@ -18,16 +18,16 @@ namespace HolidayMaker.Client.ViewModel
 
         public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
         public decimal TotalPrice = 0;
-        AccommodationService accommodationService = new AccommodationService();
 
-        //public void MockData()
-        //{
-        //    ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
-        //    ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
-        //    ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
-        //    ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
-        //    ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
-        //}
+
+        public void MockData()
+        {
+            ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
+            ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
+            ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
+            ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
+            ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
+        }
 
 
         public void AddToBooking(Room room, Accommodation accommodation)
@@ -66,15 +66,6 @@ namespace HolidayMaker.Client.ViewModel
             await bookingService.PostBooking(booking);
         }
 
-        public async void GetAccommodations()
-        {
-            var accommodations = await accommodationService.GetAccommodationsAsync();
-            foreach (Accommodation item in accommodations)
-            {
-                ListOfAccommodations.Add(item);
-            }
-        }
-
         public string CreateBookingNumber()
         {
             //bookingNumber += 1;
@@ -100,7 +91,6 @@ namespace HolidayMaker.Client.ViewModel
 
         public void CalculateTotalPrice()
         {
-            TotalPrice = 0;
             foreach (BookedRoom room in AddedRooms)
             {
                 TotalPrice += room.Price;
@@ -122,20 +112,17 @@ namespace HolidayMaker.Client.ViewModel
                     if (s.AccommodationName.ToLower().Contains(search.ToLower())
                         || s.City.ToLower().Contains(search.ToLower()))
                     {
-                        SearchResult.Add(s);
+                        SearchResult.Add(new Accommodation(s.AccommodationName, s.City, s.Rating));
                     }
                 }
             }
         }
 
-        //Ta bort då den inte används?
         public void SortingFunction()
         {
             var sorted = SearchResult.OrderByDescending(x => x.Rating);
 
         }
-
-
     }
 }
 

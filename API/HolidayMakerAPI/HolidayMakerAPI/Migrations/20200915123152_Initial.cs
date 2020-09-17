@@ -14,7 +14,7 @@ namespace HolidayMakerAPI.Migrations
                     AccommodationID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccommodationName = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
                     TypeOfAccommodation = table.Column<string>(nullable: true),
                     HasPool = table.Column<bool>(nullable: false),
                     HasEntertainment = table.Column<bool>(nullable: false),
@@ -75,8 +75,8 @@ namespace HolidayMakerAPI.Migrations
                     BookingID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookingNumber = table.Column<string>(nullable: true),
-                    CheckIn = table.Column<DateTime>(nullable: true),
-                    CheckOut = table.Column<DateTime>(nullable: true),
+                    CheckIn = table.Column<DateTime>(nullable: false),
+                    CheckOut = table.Column<DateTime>(nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(10,1)", nullable: false),
                     UserID = table.Column<int>(nullable: false)
                 },

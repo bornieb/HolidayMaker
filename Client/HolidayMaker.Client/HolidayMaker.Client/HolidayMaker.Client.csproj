@@ -123,10 +123,6 @@
     <Compile Include="Model\BookedRoom.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Room.cs" />
-
-    <Compile Include="Service\AccommodationService.cs" />
-    <Compile Include="Service\BookingService.cs" />
-    <Compile Include="Service\RoomService.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Service\BookingService.cs" />
     <Compile Include="Service\RegisterUserService.cs" />
