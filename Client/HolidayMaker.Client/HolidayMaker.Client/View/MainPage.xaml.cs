@@ -16,7 +16,6 @@ using HolidayMaker.Client.ViewModel;
 using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
-using System.Linq;
 using HolidayMaker.Client.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
