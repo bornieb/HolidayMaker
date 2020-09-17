@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMakerAPI.Data;
 using HolidayMakerAPI.Model;
+using System.Collections.Immutable;
 
 namespace HolidayMakerAPI.Controllers
 {
@@ -28,18 +29,52 @@ namespace HolidayMakerAPI.Controllers
             return await _context.Booking.ToListAsync();
         }
 
-        // GET: api/Booking/5
+        //// GET: api/Booking/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Booking>> GetBooking(int id)
+        //{
+        //    var booking = await _context.Booking.FindAsync(id);
+
+        //    if (booking == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return booking;
+        //}
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
-            var booking = await _context.Booking.FindAsync(id);
+            //var booking = await _context.Booking.FindAsync(id);
 
-            if (booking == null)
-            {
-                return NotFound();
-            }
+            //if (booking == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return booking;
+            var userBooking = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .Select(r => new
+                {
+                    r.BookingID,
+                    r.BookingNumber,
+                    r.CheckIn,
+                    r.CheckOut,
+                    r.TotalPrice,
+                    room = r.BookedRooms.Select(br => new
+                    {
+                        br.RoomID,
+                        br.ExtraBedBooked,
+                        br.FullBoard,
+                        br.HalfBoard,
+                        br.AllInclusive
+
+                    })
+                }).ToListAsync();
+            return Ok(userBooking);
         }
 
         // PUT: api/Booking/5
