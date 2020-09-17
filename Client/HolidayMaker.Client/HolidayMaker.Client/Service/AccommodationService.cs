@@ -12,6 +12,7 @@ namespace HolidayMaker.Client.Service
 {
     public class AccommodationService
     {
+        private string foo = "";
         private static readonly string url = "http://localhost:59571/api/accommodation";
         HttpClient httpClient;
 
