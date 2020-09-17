@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HolidayMakerAPI.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HolidayMakerAPI.Data
 {
-    public class HolidayMakerAPIContext : DbContext
+    public class HolidayMakerAPIContext : IdentityDbContext
     {
         public HolidayMakerAPIContext (DbContextOptions<HolidayMakerAPIContext> options)
             : base(options)

@@ -15,7 +15,7 @@ using HolidayMakerAPI.Data;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace HolidayMakerAPI
 {
@@ -38,6 +38,8 @@ namespace HolidayMakerAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HolidayMaker API v1", Version = "v1" });
             });
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<HolidayMakerAPIContext>();
 
             services.AddDbContext<HolidayMakerAPIContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("HolidayMakerAPIContext")));
@@ -63,6 +65,8 @@ namespace HolidayMakerAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

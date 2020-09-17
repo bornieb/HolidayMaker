@@ -17,6 +17,7 @@ using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
 using System.Linq;
+using HolidayMaker.Client.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -93,19 +94,42 @@ namespace HolidayMaker.Client
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
         }
 
-        //Gjorde den till OrderByDescending
-        private void SortingButton_Click(object sender, RoutedEventArgs e)
-        {
-            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
-            accListView.ItemsSource = sorted;
-        }
-        private void CreateBooking_Click(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.CreateBooking();
-        }
+        //private void SortingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
+        //    accListView.ItemsSource = sorted;
+
+        //}
+
         private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+
+        private void CreateBooking_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.CreateBooking();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(BlankPage1));
+        }
+
+        private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
+        {
+            
+                var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
+                accListView.ItemsSource = sorted;
+            
+        }
+
+        private void MenuFlyoutItem_Click_Name(object sender, RoutedEventArgs e)
+        {
+                var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.AccommodationName);
+                accListView.ItemsSource = sorted;
+        }
+
     }
 }

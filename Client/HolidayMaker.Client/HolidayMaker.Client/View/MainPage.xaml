@@ -12,7 +12,8 @@
     >
 
 
-    <Grid Background="#e7e7e7">
+    <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -41,6 +42,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <RelativePanel
             Grid.Row="0"
             Grid.Column="14"
@@ -64,16 +66,14 @@
         <SplitView
             x:Name="SplitviewMenu"
             Grid.Row="1"
-            Grid.RowSpan="14"
-            Grid.ColumnSpan="4"
+            
             Grid.Column="14"
             HorizontalAlignment="Stretch"
             CompactPaneLength="56"
             OpenPaneLength="130"
             IsPaneOpen="True"
             PanePlacement="Right"
-            
-           
+            PaneBackground="Transparent"
             >
 
 
@@ -98,11 +98,7 @@
                         x:Name="FirstListBoxItem"
                         Background="Transparent">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    FontFamily="Segoe UI Emoji"
-                                    FontSize="24"
-                                    Text="&#x1F61D;"
-                                    HorizontalAlignment="Center"/>
+                                
                             </StackPanel>
                         </ListBoxItem>
 
@@ -157,6 +153,34 @@
 
             <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
+        <!--<Button 
+            x:Name="SortingButton"
+            Grid.Column="5"
+            Grid.Row="1"
+            Width="132"
+            Height="50"
+            Content="Sort by Rating" 
+            Foreground="Black" 
+            Click="SortingButton_Click" 
+            Grid.ColumnSpan="2"/>-->
+        
+        <AppBarButton
+            Icon="Sort"
+            IsCompact="True"
+            ToolTipService.ToolTip="Sort"
+            AutomationProperties.Name="Sort"
+            Grid.Column="5"
+            Grid.Row="1"
+            Height="Auto"
+           
+           >
+            <AppBarButton.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="By rating" Click="MenuFlyoutItem_Click_Rating" Tag="rating"/>
+                    <MenuFlyoutItem Text="By name" Click="MenuFlyoutItem_Click_Name" Tag="name"/>
+                </MenuFlyout>
+            </AppBarButton.Flyout>
+        </AppBarButton>
 
 
         <ListView Grid.Column="2" 
@@ -208,5 +232,14 @@
                    Text="Hej" 
                    Foreground="Black"
                    />
+
+        <Button
+                                    FontFamily="Segoe UI Emoji"
+                                    FontSize="24"
+                                    Content="&#x1F61D;"
+                                    HorizontalAlignment="Center"
+                                    Background="Transparent"
+                                    Click="Button_Click"
+                                    />
     </Grid>
 </Page>

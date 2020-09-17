@@ -4,14 +4,16 @@ using HolidayMakerAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HolidayMakerAPI.Migrations
 {
     [DbContext(typeof(HolidayMakerAPIContext))]
-    partial class HolidayMakerAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20200917085532_AddingIdentity")]
+    partial class AddingIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace HolidayMakerAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccommodationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DistanceToBeach")
@@ -49,6 +48,9 @@ namespace HolidayMakerAPI.Migrations
 
                     b.Property<bool>("HasRestaurant")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(10,1)");
@@ -393,7 +395,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.Room", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.Accommodation", "Accommodation")
-                        .WithMany("Rooms")
+                        .WithMany()
                         .HasForeignKey("AccommodationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
