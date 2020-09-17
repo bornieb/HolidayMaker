@@ -12,7 +12,7 @@ namespace HolidayMaker.Client.Service
 {
     public class RegisterUserService
     {
-        private static readonly string url = "http://localhost:59571/api/User/AspNetUsers";
+        private static readonly string url = "http://localhost:59571/api/User";
         HttpClient httpClient;
 
         public RegisterUserService()
@@ -26,6 +26,7 @@ namespace HolidayMaker.Client.Service
             HttpContent httpContent = new StringContent(jsonUser);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var jsonUserDB = await httpClient.PostAsync(url, httpContent);
+            var response = await jsonUserDB.Content.ReadAsStringAsync();
         }
     }
 }

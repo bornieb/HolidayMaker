@@ -20,12 +20,6 @@ namespace HolidayMakerAPI.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
-
-        public UserController(HolidayMakerAPIContext context)
-        {
-            _context = context;
-        }
-
         public UserController(UserManager<IdentityUser> userManager,
                               SignInManager<IdentityUser> signInManager)
         {
@@ -100,7 +94,7 @@ namespace HolidayMakerAPI.Controllers
         //}
 
 
-        [HttpPost("AspNetUsers")]
+        [HttpPost]
         public async Task<IActionResult> Register(User user)
         {
             var _user = new IdentityUser {NormalizedUserName = $"{user.FirstName} {user.LastName}", UserName = user.Email, Email = user.Email};
