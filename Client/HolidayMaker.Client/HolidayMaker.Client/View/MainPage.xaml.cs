@@ -107,5 +107,10 @@ namespace HolidayMaker.Client
         {
 
         }
+
+        private void MyBookingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

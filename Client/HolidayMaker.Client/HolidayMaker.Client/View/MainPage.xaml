@@ -58,7 +58,7 @@
                     Click="CollapseButton_Click"
                     Background="Transparent"
                     />
- 
+
             </StackPanel>
         </RelativePanel>
         <SplitView
@@ -77,8 +77,8 @@
             >
 
 
- 
-            
+
+
 
             <SplitView.Pane>
                 <Grid>
@@ -112,28 +112,28 @@
 
                     <ListView Grid.Row="1"
                         x:Name="BookingListview">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate 
+                        <ListView.ItemTemplate>
+                            <DataTemplate 
                                             x:DataType="model:BookedRoom">
-                                                <StackPanel>
-                                                    <TextBlock
+                                <StackPanel>
+                                    <TextBlock
                                                     Text="{x:Bind AccommodationName}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind City}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind RoomType}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind Price}"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                        
-                    
+
+
                     <StackPanel Grid.Row="2">
-                            
-                                <Button
+
+                        <Button
                                     x:Name="CreateBooking"
                                     Content="Boka!"
                                     Click="CreateBooking_Click" 
@@ -143,19 +143,19 @@
                                     VerticalAlignment="Center"
                                 />
 
-                            
-                            
-                        </StackPanel>
-                    
-                
+
+
+                    </StackPanel>
+
+
                 </Grid>
             </SplitView.Pane>
 
         </SplitView>
 
-            <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
+        <TextBox x:Name="SearchTextBox" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Bottom" Foreground="White" PlaceholderText="SEARCH ME" TextChanged="SearchTextBox_TextChanged"></TextBox>
 
-            <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Button x:Name="SortingButton" Grid.Column="5" Grid.Row="1" Width="132" Height="50" Content="Sort by Rating" Foreground="Black" Click="SortingButton_Click" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
 
 
@@ -194,7 +194,7 @@
 
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        
+
                         <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
@@ -208,5 +208,12 @@
                    Text="Hej" 
                    Foreground="Black"
                    />
+        <Button x:Name="MyBookingsButton"            
+            Content="MyBookings" 
+            Margin="0,57,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center"
+            Click="MyBookingsButton_Click"/>
     </Grid>
 </Page>
