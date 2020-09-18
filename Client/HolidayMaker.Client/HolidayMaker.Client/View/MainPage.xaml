@@ -99,7 +99,11 @@
                         x:Name="FirstListBoxItem"
                         Background="Transparent">
                             <StackPanel Orientation="Horizontal">
-                                
+                                <TextBlock
+                                    FontFamily="Segoe UI Emoji"
+                                    FontSize="24"
+                                    Text="&#x1F61D;"
+                                    HorizontalAlignment="Center"/>
                             </StackPanel>
                         </ListBoxItem>
 
@@ -194,6 +198,8 @@
                         Text="{x:Bind AccommodationName}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind City}" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind Rating}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
