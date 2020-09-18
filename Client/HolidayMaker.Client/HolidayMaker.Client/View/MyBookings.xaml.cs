@@ -28,6 +28,7 @@ namespace HolidayMaker.Client.View
         {
             myBookingsViewModel = new MyBookingsViewModel();
             this.InitializeComponent();
+            myBookingsViewModel.Mockdata();
         }
     }
 }
