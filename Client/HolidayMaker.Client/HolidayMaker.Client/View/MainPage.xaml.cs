@@ -17,6 +17,7 @@ using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
 using HolidayMaker.Client.View;
+using HolidayMaker.Client.Service;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,12 +29,14 @@ namespace HolidayMaker.Client
     public sealed partial class MainPage : Page
     {
         MainPageViewModel mainPageViewModel;
+        RegisterUserService registerUserService;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
 
         public MainPage()
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
+            registerUserService = new RegisterUserService();
             mainPageViewModel.MockData();
         }
 
@@ -100,9 +103,10 @@ namespace HolidayMaker.Client
             mainPageViewModel.CreateBooking();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BlankPage1));
+            await RegisterContent.ShowAsync();
+            //this.Frame.Navigate(typeof(BlankPage1));
         }
 
         private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
@@ -123,6 +127,44 @@ namespace HolidayMaker.Client
         {
             var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.AccommodationName);
             accListView.ItemsSource = sorted;
+        }
+
+       
+
+        private async void RegisterContent_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            string userEmail = EmailTextbox.Text;
+
+            string password = PasswordTextbox.Password;
+
+            string confirmPassword = ConfirmPasswordTextbox.Password;
+
+            if (password == confirmPassword)
+            {
+                PasswordTextBlock.Text = "";
+                ConfirmPasswordTextBlock.Text = "";
+            }
+            else
+            {
+                PasswordTextBlock.Text = "Passwords don't match";
+                ConfirmPasswordTextBlock.Text = "Passwords don't match";
+            }
+
+            User user = new User(userEmail, password);
+
+
+            await registerUserService.PostRegisterUser(user);
+        }
+
+        private async void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            await LoginContent.ShowAsync();
+        }
+
+        private async void Register_Hyperbutton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            await RegisterContent.ShowAsync();
         }
     }
 }

@@ -13,22 +13,22 @@
 
 
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="108*" />
+            <ColumnDefinition Width="107*" />
+            <ColumnDefinition Width="108*" />
+            <ColumnDefinition Width="107" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -48,16 +48,29 @@
             Grid.ColumnSpan="14"
             Grid.RowSpan="9"
             Stretch="Fill">
-            
+
         </Image>
         <RelativePanel
             Grid.Row="0"
-            Grid.Column="14"
+            Grid.Column="12"
             Grid.ColumnSpan="4">
             <StackPanel 
-                Orientation="Vertical"
+                Orientation="Horizontal"
                 
                        >
+                <Button
+                    x:Name="Login_Button"
+                    FontSize="12"
+                    Content="Log In"
+                    Click="Login_Button_Click"/>
+                <Button
+                  FontFamily="Segoe UI Emoji"                  
+                  FontSize="16"                  
+                  Content="&#x1F61D;"                  
+                  HorizontalAlignment="Center"                  
+                  Background="Transparent"                  
+                  Click="Button_Click"                  
+                  />
                 <Button
                     x:Name="CollapseButton"
                     Width="120"
@@ -67,7 +80,9 @@
                     Click="CollapseButton_Click"
                     Background="Transparent"
                     />
- 
+
+                
+
             </StackPanel>
         </RelativePanel>
         <SplitView
@@ -85,8 +100,8 @@
             >
 
 
- 
-            
+
+
 
             <SplitView.Pane>
                 <Grid>
@@ -97,47 +112,31 @@
                     </Grid.RowDefinitions>
 
 
-                    <ListBox Grid.Row="0"
-                    SelectionMode="Single"
-                    x:Name="SplitViewMenuList"
-                    SelectionChanged="SplitViewMenuList_SelectionChanged"
-                        >
-                        <ListBoxItem
-                        x:Name="FirstListBoxItem"
-                        Background="Transparent">
-                            <StackPanel Orientation="Horizontal">
-                                
-                            </StackPanel>
-                        </ListBoxItem>
-
-                    </ListBox>
-
-
-
-                    <ListView Grid.Row="1"
-                        x:Name="BookingListview">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate 
+                    <ListView Grid.Row="0"
+                        x:Name="BookingListview"
+                              Foreground="White">
+                        <ListView.ItemTemplate>
+                            <DataTemplate 
                                             x:DataType="model:BookedRoom">
-                                                <StackPanel>
-                                                    <TextBlock
+                                <StackPanel>
+                                    <TextBlock
                                                     Text="{x:Bind AccommodationName}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind City}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind RoomType}"/>
-                                                    <TextBlock
+                                    <TextBlock
                                                     Text="{x:Bind Price}"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-                        
-                    
-                    <StackPanel Grid.Row="2">
-                            
-                                <Button
+
+
+                    <StackPanel Grid.Row="1">
+
+                        <Button
                                     x:Name="CreateBooking"
                                     Content="Boka!"
                                     Click="CreateBooking_Click" 
@@ -146,12 +145,9 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                 />
+                    </StackPanel>
 
-                            
-                            
-                        </StackPanel>
-                    
-                
+
                 </Grid>
             </SplitView.Pane>
 
@@ -168,20 +164,9 @@
             PlaceholderForeground="White"
             Background="Transparent"
             TextChanged="SearchTextBox_TextChanged">
-            
+
         </TextBox>
 
-        <!--<Button 
-            x:Name="SortingButton"
-            Grid.Column="5"
-            Grid.Row="1"
-            Width="132"
-            Height="50"
-            Content="Sort by Rating" 
-            Foreground="Black" 
-            Click="SortingButton_Click" 
-            Grid.ColumnSpan="2"/>-->
-        
         <AppBarButton
             Icon="Sort"
             IsCompact="True"
@@ -241,22 +226,93 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="bookingTextBlock"
-                   Grid.Column="11"
-                   Grid.Row="1"
-                   Grid.ColumnSpan="3"
-                   Grid.RowSpan="4"
-                   Text="Hej" 
-                   Foreground="Black"
-                   />
 
-        <Button
-                  FontFamily="Segoe UI Emoji"                  
-                  FontSize="16"                  
-                  Content="&#x1F61D;"                  
-                  HorizontalAlignment="Center"                  
-                  Background="Transparent"                  
-                  Click="Button_Click"                  
-                  />                  
+
+
+        <ContentDialog
+            x:Name="RegisterContent"
+            PrimaryButtonText="Register"
+            PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
+            SecondaryButtonText="Close"
+            >
+            <StackPanel
+            Grid.Row="2"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="3">
+                <TextBlock
+                />
+                <TextBox
+            x:Name="EmailTextbox"
+            PlaceholderText="E-Mail"
+            Height="35"
+            />
+                <TextBlock
+                />
+                <PasswordBox
+            x:Name="PasswordTextbox"
+            PlaceholderText="Password"
+            Height="35"
+            PasswordRevealMode="Peek"    
+            />
+                <TextBlock
+                x:Name="PasswordTextBlock"
+                Text=""
+                Foreground="Red"
+                FontSize="12"
+                Height="Auto"/>
+
+                <PasswordBox
+            x:Name="ConfirmPasswordTextbox"
+            PlaceholderText="Confirm Password"
+            Height="35"
+            PasswordRevealMode="Peek"
+            />
+                <TextBlock
+                x:Name="ConfirmPasswordTextBlock"
+                Text=""
+                Foreground="Red"
+                FontSize="12"
+                Height="Auto"/>
+            </StackPanel>
+
+        </ContentDialog>
+        <ContentDialog
+            x:Name="LoginContent"
+            PrimaryButtonText="Log In"
+            PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
+            SecondaryButtonText="Close">
+            <StackPanel>
+                <TextBox
+            x:Name="UserEmailTextbox"
+            PlaceholderText="E-Mail"
+            Height="35"
+            />
+                <TextBlock
+                />
+                <PasswordBox
+            x:Name="UserPasswordTextbox"
+            PlaceholderText="Password"
+            Height="35"
+            PasswordRevealMode="Peek"    
+            />
+                <TextBlock
+                   Text="Not a registered user"
+                   HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    />
+                <HyperlinkButton
+                    x:Name="Register_Hyperbutton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Register here"
+                    FontSize="12"
+                    Click="Register_Hyperbutton_Click"/>
+
+
+            </StackPanel>
+            
+        </ContentDialog>
     </Grid>
 </Page>
