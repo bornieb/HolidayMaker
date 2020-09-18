@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HolidayMakerAPI.Data;
 using HolidayMakerAPI.Model;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.CodeAnalysis.Classification;
 
 namespace HolidayMakerAPI.Controllers
 {
@@ -110,6 +110,26 @@ namespace HolidayMakerAPI.Controllers
 
             return Ok(user);
         }
+
+        public class LoginRequest
+        {
+            public string email { get; set; }
+            public string password { get; set; }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn(LoginRequest request)
+        {
+            var result = await signInManager.PasswordSignInAsync(request.email, request.password, false, false);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return Forbid();
+        }
+
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]

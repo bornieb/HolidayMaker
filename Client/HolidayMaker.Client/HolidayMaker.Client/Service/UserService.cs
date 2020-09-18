@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace HolidayMaker.Client.Service
 {
-    public class RegisterUserService
+    public class UserService
     {
         private static readonly string url = "http://localhost:59571/api/User";
         HttpClient httpClient;
 
-        public RegisterUserService()
+        public UserService()
         {
             httpClient = new HttpClient();
         }
@@ -27,6 +27,17 @@ namespace HolidayMaker.Client.Service
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var jsonUserDB = await httpClient.PostAsync(url, httpContent);
             var response = await jsonUserDB.Content.ReadAsStringAsync();
+        }
+
+        public async Task<bool> LogIn(string email, string password)
+        {
+            var data = new { email, password };
+            var jsonData = JsonConvert.SerializeObject(data);
+            HttpContent httpContent = new StringContent(jsonData);
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await httpClient.PostAsync(url+"/login", httpContent);
+
+            return response.IsSuccessStatusCode; //om allt går bra är denna true
         }
     }
 }

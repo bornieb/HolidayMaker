@@ -23,10 +23,10 @@ namespace HolidayMaker.Client.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class RegisterView : Page
     {
-        RegisterUserService registerUserService = new RegisterUserService();
-        public BlankPage1()
+        UserService registerUserService = new UserService();
+        public RegisterView()
         {
             this.InitializeComponent();
             
