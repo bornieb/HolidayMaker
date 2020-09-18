@@ -30,5 +30,7 @@ namespace HolidayMaker.Client.View
             this.InitializeComponent();
             myBookingsViewModel.Mockdata();
         }
+
+
     }
 }
