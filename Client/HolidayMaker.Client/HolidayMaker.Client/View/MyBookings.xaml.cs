@@ -1,5 +1,4 @@
-﻿using HolidayMaker.Client.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,12 +22,9 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class MyBookings : Page
     {
-        MyBookingsViewModel myBookingsViewModel;
         public MyBookings()
         {
-            myBookingsViewModel = new MyBookingsViewModel();
             this.InitializeComponent();
-            myBookingsViewModel.Mockdata();
         }
     }
 }
