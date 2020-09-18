@@ -43,7 +43,7 @@
             <StackPanel>
                 <TextBlock
                     x:Name="UserTextBlock"
-                    Text="{x:Bind email}"/>
+                    Text="{x:Bind logInViewModel.User.Email}"/>
             </StackPanel>
           
             

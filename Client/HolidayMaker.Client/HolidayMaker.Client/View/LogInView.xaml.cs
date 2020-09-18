@@ -1,4 +1,5 @@
-﻿using HolidayMaker.Client.Service;
+﻿using HolidayMaker.Client.Model;
+using HolidayMaker.Client.Service;
 using HolidayMaker.Client.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,9 @@ namespace HolidayMaker.Client.View
         UserService userService = new UserService();
         LogInViewModel logInViewModel = new LogInViewModel();
 
+
         public bool IsLoggedIn = false;
-        public string email = "";
+        
 
         public LogInView()
         {
@@ -47,7 +49,7 @@ namespace HolidayMaker.Client.View
             if(response == true)
             {
                 IsLoggedIn = true;
-                email = userName;
+                logInViewModel.User = new User(userName);
             }
         }
     }

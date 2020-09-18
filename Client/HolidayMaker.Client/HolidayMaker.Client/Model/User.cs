@@ -27,5 +27,9 @@ namespace HolidayMaker.Client.Model
         {
 
         }
+        public User(string email)
+        {
+            Email = email;
+        }
     }
 }

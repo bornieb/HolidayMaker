@@ -1,4 +1,5 @@
-﻿using HolidayMaker.Client.View;
+﻿using HolidayMaker.Client.Model;
+using HolidayMaker.Client.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,18 +12,19 @@ namespace HolidayMaker.Client.ViewModel
 {
     public class LogInViewModel : INotifyPropertyChanged
     {
+        private User user = new User(); 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LogInView LogInView
+        public User User
         {
             get
             {
-                return LogInView;
+                return this.user;
             }
             set
             {
-                LogInView = value;
-                NotifyPropertyChanged(nameof(LogInView));
+                this.user = value;
+                NotifyPropertyChanged(nameof(User));
             }
         }
 
