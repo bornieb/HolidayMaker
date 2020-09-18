@@ -90,24 +90,23 @@
                     </Grid.RowDefinitions>
 
 
-                    <ListBox Grid.Row="0"
-                    SelectionMode="Single"
-                    x:Name="SplitViewMenuList"
-                    SelectionChanged="SplitViewMenuList_SelectionChanged"
-                        >
+
                         <ListBoxItem
                         x:Name="FirstListBoxItem"
                         Background="Transparent">
                             <StackPanel Orientation="Horizontal">
-                                
+                                <TextBlock
+                                    FontFamily="Segoe UI Emoji"
+                                    FontSize="24"
+                                    Text="&#x1F61D;"
+                                    HorizontalAlignment="Center"/>
                             </StackPanel>
                         </ListBoxItem>
 
-                    </ListBox>
 
 
 
-                    <ListView Grid.Row="1"
+                    <ListView Grid.Row="1" Grid.RowSpan="5"
                         x:Name="BookingListview">
                                         <ListView.ItemTemplate>
                                             <DataTemplate 
@@ -194,6 +193,8 @@
                         Text="{x:Bind AccommodationName}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind City}" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind Rating}" Foreground="Black"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -218,14 +219,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock x:Name="bookingTextBlock"
-                   Grid.Column="11"
-                   Grid.Row="1"
-                   Grid.ColumnSpan="3"
-                   Grid.RowSpan="4"
-                   Text="Hej" 
-                   Foreground="Black"
-                   />
+
 
         <Button
                                     FontFamily="Segoe UI Emoji"

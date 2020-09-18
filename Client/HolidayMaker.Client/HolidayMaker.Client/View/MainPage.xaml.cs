@@ -16,7 +16,6 @@ using HolidayMaker.Client.ViewModel;
 using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
-using System.Linq;
 using HolidayMaker.Client.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -35,7 +34,7 @@ namespace HolidayMaker.Client
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
-            mainPageViewModel.MockData();
+            mainPageViewModel.GetAccommodations();
         }
 
         private void CollapseButton_Click(object sender, RoutedEventArgs e)
@@ -53,11 +52,17 @@ namespace HolidayMaker.Client
         }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Accommodation ac = accListView.SelectedItem as Accommodation;
+            //Accommodation ac = accListView.SelectedItem as Accommodation;
+            ListOfRooms.Clear();
+
+            var ac = (Accommodation)accListView.SelectedItem;
 
             foreach (var item in ac.Rooms)
             {
-                ListOfRooms.Add(item);
+                if (item.IsAvailable)
+                {
+                    ListOfRooms.Add(item);
+                }
             }
         }
 
@@ -74,6 +79,8 @@ namespace HolidayMaker.Client
             //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             //string bookingNumber = booking.BookingNumber.ToString();
             //BookingNumberTextBlock.Text = $"Booking Number:\n";
+            clickedRoom.IsAvailable = false;
+            ListOfRooms.Remove(clickedRoom);
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
         }

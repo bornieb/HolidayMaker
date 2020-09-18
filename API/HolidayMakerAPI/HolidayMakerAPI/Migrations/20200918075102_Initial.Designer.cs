@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HolidayMakerAPI.Migrations
 {
     [DbContext(typeof(HolidayMakerAPIContext))]
-    [Migration("20200917085532_AddingIdentity")]
-    partial class AddingIdentity
+    [Migration("20200918075102_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace HolidayMakerAPI.Migrations
                     b.Property<string>("AccommodationName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DistanceToBeach")
                         .HasColumnType("int");
 
@@ -48,9 +51,6 @@ namespace HolidayMakerAPI.Migrations
 
                     b.Property<bool>("HasRestaurant")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(10,1)");
@@ -371,7 +371,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.Booking", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.User", "User")
-                        .WithMany()
+                        .WithMany("ListOfUserBookings")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -395,7 +395,7 @@ namespace HolidayMakerAPI.Migrations
             modelBuilder.Entity("HolidayMakerAPI.Model.Room", b =>
                 {
                     b.HasOne("HolidayMakerAPI.Model.Accommodation", "Accommodation")
-                        .WithMany()
+                        .WithMany("Rooms")
                         .HasForeignKey("AccommodationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
