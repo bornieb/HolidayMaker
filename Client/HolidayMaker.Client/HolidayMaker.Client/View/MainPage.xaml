@@ -15,20 +15,20 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="108*" />
-            <ColumnDefinition Width="107*" />
-            <ColumnDefinition Width="108*" />
-            <ColumnDefinition Width="107" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
