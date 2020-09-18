@@ -39,6 +39,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <RelativePanel>
+            <StackPanel>
+                <TextBlock
+                    x:Name="UserTextBlock"
+                    Text="{x:Bind email}"/>
+            </StackPanel>
+          
+            
+        </RelativePanel>
+
         <TextBox 
             x:Name="UserNameTextBox"
             Grid.Column="3"

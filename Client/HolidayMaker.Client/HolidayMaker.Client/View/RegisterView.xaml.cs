@@ -25,7 +25,7 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class RegisterView : Page
     {
-        UserService registerUserService = new UserService();
+        UserService _userService = new UserService();
         public RegisterView()
         {
             this.InitializeComponent();
@@ -58,7 +58,7 @@ namespace HolidayMaker.Client.View
             User user = new User(userFirstName, userLastName, userEmail, password);
 
             
-            await registerUserService.PostRegisterUser(user);
+            await _userService.PostRegisterUser(user);
         }
     }
 }

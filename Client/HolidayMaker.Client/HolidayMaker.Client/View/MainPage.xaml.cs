@@ -34,7 +34,8 @@ namespace HolidayMaker.Client
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
-            mainPageViewModel.GetAccommodations();
+            //mainPageViewModel.GetAccommodations();
+            mainPageViewModel.MockData();
         }
 
         private void CollapseButton_Click(object sender, RoutedEventArgs e)

@@ -20,22 +20,22 @@ namespace HolidayMaker.Client.ViewModel
         public decimal TotalPrice = 0;
         AccommodationService accommodationService = new AccommodationService();
 
-        //public void MockData()
-        //{
-        //    ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
-        //    ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
-        //    ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
-        //    ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
-        //    ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
-        //}
-        public async void GetAccommodations()
+        public void MockData()
         {
-            var accommodations = await accommodationService.GetAccommodationsAsync();
-            foreach (Accommodation item in accommodations)
-            {
-                ListOfAccommodations.Add(item);
-            }
+            ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
+            ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
+            ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
+            ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
+            ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
         }
+        //public async void GetAccommodations()
+        //{
+        //    var accommodations = await accommodationService.GetAccommodationsAsync();
+        //    foreach (Accommodation item in accommodations)
+        //    {
+        //        ListOfAccommodations.Add(item);
+        //    }
+        //}
 
         public void AddToBooking(Room room, Accommodation accommodation)
         {

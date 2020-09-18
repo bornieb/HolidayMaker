@@ -1,9 +1,12 @@
 ﻿using HolidayMaker.Client.Service;
+using HolidayMaker.Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Bluetooth.Advertisement;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,6 +27,10 @@ namespace HolidayMaker.Client.View
     public sealed partial class LogInView : Page
     {
         UserService userService = new UserService();
+        LogInViewModel logInViewModel = new LogInViewModel();
+
+        public bool IsLoggedIn = false;
+        public string email = "";
 
         public LogInView()
         {
@@ -35,7 +42,13 @@ namespace HolidayMaker.Client.View
             string userName = UserNameTextBox.Text;
             string password = PasswordTextBox.Password;
 
-            await userService.LogIn(userName, password);
+            var response = await userService.LogIn(userName, password);
+
+            if(response == true)
+            {
+                IsLoggedIn = true;
+                email = userName;
+            }
         }
     }
 }
