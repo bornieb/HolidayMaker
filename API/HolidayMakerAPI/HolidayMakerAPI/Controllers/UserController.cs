@@ -111,6 +111,20 @@ namespace HolidayMakerAPI.Controllers
             return Ok(user);
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn(string email, string password)
+        {
+            var result = await signInManager.PasswordSignInAsync(email, password, false, false);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return Forbid();
+        }
+
+
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
