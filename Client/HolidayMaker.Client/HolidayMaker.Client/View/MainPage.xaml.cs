@@ -111,10 +111,8 @@ namespace HolidayMaker.Client
 
         private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
         {
-            
                 var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
                 accListView.ItemsSource = sorted;
-            
         }
 
         private void MenuFlyoutItem_Click_Name(object sender, RoutedEventArgs e)
@@ -143,17 +141,14 @@ namespace HolidayMaker.Client
             {
                 PasswordTextBlock.Text = "";
                 ConfirmPasswordTextBlock.Text = "";
+                User user = new User(userEmail, password);
+                await registerUserService.PostRegisterUser(user);
             }
             else
             {
                 PasswordTextBlock.Text = "Passwords don't match";
                 ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
-
-            User user = new User(userEmail, password);
-
-
-            await registerUserService.PostRegisterUser(user);
         }
 
         private async void Login_Button_Click(object sender, RoutedEventArgs e)
@@ -161,10 +156,13 @@ namespace HolidayMaker.Client
             await LoginContent.ShowAsync();
         }
 
+        
+
         private async void Register_Hyperbutton_Click(object sender, RoutedEventArgs e)
         {
-           
             await RegisterContent.ShowAsync();
         }
+
+        
     }
 }

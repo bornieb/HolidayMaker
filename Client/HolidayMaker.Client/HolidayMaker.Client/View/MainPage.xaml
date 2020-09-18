@@ -62,8 +62,10 @@
                     x:Name="Login_Button"
                     FontSize="12"
                     Content="Log In"
-                    Click="Login_Button_Click"/>
+                    Click="Login_Button_Click"
+                    ToolTipService.ToolTip="Log in"/>
                 <Button
+                  ToolTipService.ToolTip="Register"
                   FontFamily="Segoe UI Emoji"                  
                   FontSize="16"                  
                   Content="&#x1F61D;"                  
@@ -231,6 +233,7 @@
 
         <ContentDialog
             x:Name="RegisterContent"
+            Title="Register"
             PrimaryButtonText="Register"
             PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
             SecondaryButtonText="Close"
@@ -279,6 +282,7 @@
         </ContentDialog>
         <ContentDialog
             x:Name="LoginContent"
+            Title="Log in"
             PrimaryButtonText="Log In"
             PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
             SecondaryButtonText="Close">
