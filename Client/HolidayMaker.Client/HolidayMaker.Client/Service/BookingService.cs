@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using HolidayMaker.Client.Model;
 using System.Net.Http.Headers;
+using System.Collections.ObjectModel;
 
 namespace HolidayMaker.Client.Service
 {
@@ -26,7 +27,32 @@ namespace HolidayMaker.Client.Service
             HttpContent httpContent = new StringContent(jsonBooking);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var jsonBookingDB = await httpClient.PostAsync(url, httpContent);
-         
         }
-     }
+
+        public async Task<ObservableCollection<Booking>> GetBookingsAsync()
+        {
+            var bookings = new ObservableCollection<Booking>();
+            var jsonBookings = await httpClient.GetStringAsync(url);
+            bookings = JsonConvert.DeserializeObject<ObservableCollection<Booking>>(jsonBookings);
+            return bookings;
+        }
+
+        public async Task UpdateUserBooking(BookedRoom room)
+        {
+            var updatedBookedRoom = JsonConvert.SerializeObject(room);
+            HttpContent httpContent = new StringContent(updatedBookedRoom);
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            //await httpClient.PutAsync( *LÄGG IN USER URL HÄR* )
+        }
+
+        public async Task DeleteUserBooking(BookedRoom room)
+        {
+            var updatedBookedRoom = JsonConvert.SerializeObject(room);
+            HttpContent httpContent = new StringContent(updatedBookedRoom);
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            //await httpClient.DeleteAsync( *LÄGG IN USER URL HÄR* )
+        }
+    }
 }

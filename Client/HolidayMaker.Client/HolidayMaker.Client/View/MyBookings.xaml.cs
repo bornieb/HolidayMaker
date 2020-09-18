@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HolidayMaker.Client.Model;
+using HolidayMaker.Client.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +25,33 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class MyBookings : Page
     {
+        MyBookingsViewModel bookingsViewModel;
+        public ObservableCollection<BookedRoom> ListOfUserRooms = new ObservableCollection<BookedRoom>();
         public MyBookings()
         {
             this.InitializeComponent();
+            bookingsViewModel = new MyBookingsViewModel();
+            bookingsViewModel.Mockdata();
+            //bookingsViewModel.GetBookings();
+        }
+
+        private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListOfUserRooms.Clear();
+
+            var ac = (Booking)bookingsListview.SelectedItem;
+
+            foreach (var item in ac.BookedRooms)
+            {
+                ListOfUserRooms.Add(item);
+            }
+        }
+
+        private void SaveBookingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var room = (BookedRoom)bookingsRoomListview.SelectedItem;
+
+            
         }
     }
 }

@@ -45,8 +45,10 @@
                   Grid.RowSpan="5"
                   x:Name="bookingsListview"
                   Background="LightCyan"
-                  ItemsSource="{x:Bind myBookingsViewModel.listOfUserBookings}" 
-                  SelectionMode="Single" Margin="2,0,105,0"
+                  ItemsSource="{x:Bind bookingsViewModel.ListOfUserBookings}" 
+                  SelectionMode="Single" 
+                  Margin="2,0,105,0"
+                  SelectionChanged="bookingsListview_SelectionChanged"
               
                   >
             <ListView.ItemTemplate>
@@ -82,7 +84,7 @@
                   x:Name="bookingsRoomListview"
                   Background="LightBlue"
                   SelectionMode="Single"
-                  ItemsSource="{x:Bind ((model:BookedRoom)bookingsListview.SelectedItem)}"
+                  ItemsSource="{x:Bind ListOfUserRooms}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BookedRoom">
@@ -131,12 +133,12 @@
             Width="100"
             />
             <Button
-
             x:Name="SaveBookingButton"
             Content="Save"
             Background="Green"
             CornerRadius="20"
             Width="100"
+            Click="SaveBookingButton_Click"
             />
         </StackPanel>
     </Grid>

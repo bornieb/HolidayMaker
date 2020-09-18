@@ -12,7 +12,8 @@ namespace HolidayMaker.Client.ViewModel
 
     public class MyBookingsViewModel
     {
-        public ObservableCollection<Booking> listOfUserBookings = new ObservableCollection<Booking>();
+        BookingService bookingService = new BookingService();
+        public ObservableCollection<Booking> ListOfUserBookings = new ObservableCollection<Booking>();
 
 
         public void Mockdata()
@@ -34,7 +35,16 @@ namespace HolidayMaker.Client.ViewModel
             booking.UserId = 1;
             booking.BookedRooms = listOfUserBookedRooms;
 
-            listOfUserBookings.Add(booking);
+            ListOfUserBookings.Add(booking);
+        }
+
+        public async void GetBookings()
+        {
+            var bookings = await bookingService.GetBookingsAsync();
+            foreach (Booking item in bookings)
+            {
+                ListOfUserBookings.Add(item);
+            }
         }
     }
 }
