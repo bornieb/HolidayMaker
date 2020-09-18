@@ -127,6 +127,9 @@ namespace HolidayMaker.Client
                 accListView.ItemsSource = sorted;
         }
 
-       
+        private void MyBookings_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MyBookings));
+        }
     }
 }

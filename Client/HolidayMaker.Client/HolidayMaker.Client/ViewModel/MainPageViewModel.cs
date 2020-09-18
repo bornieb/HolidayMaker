@@ -20,6 +20,7 @@ namespace HolidayMaker.Client.ViewModel
         public decimal TotalPrice = 0;
         AccommodationService accommodationService = new AccommodationService();
 
+        public User myUser = new User(); 
         //public void MockData()
         //{
         //    ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));

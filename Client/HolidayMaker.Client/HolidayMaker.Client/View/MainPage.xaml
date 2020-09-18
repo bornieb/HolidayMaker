@@ -229,5 +229,12 @@
                                     Background="Transparent"
                                     Click="Button_Click"
                                     />
+        <Button 
+            x:Name="MyBookings" 
+            Content="Button" 
+            Margin="60,65,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top"
+            Click="MyBookings_Click"/>
     </Grid>
 </Page>
