@@ -62,46 +62,27 @@ namespace HolidayMakerAPI.Controllers
             return Ok(userBooking);
         }
 
-        //[HttpGet("a/{userId}")]
-        //public async Task<ActionResult<IEnumerable<Booking>>> GetAllUserBookings(string email)
-        ////{
-        ////    var u = await _context.User
-        ////        .Include(u => u.ListOfUserBookings)
-        ////        .ThenInclude(b => b.BookedRooms)
-        ////        .ThenInclude(r => r.Room)
-        ////        .ThenInclude(a => a.Accommodation)
-        ////        .Where(u => u.UserID == userId)
-        ////        .FirstOrDefaultAsync();
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllUserBookings(string email)
+        {
+            var bookings = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .ThenInclude(r => r.Accommodation)
+                .Where(b => b.Email == email)
+                .ToListAsync();
 
-        ////    u.ListOfUserBookings.ForEach(b => b.User = null);
+            foreach (var booking in bookings)
+            {
+                foreach (var bookedRoom in booking.BookedRooms)
+                {
+                    bookedRoom.Booking = null;
+                    bookedRoom.Room.Accommodation.Rooms = null;
+                }
+            }
 
-        ////    return u.ListOfUserBookings;
-
-        //    //var userBookings = new
-        //    //    {
-        //    //        u.FirstName,
-        //    //        u.LastName,
-        //    //        u.Email,
-        //    //        booking = u.ListOfUserBookings.Select(b => new
-        //    //        {
-        //    //            b.BookingID,
-        //    //            b.BookingNumber,
-        //    //            b.CheckIn,
-        //    //            b.CheckOut,
-        //    //            b.TotalPrice,
-        //    //            room = b.BookedRooms.Select(r => new
-        //    //            {
-        //    //                r.RoomID,
-        //    //                r.ExtraBedBooked,
-        //    //                r.FullBoard,
-        //    //                r.HalfBoard,
-        //    //                r.AllInclusive
-        //    //            })
-        //    //        })
-        //    //    };
-
-        //    //return Ok(userBookings);
-        //}
+            return bookings;
+        }
 
         // PUT: api/Booking/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
