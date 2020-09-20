@@ -50,11 +50,10 @@ namespace HolidayMakerAPI.Controllers
 
             if (result.Succeeded)
             {
-                await signInManager.SignInAsync(_user, isPersistent: false);
-                return RedirectToAction();
+                return Ok(user);
             }
 
-            return Ok(user);
+            return BadRequest(result.Errors);
         }
 
         public class LoginRequest
