@@ -58,6 +58,9 @@
                 Orientation="Horizontal"
                 
                        >
+                <TextBlock
+                    x:Name="LoggedInUser"
+                    Text="{x:Bind user.Email}"/>
                 <Button
                     x:Name="Login_Button"
                     FontSize="12"
@@ -83,7 +86,9 @@
                     Background="Transparent"
                     />
 
-                
+               
+
+
 
             </StackPanel>
         </RelativePanel>
@@ -286,7 +291,7 @@
             x:Name="LoginContent"
             Title="Log in"
             PrimaryButtonText="Log In"
-            PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
+            PrimaryButtonClick="LoginContent_PrimaryButtonClick"
             SecondaryButtonText="Close">
             <StackPanel>
                 <TextBox

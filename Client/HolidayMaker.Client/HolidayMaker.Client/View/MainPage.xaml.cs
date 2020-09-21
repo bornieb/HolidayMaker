@@ -31,6 +31,8 @@ namespace HolidayMaker.Client
         MainPageViewModel mainPageViewModel;
         UserService userService;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
+        public bool IsLoggedIn = false;
+        User user;
 
         public MainPage()
         {
@@ -184,6 +186,18 @@ namespace HolidayMaker.Client
             await RegisterContent.ShowAsync();
         }
 
-        
+        private async void LoginContent_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            string userName = UserEmailTextbox.Text;
+            string password = UserPasswordTextbox.Password;
+
+            var response = await userService.LogIn(userName, password);
+
+            if (response == true)
+            {
+                IsLoggedIn = true;
+                user = new User(userName);
+            }
+        }
     }
 }

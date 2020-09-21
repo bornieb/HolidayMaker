@@ -127,11 +127,7 @@
     <Compile Include="Service\AccommodationService.cs" />
     <Compile Include="Service\BookingService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="View\LogInView.xaml.cs">
-      <DependentUpon>LogInView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -162,10 +158,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\LogInView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
