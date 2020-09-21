@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using HolidayMaker.Client.Model;
@@ -9,16 +11,20 @@ using HolidayMaker.Client.Service;
 
 namespace HolidayMaker.Client.ViewModel
 {
-    public class MainPageViewModel
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         public BookingService bookingService = new BookingService();
-
+        
         public ObservableCollection<Accommodation> ListOfAccommodations = new ObservableCollection<Accommodation>();
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
 
         public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
         public decimal TotalPrice = 0;
         AccommodationService accommodationService = new AccommodationService();
+        private User user;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+       
 
         //public void MockData()
         //{
@@ -64,8 +70,8 @@ namespace HolidayMaker.Client.ViewModel
             booking.CheckOut = DateTime.Now;
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
-            booking.Email = "USER EMAIL";
-            //AddedRooms.Clear();
+            booking.Email = User.Email;
+            
             await PostBookingAsync(booking);
         }
 
@@ -131,6 +137,24 @@ namespace HolidayMaker.Client.ViewModel
         {
             var sorted = SearchResult.OrderByDescending(x => x.Rating);
 
+        }
+
+        public User User
+        {
+            get
+            {
+                return this.user;
+            }
+            set
+            {
+                this.user = value;
+                NotifyPropertyChanged("Email");
+            }
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
