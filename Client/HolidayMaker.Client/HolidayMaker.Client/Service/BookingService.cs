@@ -39,14 +39,16 @@ namespace HolidayMaker.Client.Service
             return bookings;
         }
 
-        public async Task UpdateUserBooking(Booking booking)
+        public async Task<bool> UpdateUserBooking(Booking booking)
         {
             string update = aUrl + booking.Email + "/" + booking.BookingNumber;
             var updatedBooking = JsonConvert.SerializeObject(booking);
             HttpContent httpContent = new StringContent(updatedBooking);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            await httpClient.PutAsync(update, httpContent);
+            //await httpClient.PutAsync(update, httpContent);
+            var response = await httpClient.PutAsync(update, httpContent);
+            return response.IsSuccessStatusCode; //om allt går bra är denna true
         }
 
         public async Task DeleteUserBooking(Booking b)
