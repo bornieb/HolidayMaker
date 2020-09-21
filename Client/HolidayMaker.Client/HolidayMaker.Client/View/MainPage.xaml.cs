@@ -198,6 +198,7 @@ namespace HolidayMaker.Client
 
         private async void Register_Hyperbutton_Click(object sender, RoutedEventArgs e)
         {
+            LoginContent.Hide();
             await RegisterContent.ShowAsync();
         }
 
