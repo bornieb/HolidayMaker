@@ -39,13 +39,14 @@ namespace HolidayMaker.Client.Service
             return bookings;
         }
 
-        public async Task UpdateUserBooking(BookedRoom room, string email)
+        public async Task UpdateUserBooking(Booking booking)
         {
-            var updatedBookedRoom = JsonConvert.SerializeObject(room);
-            HttpContent httpContent = new StringContent(updatedBookedRoom);
+            string update = aUrl + booking.Email + "/" + booking.BookingNumber;
+            var updatedBooking = JsonConvert.SerializeObject(booking);
+            HttpContent httpContent = new StringContent(updatedBooking);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            //await httpClient.PutAsync( *LÄGG IN USER URL HÄR* )
+            await httpClient.PutAsync(update, httpContent);
         }
 
         public async Task DeleteUserBooking(Booking b)

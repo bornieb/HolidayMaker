@@ -47,11 +47,12 @@ namespace HolidayMaker.Client.View
             }
         }
 
-        private void SaveBookingButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveBookingButton_Click(object sender, RoutedEventArgs e)
         {
-            var room = (BookedRoom)bookingsRoomListview.SelectedItem;
-
-            
+            var booking = (Booking)bookingsListview.SelectedItem;
+            await bookingsViewModel.UpdateBooking(booking);
+            //bookingsRoomListview.Items.Clear();
+            bookingsViewModel.GetBookings();
         }
 
         private async void DeleteBookingButton_Click(object sender, RoutedEventArgs e)

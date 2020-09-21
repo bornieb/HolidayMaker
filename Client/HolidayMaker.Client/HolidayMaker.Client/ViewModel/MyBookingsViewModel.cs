@@ -51,5 +51,10 @@ namespace HolidayMaker.Client.ViewModel
         {
             await bookingService.DeleteUserBooking(b);
         }
+
+        public async Task UpdateBooking(Booking booking)
+        {
+            await bookingService.UpdateUserBooking(booking);
+        }
     }
 }
