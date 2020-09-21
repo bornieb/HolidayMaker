@@ -19,7 +19,7 @@ namespace HolidayMakerAPI.Migrations
                 table: "Booking");
 
             migrationBuilder.DropColumn(
-                name: "Location",
+                name: "City",
                 table: "Accommodation");
 
             migrationBuilder.AddColumn<string>(
