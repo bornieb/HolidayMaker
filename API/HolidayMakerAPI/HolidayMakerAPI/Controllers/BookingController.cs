@@ -84,15 +84,18 @@ namespace HolidayMakerAPI.Controllers
             return bookings;
         }
 
-        [HttpDelete("all/{email}/{id}")]
-        public async Task<ActionResult<Booking>> DeleteBooking(string email, int id)
+        [HttpDelete("all/{email}/{bNumber}")]
+        public async Task<ActionResult<Booking>> DeleteUserBooking(string bNumber)
         {
-            var booking = await _context.Booking.FindAsync(id);
+            var booking = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .Where(b => b.BookingNumber == bNumber)
+                .FirstOrDefaultAsync();
             if (booking == null)
             {
                 return NotFound();
             }
-
+            
             _context.Booking.Remove(booking);
             await _context.SaveChangesAsync();
 
