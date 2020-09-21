@@ -21,7 +21,7 @@ namespace HolidayMaker.Client.ViewModel
         public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
         public decimal TotalPrice = 0;
         AccommodationService accommodationService = new AccommodationService();
-        private User user = new User();
+        private User user;
         public event PropertyChangedEventHandler PropertyChanged;
 
        

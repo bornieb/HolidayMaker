@@ -112,7 +112,14 @@ namespace HolidayMaker.Client
 
         private void CreateBooking_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.CreateBooking();
+            if (IsLoggedIn == true)
+            {
+                mainPageViewModel.CreateBooking();
+            }
+            else
+            {
+
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -196,7 +203,7 @@ namespace HolidayMaker.Client
             if (response == true)
             {
                 IsLoggedIn = true;
-                user = new User(userName);
+                mainPageViewModel.User = new User(userName);
             }
         }
     }
