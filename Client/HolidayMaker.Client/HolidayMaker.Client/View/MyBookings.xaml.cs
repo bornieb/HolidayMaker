@@ -53,5 +53,10 @@ namespace HolidayMaker.Client.View
 
             
         }
+
+        private void DeleteBookingButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

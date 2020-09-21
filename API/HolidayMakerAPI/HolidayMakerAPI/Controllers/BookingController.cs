@@ -84,6 +84,21 @@ namespace HolidayMakerAPI.Controllers
             return bookings;
         }
 
+        [HttpDelete("all/{email}/{id}")]
+        public async Task<ActionResult<Booking>> DeleteBooking(string email, int id)
+        {
+            var booking = await _context.Booking.FindAsync(id);
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            _context.Booking.Remove(booking);
+            await _context.SaveChangesAsync();
+
+            return booking;
+        }
+
         // PUT: api/Booking/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

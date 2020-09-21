@@ -75,6 +75,7 @@
             Background="Red"
             CornerRadius="20"
             Width="100"
+            Click="DeleteBookingButton_Click"
             />
 
         <ListView Grid.Column="6" 

@@ -46,5 +46,10 @@ namespace HolidayMaker.Client.ViewModel
                 ListOfUserBookings.Add(item);
             }
         }
+
+        public async Task DeleteBooking(Booking b)
+        {
+            await bookingService.DeleteUserBooking(b);
+        }
     }
 }
