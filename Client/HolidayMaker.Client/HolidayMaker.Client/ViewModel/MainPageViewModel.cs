@@ -12,6 +12,7 @@ namespace HolidayMaker.Client.ViewModel
     public class MainPageViewModel
     {
         public BookingService bookingService = new BookingService();
+        public LogInViewModel logInViewModel = new LogInViewModel();
 
         public ObservableCollection<Accommodation> ListOfAccommodations = new ObservableCollection<Accommodation>();
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
@@ -64,8 +65,8 @@ namespace HolidayMaker.Client.ViewModel
             booking.CheckOut = DateTime.Now;
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
-            booking.Email = "USER EMAIL";
-            //AddedRooms.Clear();
+            booking.Email = logInViewModel.User.Email;
+            
             await PostBookingAsync(booking);
         }
 
