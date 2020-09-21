@@ -216,7 +216,22 @@
                         Text="{x:Bind RoomType}" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
-                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
+                        <CheckBox 
+                            x:Name="ExtraBedCheckbox"
+                            Content="ExtraBed"
+                            IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="HalfBoardRadioButton"
+                            Content="HalfBoard"
+                            IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="FullBoardRadioButton"
+                            Content="FullBoard"
+                            IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="AllInclusiveRadioButton"
+                            Content="Allinclusive"
+                            IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

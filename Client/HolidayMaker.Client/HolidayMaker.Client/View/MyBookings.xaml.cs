@@ -63,5 +63,20 @@ namespace HolidayMaker.Client.View
             bookingsViewModel.GetBookings();
 
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            On_BackRequested();
+        }
+
+        private bool On_BackRequested()
+        {
+            if (this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+                return true;
+            }
+            return false;
+        }
     }
 }

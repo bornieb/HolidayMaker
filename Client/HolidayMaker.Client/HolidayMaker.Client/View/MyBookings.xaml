@@ -39,6 +39,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <CommandBar Grid.ColumnSpan="14">
+            <CommandBar.Content>
+                <Button x:Name="BackButton" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="BackButton_Click"></Button>
+            </CommandBar.Content>
+        </CommandBar>
+        
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="4" 
@@ -114,6 +120,7 @@
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
