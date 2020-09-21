@@ -116,6 +116,41 @@ namespace HolidayMakerAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("all/{bookingNumber}/{booking}")]
+        public async Task<IActionResult> PutUserBooking(string bookingNumber, Booking booking)
+        {
+            var dBbooking = await _context.Booking
+                            .Where(b => b.BookingNumber == bookingNumber)
+                                .FirstOrDefaultAsync();
+
+            booking.BookingID = dBbooking.BookingID;
+
+            if (booking == null)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(booking).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(booking.BookingID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         //POST: api/Booking
         //To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
