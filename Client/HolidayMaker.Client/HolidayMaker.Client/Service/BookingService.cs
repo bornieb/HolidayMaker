@@ -14,8 +14,9 @@ namespace HolidayMaker.Client.Service
      public class BookingService
      {
         private static readonly string url = "http://localhost:59571/api/booking/";
+        private static readonly string aUrl = "http://localhost:59571/api/booking/all/";
         private static readonly string bUrl = "http://localhost:59571/api/booking/all/?email=";
-        HttpClient httpClient;
+        HttpClient httpClient; 
 
         public BookingService()
         {
@@ -47,13 +48,14 @@ namespace HolidayMaker.Client.Service
             //await httpClient.PutAsync( *LÄGG IN USER URL HÄR* )
         }
 
-        public async Task DeleteUserBooking(BookedRoom room, string email)
+        public async Task DeleteUserBooking(Booking b)
         {
-            var updatedBookedRoom = JsonConvert.SerializeObject(room);
-            HttpContent httpContent = new StringContent(updatedBookedRoom);
+            string delete = aUrl + b.Email + "/" + b.BookingNumber;
+            var deletedBooking = JsonConvert.SerializeObject(b);
+            HttpContent httpContent = new StringContent(deletedBooking);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            //await httpClient.DeleteAsync( *LÄGG IN USER URL HÄR* )
+            await httpClient.DeleteAsync(delete);
         }
     }
 }

@@ -40,11 +40,16 @@ namespace HolidayMaker.Client.ViewModel
 
         public async void GetBookings()
         {
-            var bookings = await bookingService.GetBookingsAsync("bajs@korv.se");
+            var bookings = await bookingService.GetBookingsAsync("bajskorv.se");
             foreach (Booking item in bookings)
             {
                 ListOfUserBookings.Add(item);
             }
+        }
+
+        public async Task DeleteBooking(Booking b)
+        {
+            await bookingService.DeleteUserBooking(b);
         }
     }
 }
