@@ -149,6 +149,17 @@ namespace HolidayMaker.Client
                 PasswordTextBlock.Text = "Passwords don't match";
                 ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
+
+            if(string.IsNullOrEmpty(EmailTextbox.Text))
+            {
+                args.Cancel = true;
+                ErrorTextBlock.Text = "Email is a required field";
+            }
+            else if(string.IsNullOrEmpty(PasswordTextbox.Password))
+            {
+                args.Cancel = true;
+                PasswordErrorTextBlock.Text = "Password is a required field";
+            }
         }
 
         private async void Login_Button_Click(object sender, RoutedEventArgs e)

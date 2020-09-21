@@ -244,6 +244,7 @@
             Grid.ColumnSpan="2"
             Grid.RowSpan="3">
                 <TextBlock
+                    x:Name="ErrorTextBlock"
                 />
                 <TextBox
             x:Name="EmailTextbox"
@@ -251,6 +252,7 @@
             Height="35"
             />
                 <TextBlock
+                    x:Name="PasswordErrorTextBlock"
                 />
                 <PasswordBox
             x:Name="PasswordTextbox"
@@ -293,6 +295,7 @@
             Height="35"
             />
                 <TextBlock
+                    
                 />
                 <PasswordBox
             x:Name="UserPasswordTextbox"
