@@ -148,7 +148,7 @@ namespace HolidayMaker.Client.ViewModel
             set
             {
                 this.user = value;
-                NotifyPropertyChanged(nameof(User));
+                NotifyPropertyChanged("Email");
             }
         }
 

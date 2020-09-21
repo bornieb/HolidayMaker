@@ -148,6 +148,7 @@
                                     Content="Boka!"
                                     Click="CreateBooking_Click" 
                                     Background="Transparent"
+                                    Foreground="White"
                                     Width="110"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
