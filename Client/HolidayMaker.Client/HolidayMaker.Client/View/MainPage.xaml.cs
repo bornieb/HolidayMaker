@@ -18,6 +18,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
 using HolidayMaker.Client.View;
 using HolidayMaker.Client.Service;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -110,7 +112,7 @@ namespace HolidayMaker.Client
 
         }
 
-        private void CreateBooking_Click(object sender, RoutedEventArgs e)
+        private async void CreateBooking_Click(object sender, RoutedEventArgs e)
         {
             if (IsLoggedIn == true)
             {
@@ -118,7 +120,7 @@ namespace HolidayMaker.Client
             }
             else
             {
-
+                await new MessageDialog("Du måste logga in").ShowAsync();
             }
         }
 
