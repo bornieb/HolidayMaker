@@ -25,7 +25,7 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class RegisterView : Page
     {
-        UserService _userService = new UserService();
+        UserService registerUserService = new UserService();
         public RegisterView()
         {
             this.InitializeComponent();
@@ -44,7 +44,7 @@ namespace HolidayMaker.Client.View
 
             string confirmPassword = ConfirmPasswordTextbox.Password;
 
-            if(password == confirmPassword)
+            if (password == confirmPassword)
             {
                 PasswordTextBlock.Text = "";
                 ConfirmPasswordTextBlock.Text = "";
@@ -55,10 +55,15 @@ namespace HolidayMaker.Client.View
                 ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
 
-            User user = new User(userFirstName, userLastName, userEmail, password);
+            User user = new User(userEmail, password);
 
-            
-            await _userService.PostRegisterUser(user);
+
+            await registerUserService.PostRegisterUser(user);
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

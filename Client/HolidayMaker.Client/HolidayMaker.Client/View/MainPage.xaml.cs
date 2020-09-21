@@ -17,6 +17,7 @@ using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
 using HolidayMaker.Client.View;
+using HolidayMaker.Client.Service;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,14 +29,16 @@ namespace HolidayMaker.Client
     public sealed partial class MainPage : Page
     {
         MainPageViewModel mainPageViewModel;
+        UserService userService;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
 
         public MainPage()
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
-            //mainPageViewModel.GetAccommodations();
-            mainPageViewModel.MockData();
+            userService = new UserService();
+            mainPageViewModel.GetAccommodations();
+            
         }
 
         private void CollapseButton_Click(object sender, RoutedEventArgs e)
@@ -110,17 +113,16 @@ namespace HolidayMaker.Client
             mainPageViewModel.CreateBooking();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LogInView));
+            await RegisterContent.ShowAsync();
+            //this.Frame.Navigate(typeof(BlankPage1));
         }
 
         private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
         {
-            
                 var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.Rating);
                 accListView.ItemsSource = sorted;
-            
         }
 
         private void MenuFlyoutItem_Click_Name(object sender, RoutedEventArgs e)
@@ -129,6 +131,59 @@ namespace HolidayMaker.Client
                 accListView.ItemsSource = sorted;
         }
 
+        private void MenuFlyoutItem_Click_Name_Descend(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.AccommodationName);
+            accListView.ItemsSource = sorted;
+        }
+
        
+
+        private async void RegisterContent_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            string userEmail = EmailTextbox.Text;
+
+            string password = PasswordTextbox.Password;
+
+            string confirmPassword = ConfirmPasswordTextbox.Password;
+
+            if (password == confirmPassword)
+            {
+                PasswordTextBlock.Text = "";
+                ConfirmPasswordTextBlock.Text = "";
+                User user = new User(userEmail, password);
+                await userService.PostRegisterUser(user);
+            }
+            else
+            {
+                PasswordTextBlock.Text = "Passwords don't match";
+                ConfirmPasswordTextBlock.Text = "Passwords don't match";
+            }
+
+            if(string.IsNullOrEmpty(EmailTextbox.Text))
+            {
+                args.Cancel = true;
+                ErrorTextBlock.Text = "Email is a required field";
+            }
+            else if(string.IsNullOrEmpty(PasswordTextbox.Password))
+            {
+                args.Cancel = true;
+                PasswordErrorTextBlock.Text = "Password is a required field";
+            }
+        }
+
+        private async void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            await LoginContent.ShowAsync();
+        }
+
+        
+
+        private async void Register_Hyperbutton_Click(object sender, RoutedEventArgs e)
+        {
+            await RegisterContent.ShowAsync();
+        }
+
+        
     }
 }
