@@ -62,36 +62,26 @@ namespace HolidayMakerAPI.Controllers
             return Ok(userBooking);
         }
 
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<Booking>> GetAllUserBookings(int userId)
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllUserBookings(string email)
         {
-            var userBookings = await _context.User.Include(u => u.ListOfUserBookings)
-                .ThenInclude(b => b.BookedRooms)
-                .ThenInclude(r => r.Room).ThenInclude(a => a.Accommodation)
-                .Select(u => new
-                {
-                    u.FirstName,
-                    u.LastName,
-                    u.Email,
-                    booking = u.ListOfUserBookings.Select(b => new
-                    {
-                        b.BookingID,
-                        b.BookingNumber,
-                        b.CheckIn,
-                        b.CheckOut,
-                        b.TotalPrice,
-                        room = b.BookedRooms.Select(r => new
-                        {
-                            r.RoomID,
-                            r.ExtraBedBooked,
-                            r.FullBoard,
-                            r.HalfBoard,
-                            r.AllInclusive
-                        })
-                    })
-                }).ToListAsync();
+            var bookings = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .ThenInclude(r => r.Accommodation)
+                .Where(b => b.Email == email)
+                .ToListAsync();
 
-            return Ok(userBookings);
+            foreach (var booking in bookings)
+            {
+                foreach (var bookedRoom in booking.BookedRooms)
+                {
+                    bookedRoom.Booking = null;
+                    bookedRoom.Room.Accommodation.Rooms = null;
+                }
+            }
+
+            return bookings;
         }
 
         // PUT: api/Booking/5

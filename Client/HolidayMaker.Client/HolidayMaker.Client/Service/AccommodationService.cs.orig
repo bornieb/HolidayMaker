@@ -12,7 +12,10 @@ namespace HolidayMaker.Client.Service
 {
     public class AccommodationService
     {
+<<<<<<< HEAD
+=======
         private string foo = "";
+>>>>>>> cc3c152... Restored the old Services branch.
         private static readonly string url = "http://localhost:59571/api/accommodation";
         HttpClient httpClient;
 
@@ -26,6 +29,7 @@ namespace HolidayMaker.Client.Service
             var accommodations = new ObservableCollection<Accommodation>();
             var jsonAccommodations = await httpClient.GetStringAsync(url);
             accommodations = JsonConvert.DeserializeObject<ObservableCollection<Accommodation>>(jsonAccommodations);
+
 
             return accommodations;
         }
