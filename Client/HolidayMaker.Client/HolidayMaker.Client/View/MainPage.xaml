@@ -65,13 +65,13 @@
                     x:Name="Login_Button"
                     FontSize="12"
                     Content="Log In"
+                    Background="Transparent"
                     Click="Login_Button_Click"
                     ToolTipService.ToolTip="Log in"/>
                 <Button
                   ToolTipService.ToolTip="Register"
-                  FontFamily="Segoe UI Emoji"                  
-                  FontSize="16"                  
-                  Content="&#x1F61D;"                  
+                  FontSize="12"
+                  Content="Register"  
                   HorizontalAlignment="Center"                  
                   Background="Transparent"                  
                   Click="Button_Click"                  
@@ -86,7 +86,7 @@
                     Background="Transparent"
                     />
 
-               
+
 
 
 
@@ -201,20 +201,7 @@
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
-                  x:Name="accListView"
-                  ItemsSource="{x:Bind mainPageViewModel.SearchResult}" SelectionChanged="accListView_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Accommodation">
-                    <StackPanel>
-                        <TextBlock
-                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind City}" Foreground="Black"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
+                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged"/>
         <ListView Grid.Column="6" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
@@ -235,6 +222,37 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <TextBlock
+            x:Name="CheckInTextBlock"
+            Text="Check-in"
+            Grid.Column="1"
+            Grid.Row="7"
+            Foreground="White"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            />
+        <DatePicker
+            x:Name="CheckInDate"
+            Grid.ColumnSpan="3" 
+            Grid.Column="2" 
+            Grid.Row="7" 
+            />
+        <TextBlock
+            x:Name="CheckOutTextBlock"
+            Text="Check-out"
+            Grid.Column="1"
+            Grid.Row="8"
+            Foreground="White"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            />
+        <DatePicker 
+            x:Name="CheckOutDate"
+            Grid.ColumnSpan="3" 
+            Grid.Column="2"
+            Grid.Row="8"
+            VerticalAlignment="Top"
+            />
 
 
         <ContentDialog
@@ -243,6 +261,7 @@
             PrimaryButtonText="Register"
             PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
             SecondaryButtonText="Close"
+
             >
             <StackPanel
             Grid.Row="2"
@@ -325,7 +344,7 @@
 
 
             </StackPanel>
-            
+
         </ContentDialog>
     </Grid>
 </Page>
