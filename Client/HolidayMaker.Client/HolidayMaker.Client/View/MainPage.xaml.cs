@@ -29,15 +29,16 @@ namespace HolidayMaker.Client
     public sealed partial class MainPage : Page
     {
         MainPageViewModel mainPageViewModel;
-        RegisterUserService registerUserService;
+        UserService userService;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
 
         public MainPage()
         {
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
-            registerUserService = new RegisterUserService();
-            mainPageViewModel.MockData();
+            userService = new UserService();
+            mainPageViewModel.GetAccommodations();
+            
         }
 
         private void CollapseButton_Click(object sender, RoutedEventArgs e)
@@ -151,7 +152,7 @@ namespace HolidayMaker.Client
                 PasswordTextBlock.Text = "";
                 ConfirmPasswordTextBlock.Text = "";
                 User user = new User(userEmail, password);
-                await registerUserService.PostRegisterUser(user);
+                await userService.PostRegisterUser(user);
             }
             else
             {
