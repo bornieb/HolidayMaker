@@ -64,6 +64,7 @@ namespace HolidayMaker.Client.ViewModel
             booking.CheckOut = DateTime.Now;
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
+            booking.Email = "USER EMAIL";
             //AddedRooms.Clear();
             await PostBookingAsync(booking);
         }
