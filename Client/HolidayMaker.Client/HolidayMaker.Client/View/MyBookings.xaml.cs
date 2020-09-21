@@ -49,8 +49,8 @@ namespace HolidayMaker.Client.View
 
         private void SaveBookingButton_Click(object sender, RoutedEventArgs e)
         {
-            var room = (BookedRoom)bookingsRoomListview.SelectedItem;
-
+            var booking = (Booking)bookingsListview.SelectedItem;
+            bookingsViewModel.UpdateBooking(booking);
             
         }
     }

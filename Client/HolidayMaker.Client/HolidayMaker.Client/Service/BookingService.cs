@@ -8,6 +8,7 @@ using System.Net.Http;
 using HolidayMaker.Client.Model;
 using System.Net.Http.Headers;
 using System.Collections.ObjectModel;
+using HolidayMaker.Client.ViewModel;
 
 namespace HolidayMaker.Client.Service
 {
@@ -38,13 +39,13 @@ namespace HolidayMaker.Client.Service
             return bookings;
         }
 
-        public async Task UpdateUserBooking(BookedRoom room, string email)
+        public async Task UpdateUserBooking(Booking booking)
         {
-            var updatedBookedRoom = JsonConvert.SerializeObject(room);
+            var updatedBookedRoom = JsonConvert.SerializeObject(booking);
             HttpContent httpContent = new StringContent(updatedBookedRoom);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            //await httpClient.PutAsync( *LÄGG IN USER URL HÄR* )
+            //await httpClient.PutAsync(bUrl + booking.Email);
         }
 
         public async Task DeleteUserBooking(BookedRoom room, string email)
