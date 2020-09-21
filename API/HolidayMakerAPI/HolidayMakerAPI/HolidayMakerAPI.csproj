@@ -17,6 +17,10 @@
     <Compile Remove="Migrations\20200917084854_AddingIdentity.Designer.cs" />
     <Compile Remove="Migrations\20200917085532_AddingIdentity.cs" />
     <Compile Remove="Migrations\20200917085532_AddingIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20200919091716_RemoveUser.cs" />
+    <Compile Remove="Migrations\20200919091716_RemoveUser.Designer.cs" />
+    <Compile Remove="Migrations\20200919091942_RemoveUser.cs" />
+    <Compile Remove="Migrations\20200919091942_RemoveUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

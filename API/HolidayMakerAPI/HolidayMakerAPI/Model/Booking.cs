@@ -16,9 +16,8 @@ namespace HolidayMakerAPI.Model
         public DateTime? CheckIn { get; set; }
         public DateTime? CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
-        //[ForeignKey("User")]
-        public virtual User User { get; set; }
-        public int UserID { get; set; }
+        public string Email { get; set; }
+
         public List<BookingRoom> BookedRooms { get; set; } = new List<BookingRoom>();
     }
 }
