@@ -31,8 +31,8 @@ namespace HolidayMaker.Client.View
         {
             this.InitializeComponent();
             bookingsViewModel = new MyBookingsViewModel();
-            bookingsViewModel.Mockdata();
-            //bookingsViewModel.GetBookings();
+            //bookingsViewModel.Mockdata();
+            bookingsViewModel.GetBookings();
         }
 
         private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)

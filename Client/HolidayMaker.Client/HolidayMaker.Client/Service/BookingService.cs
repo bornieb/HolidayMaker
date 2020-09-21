@@ -13,7 +13,8 @@ namespace HolidayMaker.Client.Service
 {
      public class BookingService
      {
-        private static readonly string url = "http://localhost:59571/api/booking";
+        private static readonly string url = "http://localhost:59571/api/booking/";
+        private static readonly string bUrl = "http://localhost:59571/api/booking/all/?email=";
         HttpClient httpClient;
 
         public BookingService()
@@ -29,15 +30,15 @@ namespace HolidayMaker.Client.Service
             var jsonBookingDB = await httpClient.PostAsync(url, httpContent);
         }
 
-        public async Task<ObservableCollection<Booking>> GetBookingsAsync()
+        public async Task<ObservableCollection<Booking>> GetBookingsAsync(string email)
         {
             var bookings = new ObservableCollection<Booking>();
-            var jsonBookings = await httpClient.GetStringAsync(url);
+            var jsonBookings = await httpClient.GetStringAsync(bUrl + email);
             bookings = JsonConvert.DeserializeObject<ObservableCollection<Booking>>(jsonBookings);
             return bookings;
         }
 
-        public async Task UpdateUserBooking(BookedRoom room)
+        public async Task UpdateUserBooking(BookedRoom room, string email)
         {
             var updatedBookedRoom = JsonConvert.SerializeObject(room);
             HttpContent httpContent = new StringContent(updatedBookedRoom);
@@ -46,7 +47,7 @@ namespace HolidayMaker.Client.Service
             //await httpClient.PutAsync( *LÄGG IN USER URL HÄR* )
         }
 
-        public async Task DeleteUserBooking(BookedRoom room)
+        public async Task DeleteUserBooking(BookedRoom room, string email)
         {
             var updatedBookedRoom = JsonConvert.SerializeObject(room);
             HttpContent httpContent = new StringContent(updatedBookedRoom);

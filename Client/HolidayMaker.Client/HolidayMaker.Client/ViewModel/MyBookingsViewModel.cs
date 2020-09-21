@@ -32,7 +32,7 @@ namespace HolidayMaker.Client.ViewModel
             booking.CheckIn = DateTime.Now;
             booking.CheckOut = DateTime.Now;
             booking.TotalPrice = 1500;
-            booking.UserId = 1;
+            //booking.UserId = 1;
             booking.BookedRooms = listOfUserBookedRooms;
 
             ListOfUserBookings.Add(booking);
@@ -40,7 +40,7 @@ namespace HolidayMaker.Client.ViewModel
 
         public async void GetBookings()
         {
-            var bookings = await bookingService.GetBookingsAsync();
+            var bookings = await bookingService.GetBookingsAsync("bajs@korv.se");
             foreach (Booking item in bookings)
             {
                 ListOfUserBookings.Add(item);
