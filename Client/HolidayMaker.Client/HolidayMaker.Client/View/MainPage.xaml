@@ -225,7 +225,7 @@
                   Grid.RowSpan="5"
 
                   FontFamily="Bahnschrift"
-                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged"/>
+                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
