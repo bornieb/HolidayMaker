@@ -83,6 +83,28 @@ namespace HolidayMakerAPI.Controllers
 
             return bookings;
         }
+        [HttpGet("booked")]
+        public async Task<IEnumerable<BookingRoom>> GetBookedRooms(DateTime checkIn, DateTime checkOut)
+        {
+            var bookings = await _context.Booking
+                .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut))
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .ToListAsync();
+
+            foreach(var booking in bookings)
+            {
+                foreach(var bookedRoom in booking.BookedRooms)
+                {
+                    bookedRoom.Booking = null;
+                }
+            }
+
+            IEnumerable<BookingRoom> rooms = bookings.SelectMany(b => b.BookedRooms);
+
+
+            return rooms;
+        }
 
         // PUT: api/Booking/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

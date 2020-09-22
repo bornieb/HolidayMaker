@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using HolidayMaker.Client.Model;
 using System.Net.Http.Headers;
+using System.Collections.ObjectModel;
 
 namespace HolidayMaker.Client.Service
 {
@@ -28,5 +29,16 @@ namespace HolidayMaker.Client.Service
             var jsonBookingDB = await httpClient.PostAsync(url, httpContent);
          
         }
+
+        public async Task<ObservableCollection<BookedRoom>> GetBookedRooms()
+        {
+            var bookedRooms = new ObservableCollection<BookedRoom>();
+            var jsonBookedRooms = await httpClient.GetStringAsync(url);
+            bookedRooms = JsonConvert.DeserializeObject<ObservableCollection<BookedRoom>>(jsonBookedRooms);
+
+            return bookedRooms;
+        }
+
+     
      }
 }

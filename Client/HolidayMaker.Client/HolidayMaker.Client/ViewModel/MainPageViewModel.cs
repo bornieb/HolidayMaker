@@ -43,6 +43,25 @@ namespace HolidayMaker.Client.ViewModel
             }
         }
 
+        public async void GetAvailableRooms()
+        {
+            var accommodations = await accommodationService.GetAccommodationsAsync();
+            List<Room> roomList = new List<Room>();
+
+            foreach(var acc in accommodations)
+            {
+                foreach(var room in acc.Rooms)
+                {
+                    roomList.Add(room);
+                }
+            }
+
+            var bookedRooms = await bookingService.GetBookedRooms();
+
+            IEnumerable<Room> availableRooms = roomList.Where((item) => !bookedRooms.Any((item2) => item.RoomId == item2.RoomId));
+
+        }
+
         public void AddToBooking(Room room, Accommodation accommodation)
         {
            
@@ -66,15 +85,15 @@ namespace HolidayMaker.Client.ViewModel
         {
             Booking booking = new Booking();
             booking.BookingNumber = CreateBookingNumber();
-            booking.CheckIn = DateTime.Now;
-            booking.CheckOut = DateTime.Now;
+            booking.CheckIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            booking.CheckOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(2);
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
             booking.Email = User.Email;
             
             await PostBookingAsync(booking);
         }
-
+        
         public async Task PostBookingAsync(Booking booking)
         {
             await bookingService.PostBooking(booking);
