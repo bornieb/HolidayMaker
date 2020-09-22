@@ -13,10 +13,6 @@ namespace HolidayMaker.Client.Model
         public string RoomType { get; set; }
         public bool IsAvailable { get; set; }
         public decimal Price { get; set; }
-        public bool ExtraBedBooked { get; set; }
-        public bool FullBoard { get; set; }
-        public bool HalfBoard { get; set; }
-        public bool AllInclusive { get; set; }
 
         public Room(int roomId, int roomNumber, string roomType, bool isAvailable, decimal price)
         {
