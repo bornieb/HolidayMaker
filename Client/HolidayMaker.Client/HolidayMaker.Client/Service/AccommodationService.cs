@@ -27,7 +27,6 @@ namespace HolidayMaker.Client.Service
             var jsonAccommodations = await httpClient.GetStringAsync(url);
             accommodations = JsonConvert.DeserializeObject<ObservableCollection<Accommodation>>(jsonAccommodations);
 
-
             return accommodations;
         }
 
