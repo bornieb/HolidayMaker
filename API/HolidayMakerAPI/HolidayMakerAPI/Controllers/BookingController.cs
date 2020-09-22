@@ -134,7 +134,7 @@ namespace HolidayMakerAPI.Controllers
             return NoContent();
         }
 
-        [HttpPut("all/{email}/{bookingNumber}")]
+        [HttpPut("all/{bookingNumber}/{booking}")]
         public async Task<IActionResult> PutUserBooking(string bookingNumber, Booking booking)
         {
             var dBbooking = await _context.Booking
