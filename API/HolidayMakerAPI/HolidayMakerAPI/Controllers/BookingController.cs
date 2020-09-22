@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMakerAPI.Data;
 using HolidayMakerAPI.Model;
+using System.Reflection.Metadata;
 
 namespace HolidayMakerAPI.Controllers
 {
@@ -138,17 +139,29 @@ namespace HolidayMakerAPI.Controllers
         public async Task<IActionResult> PutUserBooking(string bookingNumber, Booking booking)
         {
             var dBbooking = await _context.Booking
+                .Include(b => b.BookedRooms)
                             .Where(b => b.BookingNumber == bookingNumber)
                                 .FirstOrDefaultAsync();
 
-            booking.BookingID = dBbooking.BookingID;
+            //Hämtar ut befintligt objekt för att matcha med db.
+
+            foreach (var item in booking.BookedRooms)
+            {
+                foreach (var db in dBbooking.BookedRooms)
+                {
+                    db.AllInclusive = item.AllInclusive;
+                    db.ExtraBedBooked = item.ExtraBedBooked;
+                    db.FullBoard = item.FullBoard;
+                    db.HalfBoard = item.HalfBoard;
+                }
+            }
 
             if (booking == null)
             {
                 return BadRequest();
             }
 
-            _context.Entry(booking).State = EntityState.Modified;
+            _context.Entry(dBbooking).State = EntityState.Modified;
 
             try
             {

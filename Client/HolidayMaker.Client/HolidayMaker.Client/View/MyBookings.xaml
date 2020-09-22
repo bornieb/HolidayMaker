@@ -94,7 +94,7 @@
                   ItemsSource="{x:Bind ListOfUserRooms}"
                   >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Room">
+                <DataTemplate x:DataType="model:BookedRoom">
                     <StackPanel>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
