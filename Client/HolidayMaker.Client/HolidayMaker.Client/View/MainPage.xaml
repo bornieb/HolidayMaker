@@ -60,21 +60,24 @@
                        >
                 <TextBlock
                     x:Name="LoggedInUser"
+                    FontFamily="Bahnschrift"
                     Text="{x:Bind user.Email}"/>
                 <Button
                     x:Name="Login_Button"
                     FontSize="12"
                     Content="Log In"
+                    FontFamily="Bahnschrift"
                     Background="Transparent"
                     Click="Login_Button_Click"
                     ToolTipService.ToolTip="Log in"/>
                 <Button
-                  ToolTipService.ToolTip="Register"
-                  FontSize="12"
-                  Content="Register"  
-                  HorizontalAlignment="Center"                  
-                  Background="Transparent"                  
-                  Click="Button_Click"                  
+                    ToolTipService.ToolTip="Register"
+                    FontSize="12"
+                    Content="Register"
+                    FontFamily="Bahnschrift"           
+                    HorizontalAlignment="Center"                  
+                    Background="Transparent"                  
+                    Click="Button_Click"                  
                   />
                 <Button
                     x:Name="CollapseButton"
@@ -110,51 +113,56 @@
 
 
 
-            <SplitView.Pane>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+
+        <SplitView.Pane>    
+            <Grid>    
+                <Grid.RowDefinitions>    
+                    <RowDefinition Height="auto"/>    
+                    <RowDefinition Height="*"/>    
+                    <RowDefinition Height="*"/>    
+                </Grid.RowDefinitions>    
 
 
-                    <ListView Grid.Row="0"
-                        x:Name="BookingListview"
-                              Foreground="White">
-                        <ListView.ItemTemplate>
-                            <DataTemplate 
-                                x:DataType="model:BookedRoom"
-                                            >
-                                <StackPanel>
-                                    <TextBlock
-                                                    Text="{x:Bind AccommodationName}"/>
-                                    <TextBlock
-                                                    Text="{x:Bind City}"/>
-                                    <TextBlock
-                                                    Text="{x:Bind RoomType}"/>
-                                    <TextBlock
-                                                    Text="{x:Bind Price}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                <ListView Grid.Row="0"    
+                    x:Name="BookingListview"    
+                          Foreground="White">    
+                    <ListView.ItemTemplate>    
+                        <DataTemplate     
+                                        x:DataType="model:BookedRoom">    
+                            <StackPanel>    
+                                <TextBlock    
+                                                Text="{x:Bind AccommodationName}"    
+                                                FontFamily="Bahnschrift"/>    
+                                <TextBlock    
+                                                Text="{x:Bind City}"    
+                                                FontFamily="Bahnschrift"/>    
+                                <TextBlock    
+                                                Text="{x:Bind RoomType}"    
+                                                FontFamily="Bahnschrift"/>    
+                                <TextBlock    
+                                                Text="{x:Bind Price}"    
+                                                FontFamily="Bahnschrift"/>    
+                            </StackPanel>    
+                        </DataTemplate>    
+                    </ListView.ItemTemplate>    
+                </ListView>    
 
 
 
-                    <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1">            
 
-                        <Button
-                                    x:Name="CreateBooking"
-                                    Content="Boka!"
-                                    Click="CreateBooking_Click" 
-                                    Background="Transparent"
-                                    Foreground="White"
-                                    Width="110"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                />
-                    </StackPanel>
+            <Button            
+              x:Name="CreateBooking"                      
+              Content="Boka!"                      
+              Click="CreateBooking_Click"                       
+              Background="Transparent"                      
+              FontFamily="Bahnschrift"                      
+              Foreground="White"                      
+              Width="110"                      
+              HorizontalAlignment="Center"                      
+              VerticalAlignment="Center"                      
+                    />            
+        </StackPanel>            
 
 
                 </Grid>
@@ -169,6 +177,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center"
             Foreground="White"
+            FontFamily="Bahnschrift"
             PlaceholderText="SEARCH ME"
             PlaceholderForeground="White"
             Background="Transparent"
@@ -191,9 +200,21 @@
            >
             <AppBarButton.Flyout>
                 <MenuFlyout>
-                    <MenuFlyoutItem Text="By rating" Click="MenuFlyoutItem_Click_Rating" Tag="rating"/>
-                    <MenuFlyoutItem Text="By name A-Z" Click="MenuFlyoutItem_Click_Name" Tag="name"/>
-                    <MenuFlyoutItem Text="By name Z-A" Click="MenuFlyoutItem_Click_Name_Descend" Tag="name"/>
+                    <MenuFlyoutItem 
+                        Text="By rating" 
+                        Click="MenuFlyoutItem_Click_Rating" 
+                        Tag="rating"
+                        FontFamily="Bahnschrift"/>
+                    <MenuFlyoutItem 
+                        Text="By name A-Z" 
+                        Click="MenuFlyoutItem_Click_Name" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
+                    <MenuFlyoutItem 
+                        Text="By name Z-A" 
+                        Click="MenuFlyoutItem_Click_Name_Descend" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
                 </MenuFlyout>
             </AppBarButton.Flyout>
         </AppBarButton>
@@ -202,7 +223,9 @@
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
-                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
+
+                  FontFamily="Bahnschrift"
+                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged"/>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Accommodation">
                     <StackPanel>
@@ -216,18 +239,23 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <ListView Grid.Column="6" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
                   x:Name="roomListView"
+                  FontFamily="Bahnschrift"
                   ItemsSource="{x:Bind ListOfRooms}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Room">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind RoomType}" Foreground="Black"/>
+                        Text="{x:Bind RoomType}" 
+                        Foreground="White"
+                        FontFamily="Bahnschrift"
+                            />
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
                         <CheckBox 
@@ -246,7 +274,7 @@
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
-                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
+                        <Button Foreground="Black" Background="Green" FontFamily="Bahnschrift" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -260,12 +288,15 @@
             Foreground="White"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
+            FontFamily="Bahnschrift"
             />
         <DatePicker
             x:Name="CheckInDate"
             Grid.ColumnSpan="3" 
             Grid.Column="2" 
             Grid.Row="7" 
+            FontFamily="Bahnschrift"
+            Foreground="White"
             />
         <TextBlock
             x:Name="CheckOutTextBlock"
@@ -282,6 +313,7 @@
             Grid.Column="2"
             Grid.Row="8"
             VerticalAlignment="Top"
+            FontFamily="Bahnschrift"
             />
 
 
@@ -291,7 +323,7 @@
             PrimaryButtonText="Register"
             PrimaryButtonClick="RegisterContent_PrimaryButtonClick"
             SecondaryButtonText="Close"
-
+            FontFamily="Bahnschrift"
             >
             <StackPanel
             Grid.Row="2"
@@ -300,24 +332,32 @@
             Grid.RowSpan="3">
                 <TextBlock
                     x:Name="ErrorTextBlock"
+                    FontFamily="Bahnschrift"
                 />
                 <TextBox
             x:Name="EmailTextbox"
             PlaceholderText="E-Mail"
+            FontFamily="Bahnschrift"    
+                    
             Height="35"
             />
                 <TextBlock
                     x:Name="PasswordErrorTextBlock"
+                    FontFamily="Bahnschrift"    
+                    
                 />
                 <PasswordBox
             x:Name="PasswordTextbox"
             PlaceholderText="Password"
             Height="35"
+            FontFamily="Bahnschrift"                        
             PasswordRevealMode="Peek"    
             />
                 <TextBlock
                 x:Name="PasswordTextBlock"
                 Text=""
+                FontFamily="Bahnschrift"    
+    
                 Foreground="Red"
                 FontSize="12"
                 Height="Auto"/>
@@ -326,11 +366,13 @@
             x:Name="ConfirmPasswordTextbox"
             PlaceholderText="Confirm Password"
             Height="35"
+            FontFamily="Bahnschrift"    
             PasswordRevealMode="Peek"
             />
                 <TextBlock
                 x:Name="ConfirmPasswordTextBlock"
                 Text=""
+                FontFamily="Bahnschrift"    
                 Foreground="Red"
                 FontSize="12"
                 Height="Auto"/>
@@ -342,11 +384,14 @@
             Title="Log in"
             PrimaryButtonText="Log In"
             PrimaryButtonClick="LoginContent_PrimaryButtonClick"
-            SecondaryButtonText="Close">
+            SecondaryButtonText="Close"
+            FontFamily="Bahnschrift"
+            >
             <StackPanel>
                 <TextBox
             x:Name="UserEmailTextbox"
             PlaceholderText="E-Mail"
+                    FontFamily="Bahnschrift"
             Height="35"
             />
                 <TextBlock
@@ -356,10 +401,13 @@
             x:Name="UserPasswordTextbox"
             PlaceholderText="Password"
             Height="35"
+                    FontFamily="Bahnschrift"
             PasswordRevealMode="Peek"    
             />
                 <TextBlock
-                   Text="Not a registered user"
+                   Text="Not a registered user?"
+                    Padding="5"
+                    FontFamily="Bahnschrift"
                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="12"
@@ -367,6 +415,8 @@
                 <HyperlinkButton
                     x:Name="Register_Hyperbutton"
                     HorizontalAlignment="Center"
+                    FontFamily="Bahnschrift"
+                    FontStyle="Italic"
                     VerticalAlignment="Center"
                     Content="Register here"
                     FontSize="12"
