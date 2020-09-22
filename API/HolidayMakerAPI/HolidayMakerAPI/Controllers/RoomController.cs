@@ -28,6 +28,20 @@ namespace HolidayMakerAPI.Controllers
             return await _context.Room.ToListAsync();
         }
 
+        [HttpGet("booked")]
+        public async Task<ActionResult<IEnumerable<BookingRoom>>> GetBookedRooms(DateTime checkIn, DateTime checkOut)
+        {
+            var bookings = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut))
+                .ToListAsync();
+            IEnumerable<BookingRoom> rooms = bookings.SelectMany(b => b.BookedRooms);
+
+
+            return rooms;
+        }
+
         // GET: api/Room/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
