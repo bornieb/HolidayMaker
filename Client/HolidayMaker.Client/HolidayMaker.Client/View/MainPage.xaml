@@ -222,6 +222,12 @@
             </AppBarButton.Flyout>
         </AppBarButton>
 
+        <Button
+            x:Name="navbutton"
+            Content="Navigate"
+            Click="navbutton_Click"
+            />
+
         <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 

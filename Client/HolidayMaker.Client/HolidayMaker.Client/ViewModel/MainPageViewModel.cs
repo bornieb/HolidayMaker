@@ -23,6 +23,7 @@ namespace HolidayMaker.Client.ViewModel
         AccommodationService accommodationService = new AccommodationService();
         private User user;
         public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Room> availableRooms;
 
        
 
@@ -58,8 +59,8 @@ namespace HolidayMaker.Client.ViewModel
 
             var bookedRooms = await bookingService.GetBookedRooms();
 
-            IEnumerable<Room> availableRooms = roomList.Where((item) => !bookedRooms.Any((item2) => item.RoomId == item2.RoomId));
-
+            IEnumerable<Room> availableEnumerable = roomList.Where((item) => !bookedRooms.Any((item2) => item.RoomId == item2.RoomId));
+            availableRooms = new ObservableCollection<Room>(availableEnumerable);
         }
 
         public void AddToBooking(Room room, Accommodation accommodation)

@@ -215,5 +215,10 @@ namespace HolidayMaker.Client
                 mainPageViewModel.User = new User(userName);
             }
         }
+
+        private void navbutton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GetBookedRooms));
+        }
     }
 }
