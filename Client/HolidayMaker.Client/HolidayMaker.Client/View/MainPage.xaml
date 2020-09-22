@@ -124,7 +124,8 @@
                               Foreground="White">
                         <ListView.ItemTemplate>
                             <DataTemplate 
-                                            x:DataType="model:BookedRoom">
+                                x:DataType="model:BookedRoom"
+                                            >
                                 <StackPanel>
                                     <TextBlock
                                                     Text="{x:Bind AccommodationName}"/>
@@ -201,7 +202,20 @@
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
-                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged"/>
+                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Accommodation">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind City}" Foreground="Black"/>
+                        <TextBlock
+                        Text="{x:Bind Rating}" Foreground="Black"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <ListView Grid.Column="6" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
@@ -232,6 +246,7 @@
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
+                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

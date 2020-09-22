@@ -94,12 +94,8 @@
                   ItemsSource="{x:Bind ListOfUserRooms}"
                   >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:BookedRoom">
+                <DataTemplate x:DataType="model:Room">
                     <StackPanel>
-                        <TextBlock
-                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind City }" Foreground="Black"/>
                         <TextBlock
                         Text="{x:Bind Price}" Foreground="Black"/>
                         <TextBlock
@@ -120,7 +116,6 @@
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
-                        <Button Foreground="Black" Background="Green" Content="Lägg till" Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
