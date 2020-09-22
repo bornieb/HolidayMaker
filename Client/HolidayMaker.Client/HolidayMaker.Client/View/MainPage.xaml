@@ -240,7 +240,7 @@
                   Grid.RowSpan="5"
                   x:Name="roomListView"
                   FontFamily="Bahnschrift"
-                  ItemsSource="{x:Bind ListOfRooms}"
+                  ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Room">

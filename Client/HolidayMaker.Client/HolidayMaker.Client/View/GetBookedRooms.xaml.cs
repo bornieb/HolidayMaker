@@ -40,7 +40,7 @@ namespace HolidayMaker.Client.View
 
         private void GetRooms_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.GetAvailableRooms();
+            
         }
     }
 }

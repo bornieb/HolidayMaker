@@ -84,7 +84,7 @@ namespace HolidayMakerAPI.Controllers
             return bookings;
         }
         [HttpGet("booked")]
-        public async Task<IEnumerable<BookingRoom>> GetBookedRooms(DateTime checkIn, DateTime checkOut)
+        public async Task<IEnumerable<BookingRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
         {
             var bookings = await _context.Booking
                 .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut))
@@ -100,7 +100,7 @@ namespace HolidayMakerAPI.Controllers
                 }
             }
 
-            IEnumerable<BookingRoom> rooms = bookings.SelectMany(b => b.BookedRooms);
+            IEnumerable<BookingRoom> rooms = bookings.SelectMany(b => b.BookedRooms.Where(br => br.Room.AccommodationID == accommodationId));
 
 
             return rooms;

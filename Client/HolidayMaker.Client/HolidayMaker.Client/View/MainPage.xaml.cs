@@ -60,18 +60,18 @@ namespace HolidayMaker.Client
         }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (accListView.SelectedItem == null)
+            {
+                return;
+            }
+
             //Accommodation ac = accListView.SelectedItem as Accommodation;
             ListOfRooms.Clear();
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            foreach (var item in ac.Rooms)
-            {
-                if (item.IsAvailable)
-                {
-                    ListOfRooms.Add(item);
-                }
-            }
+            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime.Date, CheckOutDate.Date.DateTime.Date);
+
         }
 
         private void AddRoom_Clicked(object sender, RoutedEventArgs e)
