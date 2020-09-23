@@ -128,9 +128,6 @@
     <Compile Include="Service\BookingService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="View\GetBookedRooms.xaml.cs">
-      <DependentUpon>GetBookedRooms.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -161,10 +158,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\GetBookedRooms.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

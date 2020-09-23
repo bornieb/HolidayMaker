@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HolidayMaker.Client.Model;
 using HolidayMaker.Client.Service;
+using Windows.UI.Popups;
 
 namespace HolidayMaker.Client.ViewModel
 {
@@ -37,10 +38,17 @@ namespace HolidayMaker.Client.ViewModel
         //}
         public async void GetAccommodations()
         {
-            var accommodations = await accommodationService.GetAccommodationsAsync();
-            foreach (Accommodation item in accommodations)
+            try
             {
-                ListOfAccommodations.Add(item);
+                var accommodations = await accommodationService.GetAccommodationsAsync();
+                foreach (Accommodation item in accommodations)
+                {
+                    ListOfAccommodations.Add(item);
+                }
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                await new MessageDialog("Failed to load API").ShowAsync();
             }
         }
 
@@ -77,12 +85,12 @@ namespace HolidayMaker.Client.ViewModel
 
         }
 
-        public async void CreateBooking()
+        public async void CreateBooking(DateTime checkIn, DateTime checkOut)
         {
             Booking booking = new Booking();
             booking.BookingNumber = CreateBookingNumber();
-            booking.CheckIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            booking.CheckOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(2);
+            booking.CheckIn = checkIn;
+            booking.CheckOut = checkOut;
             booking.TotalPrice = TotalPrice;
             booking.BookedRooms = AddedRooms;
             booking.Email = User.Email;

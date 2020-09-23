@@ -70,7 +70,7 @@ namespace HolidayMaker.Client
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime.Date, CheckOutDate.Date.DateTime.Date);
+            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
 
         }
 
@@ -116,7 +116,7 @@ namespace HolidayMaker.Client
         {
             if (IsLoggedIn == true)
             {
-                mainPageViewModel.CreateBooking();
+                mainPageViewModel.CreateBooking(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
             }
             else
             {
@@ -214,11 +214,6 @@ namespace HolidayMaker.Client
                 IsLoggedIn = true;
                 mainPageViewModel.User = new User(userName);
             }
-        }
-
-        private void navbutton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(GetBookedRooms));
         }
     }
 }
