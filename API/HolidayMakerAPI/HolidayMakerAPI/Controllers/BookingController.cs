@@ -143,9 +143,6 @@ namespace HolidayMakerAPI.Controllers
                             .Where(b => b.BookingNumber == bookingNumber)
                                 .FirstOrDefaultAsync();
 
-
-
-
             //Hämtar ut befintligt objekt för att matcha med db.
 
             foreach (var item in booking.BookedRooms)
@@ -168,18 +165,6 @@ namespace HolidayMakerAPI.Controllers
             {
                 dBbooking.BookedRooms = booking.BookedRooms.Where(x => dBbooking.BookedRooms.Any(y => y.RoomID == x.RoomID)).ToList();
             }
-
-
-            //foreach (var item in result)
-            //{
-            //    foreach (var db in dBbooking.BookedRooms)
-            //    {
-            //        db.AllInclusive = item.AllInclusive;
-            //        db.ExtraBedBooked = item.ExtraBedBooked;
-            //        db.FullBoard = item.FullBoard;
-            //        db.HalfBoard = item.HalfBoard;
-            //    }
-            //}
 
             if (booking == null)
             {
