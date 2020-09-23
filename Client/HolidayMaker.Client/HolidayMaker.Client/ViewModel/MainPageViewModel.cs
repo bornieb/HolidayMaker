@@ -102,6 +102,8 @@ namespace HolidayMaker.Client.ViewModel
         public async Task PostBookingAsync(Booking booking)
         {
             await bookingService.PostBooking(booking);
+
+            await DisplayMessage($"Bokning med bokningsnummer: {booking.BookingNumber} skapad!");
         }
 
         public string CreateBookingNumber()
@@ -179,6 +181,11 @@ namespace HolidayMaker.Client.ViewModel
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async Task DisplayMessage(string message)
+        {
+            await new MessageDialog(message).ShowAsync();
         }
     }
 }
