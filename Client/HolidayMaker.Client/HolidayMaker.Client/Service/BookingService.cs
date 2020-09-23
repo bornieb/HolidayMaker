@@ -13,7 +13,7 @@ namespace HolidayMaker.Client.Service
 {
      public class BookingService
      {
-        private static readonly string url = "http://localhost:59571/api/booking/";
+        private static readonly string url = "http://localhost:59571/api/booking";
         private static readonly string aUrl = "http://localhost:59571/api/booking/all/";
         private static readonly string bUrl = "http://localhost:59571/api/booking/all/?email=";
         HttpClient httpClient; 

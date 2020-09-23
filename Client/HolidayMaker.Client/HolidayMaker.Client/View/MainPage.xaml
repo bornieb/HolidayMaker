@@ -262,28 +262,50 @@
             </AppBarButton.Flyout>
         </AppBarButton>
 
-        <ListView Grid.Column="2" 
-                  Grid.Row="2" 
-                  Grid.ColumnSpan="3" 
-                  Grid.RowSpan="5"
+            <StackPanel
+ Grid.Column="2"
+ Grid.Row="5"
+ Grid.ColumnSpan="4"
+ Grid.RowSpan="3"
+ Orientation="Horizontal">
+                <ListView
+ FontFamily="Bahnschrift"
+ x:Name="accListView"
+ SelectionChanged="accListView_SelectionChanged"
+ />
 
-                  FontFamily="Bahnschrift"
-                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Accommodation">
-                    <StackPanel>
-                        <TextBlock
-                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind City}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind Rating}" Foreground="Black"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView
+ x:Name="roomListView2"
+ FontFamily="Bahnschrift"
+ Foreground="White"
+ ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
+ >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Room">
+                            <StackPanel>
+                                <TextBlock
+ Text="{x:Bind RoomType}"
+ Foreground="White"
+ FontFamily="Bahnschrift"
+ />
+                                <TextBlock
+ Text="{x:Bind Price}"
+ Foreground="White"
+ FontFamily="BahnSchrift"
+ />
+                                <Button
+ Foreground="White"
+ Background="Transparent"
+ FontFamily="Bahnschrift"
+ Content="Add"
+ Click="AddRoom_Clicked"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
 
-        <ListView Grid.Column="6" 
+            <ListView Grid.Column="6" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
