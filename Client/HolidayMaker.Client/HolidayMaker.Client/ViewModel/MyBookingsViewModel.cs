@@ -109,7 +109,7 @@ namespace HolidayMaker.Client.ViewModel
             $"E-mail: {booking.Email}\n" +
             $"Number of rooms in booking: {booking.BookedRooms.Count}\n" +
             $"Addons: {addons}\n" +
-            $"Total price: {booking.TotalPrice}";
+            $"Total price: {booking.TotalPriceBooking}";
 
             return info;
 
