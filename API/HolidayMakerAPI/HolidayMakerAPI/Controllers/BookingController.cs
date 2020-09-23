@@ -87,7 +87,7 @@ namespace HolidayMakerAPI.Controllers
         public async Task<IEnumerable<BookingRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
         {
             var bookings = await _context.Booking
-                .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut))
+                .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut || checkIn <= b.CheckIn && checkOut >= b.CheckIn))
                 .Include(b => b.BookedRooms)
                 .ThenInclude(br => br.Room)
                 .ToListAsync();
