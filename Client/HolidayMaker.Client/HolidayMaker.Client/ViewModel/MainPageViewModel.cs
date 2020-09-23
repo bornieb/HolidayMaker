@@ -92,21 +92,7 @@ namespace HolidayMaker.Client.ViewModel
             booking.BookingNumber = CreateBookingNumber();
             booking.CheckIn = checkIn;
             booking.CheckOut = checkOut;
-            
-            //booking.BookedRooms = AddedRooms;
-            foreach (var room in AddedRooms)
-            {
-                foreach (var b in booking.BookedRooms)
-                {
-                    b.AccommodationName = room.AccommodationName;
-                    b.ExtraBedBooked = room.AllInclusive;
-                    b.AllInclusive = room.AllInclusive;
-                    b.FullBoard = room.AllInclusive;
-                    b.HalfBoard = room.HalfBoard;
-                    b.Price = room.TotalPriceRoom;
-                }
-            }
-            //booking.TotalPrice = TotalPrice;
+            booking.BookedRooms = AddedRooms;
             booking.TotalPrice = booking.TotalPriceBooking;
             booking.Email = User.Email;
             
@@ -143,7 +129,6 @@ namespace HolidayMaker.Client.ViewModel
 
         public void CalculateTotalPrice()
         {
-
             TotalPrice = 0;
             foreach (BookedRoom room in AddedRooms)
             {
