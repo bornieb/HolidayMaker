@@ -56,5 +56,7 @@ namespace HolidayMaker.Client.ViewModel
         {
             await bookingService.UpdateUserBooking(booking);
         }
+
+
     }
 }
