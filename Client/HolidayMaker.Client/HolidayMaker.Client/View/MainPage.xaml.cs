@@ -238,5 +238,15 @@ namespace HolidayMaker.Client
 
             this.Frame.Navigate(typeof(MyBookings), mainPageViewModel.User);
         }
+
+        private void MenuFlyoutItem_Click_Beach(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.DistanceToBeach);
+        }
+
+        private void MenuFlyoutItem_Click_Center(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.DistanceToCenter);
+        }
     }
 }

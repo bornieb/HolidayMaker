@@ -45,6 +45,7 @@ namespace HolidayMaker.Client.ViewModel
                 foreach (Accommodation item in accommodations)
                 {
                     ListOfAccommodations.Add(item);
+                    
                 }
             }
             catch (System.Net.Http.HttpRequestException)
