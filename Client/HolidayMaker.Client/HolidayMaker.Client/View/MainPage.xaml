@@ -123,35 +123,47 @@
                 </Grid.RowDefinitions>    
 
 
-                <ListView Grid.Row="0"    
-                    x:Name="BookingListview"    
-                          Foreground="White">    
-                    <ListView.ItemTemplate>    
-                        <DataTemplate     
-                                        x:DataType="model:BookedRoom">    
-                            <StackPanel>    
-                                <TextBlock    
-                                                Text="{x:Bind AccommodationName}"    
-                                                FontFamily="Bahnschrift"/>    
-                                <TextBlock    
-                                                Text="{x:Bind City}"    
-                                                FontFamily="Bahnschrift"/>    
-                                <TextBlock    
-                                                Text="{x:Bind RoomType}"    
-                                                FontFamily="Bahnschrift"/>    
-                                <TextBlock    
-                                                Text="{x:Bind Price}"    
-                                                FontFamily="Bahnschrift"/>    
-                            </StackPanel>    
-                        </DataTemplate>    
-                    </ListView.ItemTemplate>    
-                </ListView>    
 
 
 
         <StackPanel Grid.Row="1">            
 
-            <Button            
+                    
+        </StackPanel>            
+
+
+                </Grid>
+            </SplitView.Pane>
+
+        </SplitView>
+
+
+        <ListView Grid.Row="3"    
+                    x:Name="BookingListview"    
+                          Foreground="White">
+            <ListView.ItemTemplate>
+                <DataTemplate     
+                                        x:DataType="model:BookedRoom">
+                    <StackPanel>
+                        <TextBlock    
+                                                Text="{x:Bind AccommodationName}"    
+                                                FontFamily="Bahnschrift"/>
+                        <TextBlock    
+                                                Text="{x:Bind City}"    
+                                                FontFamily="Bahnschrift"/>
+                        <TextBlock    
+                                                Text="{x:Bind RoomType}"    
+                                                FontFamily="Bahnschrift"/>
+                        <TextBlock    
+                                                Text="{x:Bind Price}"    
+                                                FontFamily="Bahnschrift"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button    
+              Grid.Row="4"
               x:Name="CreateBooking"                      
               Content="Boka!"                      
               Click="CreateBooking_Click"                       
@@ -161,15 +173,7 @@
               Width="110"                      
               HorizontalAlignment="Center"                      
               VerticalAlignment="Center"                      
-                    />            
-        </StackPanel>            
-
-
-                </Grid>
-            </SplitView.Pane>
-
-        </SplitView>
-
+                    />
         <TextBox 
             x:Name="SearchTextBox" 
             Grid.Column="2"
@@ -246,7 +250,7 @@
                   Grid.RowSpan="5"
                   x:Name="roomListView"
                   FontFamily="Bahnschrift"
-                  ItemsSource="{x:Bind ListOfRooms}"
+                  ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Room">
