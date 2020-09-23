@@ -258,6 +258,16 @@
                         Click="MenuFlyoutItem_Click_Name_Descend" 
                         Tag="name"
                         FontFamily="Bahnschrift"/>
+                        <MenuFlyoutItem 
+                        Text="Sort by closest beach" 
+                        Click="MenuFlyoutItem_Click_Beach" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
+                        <MenuFlyoutItem 
+                        Text="Sort by closest to city center" 
+                        Click="MenuFlyoutItem_Click_Center" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
