@@ -60,5 +60,6 @@ namespace HolidayMaker.Client.Service
 
             await httpClient.DeleteAsync(delete);
         }
-    }
+
+     }
 }

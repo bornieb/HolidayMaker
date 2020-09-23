@@ -56,5 +56,20 @@ namespace HolidayMaker.Client.ViewModel
         {
             await bookingService.UpdateUserBooking(booking);
         }
+
+        //Info printed when removing a booking
+        public static string PrintBookingInfo(Booking booking)
+        {
+
+            string info =
+            $"BookingNumber: {booking.BookingNumber} \n" +
+            $"E-mail: {booking.Email}\n" +
+            $"Number of rooms in booking: {booking.BookedRooms.Count}\n" +
+            $"Total price: {booking.TotalPrice}";
+
+            return info;
+
+        }
     }
+
 }
