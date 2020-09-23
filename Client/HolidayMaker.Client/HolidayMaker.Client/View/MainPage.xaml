@@ -258,39 +258,28 @@
                         Click="MenuFlyoutItem_Click_Name_Descend" 
                         Tag="name"
                         FontFamily="Bahnschrift"/>
-                </MenuFlyout>
-            </AppBarButton.Flyout>
-        </AppBarButton>
-
-        <ListView Grid.Column="2" 
-                  Grid.Row="2" 
-                  Grid.ColumnSpan="3" 
-                  Grid.RowSpan="5"
-
-                  FontFamily="Bahnschrift"
-                  x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Accommodation">
-                    <StackPanel>
-                        <TextBlock
-                        Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind City}" Foreground="Black"/>
-                        <TextBlock
-                        Text="{x:Bind Rating}" Foreground="Black"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <ListView Grid.Column="6" 
-                  Grid.Row="2" 
-                  Grid.ColumnSpan="3" 
-                  Grid.RowSpan="5"
-                  x:Name="roomListView"
-                  FontFamily="Bahnschrift"
-                  ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
-                  >
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </StackPanel>
+        <StackPanel
+            Grid.Column="2"
+            Grid.Row="5"
+            Grid.ColumnSpan="4"
+            Grid.RowSpan="3"
+            Orientation="Horizontal">   
+        <ListView 
+            FontFamily="Bahnschrift"
+            x:Name="accListView"
+            SelectionChanged="accListView_SelectionChanged"
+            />       
+        
+        <ListView 
+            x:Name="roomListView"
+            FontFamily="Bahnschrift"
+            Foreground="White"
+            ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
+            >        
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Room">
                     <StackPanel>
@@ -300,24 +289,16 @@
                         FontFamily="Bahnschrift"
                             />
                         <TextBlock
-                        Text="{x:Bind Price}" Foreground="Black"/>
-                        <CheckBox 
-                            x:Name="ExtraBedCheckbox"
-                            Content="ExtraBed"
-                            IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
-                        <RadioButton 
-                            x:Name="HalfBoardRadioButton"
-                            Content="HalfBoard"
-                            IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
-                        <RadioButton 
-                            x:Name="FullBoardRadioButton"
-                            Content="FullBoard"
-                            IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
-                        <RadioButton 
-                            x:Name="AllInclusiveRadioButton"
-                            Content="Allinclusive"
-                            IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
-                        <Button Foreground="Black" Background="Green" FontFamily="Bahnschrift" Content="Lägg till" Click="AddRoom_Clicked"></Button>
+                        Text="{x:Bind Price}"
+                        Foreground="White"
+                        FontFamily="BahnSchrift"   
+                            />
+                        <Button 
+                            Foreground="White" 
+                            Background="Transparent" 
+                            FontFamily="Bahnschrift"
+                            Content="Add" 
+                            Click="AddRoom_Clicked"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
