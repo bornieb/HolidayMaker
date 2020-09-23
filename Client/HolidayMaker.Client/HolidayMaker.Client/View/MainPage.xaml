@@ -267,12 +267,32 @@
             Grid.Row="5"
             Grid.ColumnSpan="4"
             Grid.RowSpan="3"
-            Orientation="Horizontal">   
-        <ListView 
+            Orientation="Horizontal">
+            <ListView 
             FontFamily="Bahnschrift"
             x:Name="accListView"
             SelectionChanged="accListView_SelectionChanged"
-            />       
+            >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Accommodation">
+                        <StackPanel>
+                            <TextBlock
+                                Text="{x:Bind AccommodationName}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind City}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                     
+                            <TextBlock
+                                Text="{x:Bind Rating}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>                   
         
         <ListView 
             x:Name="roomListView"
