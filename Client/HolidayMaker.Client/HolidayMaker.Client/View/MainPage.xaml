@@ -284,9 +284,32 @@
                                 Text="{x:Bind City}" 
                                 Foreground="White"
                                 FontFamily="Bahnschrift"/>
-                     
                             <TextBlock
-                                Text="{x:Bind Rating}" 
+                                Text="{x:Bind AccRating}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasPool}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasKidsClub}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasEntertainment}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasRestaurant}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccDistanceToBeach}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccDistanceToCenter}" 
                                 Foreground="White"
                                 FontFamily="Bahnschrift"/>
                         </StackPanel>
