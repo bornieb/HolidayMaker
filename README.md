@@ -12,10 +12,9 @@ Programmet går att använda, men ytterligare funktioner såsom att lägga till 
 
 ## För att komma igång
 
-### Visual Studio
-
 - Ladda ner Visual Studio 2019 from https://www.visualstudio.com/downloads/
 - Starta Visual Studio och tryck på `Clone a Repository` med Repository Location `https://github.com/bornieb/HolidayMaker.git`.
 - Välj var du vill spara filerna under `Local Path`.
-
-- Fyll i databasen med Accommodation (hotell), Room (rum) för varje hotell.
+- Starta två Visual Studio och vänta in att Nuget Packages laddas hem.
+- Fyll i databasen med Accommodation (hotell) och Room (rum) för varje hotell.
+- Kör först HolidayMakerAPI, kör sedan HolidayMaker.Client.
