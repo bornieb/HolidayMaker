@@ -70,5 +70,6 @@ namespace HolidayMaker.Client.Service
 
             return bookedRooms;
         }
+
      }
 }
