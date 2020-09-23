@@ -29,12 +29,22 @@ namespace HolidayMaker.Client.View
     {
         MyBookingsViewModel bookingsViewModel;
         public ObservableCollection<BookedRoom> ListOfUserRooms = new ObservableCollection<BookedRoom>();
+        private User user;
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            user = (User)e.Parameter;
+            if (user != null)
+            {
+                SignedInAsTextBlock.Text = "Inloggad som: " +user.Email;
+            }
+        }
         public MyBookings()
         {
             this.InitializeComponent();
             bookingsViewModel = new MyBookingsViewModel();
             //bookingsViewModel.Mockdata();
-            bookingsViewModel.GetBookings();
+            //bookingsViewModel.GetBookings(user.Email);
+            
         }
 
         private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,9 +53,13 @@ namespace HolidayMaker.Client.View
 
             var ac = (Booking)bookingsListview.SelectedItem;
 
-            foreach (var item in ac.BookedRooms)
+
+            if ((ac != null) && ac.BookedRooms.Count>0)
             {
-                ListOfUserRooms.Add(item);
+                foreach (var item in ac.BookedRooms)
+                {
+                    ListOfUserRooms.Add(item);
+                }
             }
         }
 
@@ -79,7 +93,7 @@ namespace HolidayMaker.Client.View
             //bookingsRoomListview.Items.Clear();
             //bookingsViewModel.ListOfUserBookings.Clear();
             
-            bookingsViewModel.GetBookings();
+            bookingsViewModel.GetBookings(user.Email);
         }
 
         private async void DeleteBookingButton_Click(object sender, RoutedEventArgs e)
@@ -108,7 +122,7 @@ namespace HolidayMaker.Client.View
             }
             
             //bookingsViewModel.ListOfUserBookings.Clear();
-            bookingsViewModel.GetBookings();
+            bookingsViewModel.GetBookings(user.Email);
 
         }
 
@@ -157,6 +171,11 @@ namespace HolidayMaker.Client.View
            // var ac = (Booking)bookingsListview.SelectedItem;
            // ac.BookedRooms.Remove(deleteRoom);
            // ListOfUserRooms.Remove(deleteRoom);
+        }
+
+        private void FetchBookings_Click(object sender, RoutedEventArgs e)
+        {
+            bookingsViewModel.GetBookings(user.Email);
         }
     }
 }

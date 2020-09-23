@@ -124,36 +124,36 @@
             Grid.Column="5"
             Grid.RowSpan="4"
             Grid.ColumnSpan="2">
-        <ListView     
+            <ListView     
             x:Name="BookingListview"    
             Foreground="White">
-            <ListView.ItemTemplate>
-                <DataTemplate     
+                <ListView.ItemTemplate>
+                    <DataTemplate     
                                 x:DataType="model:BookedRoom"
-                    >           
-                    <StackPanel>
-                        <TextBlock    
+                    >
+                        <StackPanel>
+                            <TextBlock    
                                 Foreground="White"
                                 Text="{x:Bind AccommodationName}"                       
-                                FontFamily="Bahnschrift"/>                   
-                        <TextBlock    
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock    
                                 Foreground="White"
                                 Text="{x:Bind City}"                            
-                                FontFamily="Bahnschrift"/>                        
-                        <TextBlock    
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock    
                                 Foreground="White"
                                 Text="{x:Bind RoomType}"                     
-                                FontFamily="Bahnschrift"/>                 
-                        <TextBlock    
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock    
                                 Foreground="White"
                                 Text="{x:Bind Price}"                       
-                                FontFamily="Bahnschrift"/>                   
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <Button    
+                                FontFamily="Bahnschrift"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button    
               x:Name="CreateBooking"                      
               Content="Book Room!"                      
               Click="CreateBooking_Click"                       
@@ -171,7 +171,7 @@
             Grid.Column="1"
             Grid.ColumnSpan="3"
             Grid.RowSpan="2">
-        <TextBlock
+            <TextBlock
             x:Name="CheckInTextBlock"
             Text="Check-in"
             Grid.Column="1"
@@ -181,7 +181,7 @@
             HorizontalAlignment="Center"
             FontFamily="Bahnschrift"
             />
-        <DatePicker
+            <DatePicker
             x:Name="CheckInDate"
             Grid.ColumnSpan="3" 
             Grid.Column="2" 
@@ -189,7 +189,7 @@
             FontFamily="Bahnschrift"
             Foreground="White"
             />
-        <TextBlock
+            <TextBlock
             x:Name="CheckOutTextBlock"
             Text="Check-out"
             Grid.Column="1"
@@ -199,7 +199,7 @@
             VerticalAlignment="Top"
             HorizontalAlignment="Center"
             />
-        <DatePicker 
+            <DatePicker 
             x:Name="CheckOutDate"
             Grid.ColumnSpan="3" 
             Grid.Column="2"
@@ -258,71 +258,80 @@
                         Click="MenuFlyoutItem_Click_Name_Descend" 
                         Tag="name"
                         FontFamily="Bahnschrift"/>
-                </MenuFlyout>
-            </AppBarButton.Flyout>
-        </AppBarButton>
-
-        <ListView Grid.Column="2" 
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </StackPanel>
+        <StackPanel
+            Grid.Column="2"
+            Grid.Row="5"
+            Grid.ColumnSpan="6"
+            Grid.RowSpan="3"
+            Orientation="Horizontal">
+            <ListView Grid.Column="2" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3" 
                   Grid.RowSpan="5"
-
                   FontFamily="Bahnschrift"
                   x:Name="accListView" SelectionChanged="accListView_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Accommodation">
-                    <StackPanel>
-                        <TextBlock
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Accommodation">
+                        <StackPanel>
+                            <TextBlock
                         Text="{x:Bind AccommodationName}" Foreground="Black"/>
-                        <TextBlock
+                            <TextBlock
                         Text="{x:Bind City}" Foreground="Black"/>
-                        <TextBlock
+                            <TextBlock
                         Text="{x:Bind Rating}" Foreground="Black"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <ListView Grid.Column="6" 
-                  Grid.Row="2" 
-                  Grid.ColumnSpan="3" 
-                  Grid.RowSpan="5"
+            <ListView 
                   x:Name="roomListView"
                   FontFamily="Bahnschrift"
+                  Foreground="White"
                   ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
                   >
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Room">
-                    <StackPanel>
-                        <TextBlock
-                        Text="{x:Bind RoomType}" 
-                        Foreground="White"
-                        FontFamily="Bahnschrift"
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Room">
+                        <StackPanel>
+                            <TextBlock
+                            Text="{x:Bind RoomType}" 
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
                             />
-                        <TextBlock
-                        Text="{x:Bind Price}" Foreground="Black"/>
-                        <CheckBox 
+                            <TextBlock
+                            Text="{x:Bind Price}" Foreground="Black"/>
+                            <CheckBox 
                             x:Name="ExtraBedCheckbox"
                             Content="ExtraBed"
                             IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
-                        <RadioButton 
+                            <RadioButton 
                             x:Name="HalfBoardRadioButton"
                             Content="HalfBoard"
                             IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
-                        <RadioButton 
+                            <RadioButton 
                             x:Name="FullBoardRadioButton"
                             Content="FullBoard"
                             IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
-                        <RadioButton 
+                            <RadioButton 
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
-                        <Button Foreground="Black" Background="Green" FontFamily="Bahnschrift" Content="Lägg till" Click="AddRoom_Clicked"></Button>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            <Button 
+                            Foreground="White" 
+                            Background="Transparent" 
+                            FontFamily="Bahnschrift"
+                            Content="Add" 
+                            Click="AddRoom_Clicked"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
+
 
         <ContentDialog
             x:Name="RegisterContent"

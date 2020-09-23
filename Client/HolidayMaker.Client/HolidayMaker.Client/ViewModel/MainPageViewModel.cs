@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HolidayMaker.Client.Model;
 using HolidayMaker.Client.Service;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.UI.Popups;
 
 namespace HolidayMaker.Client.ViewModel
@@ -91,10 +92,22 @@ namespace HolidayMaker.Client.ViewModel
             booking.BookingNumber = CreateBookingNumber();
             booking.CheckIn = checkIn;
             booking.CheckOut = checkOut;
-
+            
+            //booking.BookedRooms = AddedRooms;
+            foreach (var room in AddedRooms)
+            {
+                foreach (var b in booking.BookedRooms)
+                {
+                    b.AccommodationName = room.AccommodationName;
+                    b.ExtraBedBooked = room.AllInclusive;
+                    b.AllInclusive = room.AllInclusive;
+                    b.FullBoard = room.AllInclusive;
+                    b.HalfBoard = room.HalfBoard;
+                    b.Price = room.TotalPriceRoom;
+                }
+            }
             //booking.TotalPrice = TotalPrice;
             booking.TotalPrice = booking.TotalPriceBooking;
-            booking.BookedRooms = AddedRooms;
             booking.Email = User.Email;
             
             await PostBookingAsync(booking);

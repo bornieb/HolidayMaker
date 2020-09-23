@@ -74,10 +74,13 @@ namespace HolidayMaker.Client
             //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             //string bookingNumber = booking.BookingNumber.ToString();
             //BookingNumberTextBlock.Text = $"Booking Number:\n";
-            clickedRoom.IsAvailable = false;
-            ListOfRooms.Remove(clickedRoom);
-            mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
-            BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
+            if((clickedRoom != null) && (clickedAccommodation != null))
+            {
+                clickedRoom.IsAvailable = false;
+                ListOfRooms.Remove(clickedRoom);
+                mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
+                BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
+            }
 
         }
 
@@ -231,7 +234,9 @@ namespace HolidayMaker.Client
         }
         private void MyBookings_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MyBookings));
+            //this.Frame.Navigate(typeof(MyBookings));
+
+            this.Frame.Navigate(typeof(MyBookings), mainPageViewModel.User);
         }
     }
 }

@@ -43,8 +43,13 @@
             <CommandBar.Content>
                 <Button x:Name="BackButton" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="BackButton_Click"></Button>
             </CommandBar.Content>
+            
         </CommandBar>
 
+        <TextBlock Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="3" FontSize="40" Foreground="Black" x:Name="SignedInAsTextBlock">
+        </TextBlock>
+
+        <Button x:Name="FetchBookings" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2" Content="FETCH BOOKINGS" Foreground="Black" Click="FetchBookings_Click" ></Button>
         <TextBlock Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="4" Text="MY BOOKINGS" VerticalAlignment="Center" FontSize="40" Foreground="Black"></TextBlock>
         
         <ListView Grid.Column="2" 
@@ -69,7 +74,7 @@
                         <TextBlock
                         Text="{x:Bind CheckOut }" Foreground="Black" FontSize="15"/>
                         <TextBlock
-                        Text="{x:Bind TotalPriceBooking }" Foreground="Black" FontSize="15"/>
+                        Text="{x:Bind TotalPrice }" Foreground="Black" FontSize="15"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
