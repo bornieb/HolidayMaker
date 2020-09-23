@@ -65,7 +65,7 @@ namespace HolidayMaker.Client.Service
         public async Task<ObservableCollection<BookedRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
         {
             var bookedRooms = new ObservableCollection<BookedRoom>();
-            var jsonBookedRooms = await httpClient.GetStringAsync(url + $"/booked?accommodationId={accommodationId}&checkIn={checkIn}&checkOut={checkOut}");
+            var jsonBookedRooms = await httpClient.GetStringAsync(url + $"booked?accommodationId={accommodationId}&checkIn={checkIn}&checkOut={checkOut}");
             bookedRooms = JsonConvert.DeserializeObject<ObservableCollection<BookedRoom>>(jsonBookedRooms);
 
             return bookedRooms;
