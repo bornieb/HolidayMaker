@@ -42,7 +42,7 @@ namespace HolidayMaker.Client
             mainPageViewModel = new MainPageViewModel();
             userService = new UserService();
             mainPageViewModel.GetAccommodations();
-            
+            ShowBookingButton();
         }
 
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,20 +65,11 @@ namespace HolidayMaker.Client
         {
             Room clickedRoom = roomListView.SelectedItem as Room;
             Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;
-
-            //string roomtype = bookedRoom.RoomType.ToString();
-            //string price = bookedRoom.Price.ToString();
-            //bookingTextBlock.Text = roomtype + " " + price;
-            //var foo = 0;
-
-            //Booking booking = mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
-            //string bookingNumber = booking.BookingNumber.ToString();
-            //BookingNumberTextBlock.Text = $"Booking Number:\n";
             clickedRoom.IsAvailable = false;
             ListOfRooms.Remove(clickedRoom);
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
-
+            ShowBookingButton();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -176,7 +167,7 @@ namespace HolidayMaker.Client
           
         }
 
-        private async void Login_Button_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             await LoginContent.ShowAsync();
         }
@@ -205,33 +196,63 @@ namespace HolidayMaker.Client
             }
             if (IsLoggedIn == true)
             {
-                Login_Button.Visibility = Visibility.Collapsed;
-                FirstAppBar.Visibility = Visibility.Collapsed;
-                SecAppBar.Visibility = Visibility.Collapsed;
-                RegisterButton.Visibility = Visibility.Collapsed;
-                LogoutButton.Visibility = Visibility.Visible;
+                LoggedInVisibility();
             }
-            else
-            {
-                LogoutButton.Visibility = Visibility.Collapsed;
-            }
+            
+          
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             IsLoggedIn = false;
-            TitleTextBlock.Text = "Welcome";
             mainPageViewModel.User = null;
+            LoggedOutVisibility();
+        }
+
+          
+        private void MyBookingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyBookingsText.Visibility = Visibility.Visible;
+            //this.Frame.Navigate(typeof(MyBookings));
+        }
+
+        private void LoggedInVisibility()
+        {
+            LoginButton.Visibility = Visibility.Collapsed;
+            FirstAppBar.Visibility = Visibility.Collapsed;
+            SecAppBar.Visibility = Visibility.Collapsed;
+            ThirdAppBar.Visibility = Visibility.Visible;
+            FourthAppBar.Visibility = Visibility.Visible;
+            RegisterButton.Visibility = Visibility.Collapsed;
+            MyBookingsButton.Visibility = Visibility.Visible;
+            LogoutButton.Visibility = Visibility.Visible;
+        }
+
+        private void LoggedOutVisibility()
+        {
+            TitleTextBlock.Text = "Welcome";
             LoggedInUser.Text = "";
-            Login_Button.Visibility = Visibility.Visible;
+            LoginButton.Visibility = Visibility.Visible;
             FirstAppBar.Visibility = Visibility.Visible;
             SecAppBar.Visibility = Visibility.Visible;
+            ThirdAppBar.Visibility = Visibility.Collapsed;
+            FourthAppBar.Visibility = Visibility.Collapsed;
             RegisterButton.Visibility = Visibility.Visible;
+            MyBookingsButton.Visibility = Visibility.Collapsed;
             LogoutButton.Visibility = Visibility.Collapsed;
+            MyBookingsText.Visibility = Visibility.Collapsed;
         }
-        private void MyBookings_Click(object sender, RoutedEventArgs e)
+
+        public void ShowBookingButton()
         {
-            this.Frame.Navigate(typeof(MyBookings));
+            if(mainPageViewModel.AddedRooms.Count == 0)
+            {
+                CreateBooking.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                CreateBooking.Visibility = Visibility.Visible;
+            }
         }
     }
 }

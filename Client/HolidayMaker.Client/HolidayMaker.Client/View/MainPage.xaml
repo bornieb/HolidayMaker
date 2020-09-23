@@ -44,7 +44,7 @@
         </Grid.RowDefinitions>
         <Image
             Grid.Row="0"
-            Source="/Assets/Media/backgroundHoliday2.jpg"
+            Source="/Assets/Media/backgroundHoliday3.jpg"
             Grid.ColumnSpan="14"
             Grid.RowSpan="10"
             Stretch="Fill">
@@ -59,13 +59,13 @@
                 <AppBarSeparator
                     Foreground="White"/>
                 <Button
-                    x:Name="Login_Button"
+                    x:Name="LoginButton"
                     FontSize="12"
                     Content="Log In"
                     FontFamily="Bahnschrift"
                     Foreground="White"
                     Background="Transparent"
-                    Click="Login_Button_Click"
+                    Click="LoginButton_Click"
                     ToolTipService.ToolTip="Log in"/>
                 <AppBarSeparator
                     Foreground="White"
@@ -103,9 +103,27 @@
                     VerticalAlignment="Center"
                     />
                 <AppBarSeparator
+                    x:Name="ThirdAppBar"
                     Foreground="White"
+                    Visibility="Collapsed"
                     />
-                <Button 
+                    <Button 
+                    x:Name="MyBookingsButton" 
+                    ToolTipService.ToolTip="My Bookings"
+                    FontSize="12"
+                    Content="My bookings"
+                    FontFamily="Bahnschrift" 
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    Click="MyBookingsButton_Click"
+                    Visibility="Collapsed"/>
+                    <AppBarSeparator
+                    x:Name="FourthAppBar"
+                    Foreground="White"
+                    Visibility="Collapsed"
+	            />
+                    <Button 
                     x:Name="LogoutButton"
                     ToolTipService.ToolTip="Logout"
                     FontSize="12"
@@ -325,6 +343,19 @@
         </ListView>
         </StackPanel>
 
+        <TextBlock 
+                x:Name="MyBookingsText"
+                Grid.Row="2" 
+           		Grid.Column="8"  
+            	Grid.ColumnSpan="2" 
+            	Text="My bookings" 
+            	VerticalAlignment="Top"
+            	HorizontalAlignment="Center"
+            	FontSize="12" 
+            	FontFamily="Bahnschrift"
+           		Foreground="White"
+                Visibility="Collapsed"/>
+        
         <ContentDialog
             x:Name="RegisterContent"
             Title="Register"
@@ -427,12 +458,5 @@
                     Click="Register_Hyperbutton_Click"/>
             </StackPanel>
         </ContentDialog>
-        <Button 
-            x:Name="MyBookings" 
-            Content="Button" 
-            Margin="60,65,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top"
-            Click="MyBookings_Click"/>
     </Grid>
 </Page>
