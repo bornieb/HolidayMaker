@@ -13,8 +13,8 @@ namespace HolidayMakerAPI.Model
         public int BookingID { get; set; }
         public string BookingNumber { get; set; }
         
-        public DateTime? CheckIn { get; set; }
-        public DateTime? CheckOut { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
         public decimal TotalPrice { get; set; }
         public string Email { get; set; }
 

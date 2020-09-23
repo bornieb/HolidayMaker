@@ -59,6 +59,16 @@ namespace HolidayMaker.Client.Service
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             await httpClient.DeleteAsync(delete);
+         
         }
-    }
+
+        public async Task<ObservableCollection<BookedRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
+        {
+            var bookedRooms = new ObservableCollection<BookedRoom>();
+            var jsonBookedRooms = await httpClient.GetStringAsync(url + $"/booked?accommodationId={accommodationId}&checkIn={checkIn}&checkOut={checkOut}");
+            bookedRooms = JsonConvert.DeserializeObject<ObservableCollection<BookedRoom>>(jsonBookedRooms);
+
+            return bookedRooms;
+        }
+     }
 }
