@@ -149,11 +149,21 @@ namespace HolidayMakerAPI.Controllers
             {
                 foreach (var db in dBbooking.BookedRooms)
                 {
-                    db.AllInclusive = item.AllInclusive;
-                    db.ExtraBedBooked = item.ExtraBedBooked;
-                    db.FullBoard = item.FullBoard;
-                    db.HalfBoard = item.HalfBoard;
+                    if(item.RoomID == db.RoomID)
+                    {
+                        db.AllInclusive = item.AllInclusive;
+                        db.ExtraBedBooked = item.ExtraBedBooked;
+                        db.FullBoard = item.FullBoard;
+                        db.HalfBoard = item.HalfBoard;
+                    }
                 }
+            }
+
+            //List<BookingRoom> result = booking.BookedRooms.Where(x => dBbooking.BookedRooms.Any(y => y.RoomID == x.RoomID)).ToList();
+
+            if (dBbooking.BookedRooms.Count > booking.BookedRooms.Count)
+            {
+                dBbooking.BookedRooms = booking.BookedRooms.Where(x => dBbooking.BookedRooms.Any(y => y.RoomID == x.RoomID)).ToList();
             }
 
             if (booking == null)
