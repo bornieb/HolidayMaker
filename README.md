@@ -1,5 +1,5 @@
 # HolidayMaker
-Grupp2 Ämnesövergripande projekt forts
+## Grupp2 Ämnesövergripande projekt forts
 
 HolidayMaker består av två projekt:
 
