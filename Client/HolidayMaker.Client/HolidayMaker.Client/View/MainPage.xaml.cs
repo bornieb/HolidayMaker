@@ -45,33 +45,20 @@ namespace HolidayMaker.Client
             
         }
 
-        private void CollapseButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (SplitviewMenu.IsPaneOpen)
-            {
-                SplitviewMenu.IsPaneOpen = false;
-                CollapseButton.Width = 54;
-            }
-            else
-            {
-                SplitviewMenu.IsPaneOpen = true;
-                CollapseButton.Width = 130;
-            }
-        }
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (accListView.SelectedItem == null)
+            {
+                return;
+            }
+
             //Accommodation ac = accListView.SelectedItem as Accommodation;
             ListOfRooms.Clear();
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            foreach (var item in ac.Rooms)
-            {
-                if (item.IsAvailable)
-                {
-                    ListOfRooms.Add(item);
-                }
-            }
+            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
+
         }
 
         private void AddRoom_Clicked(object sender, RoutedEventArgs e)
@@ -116,7 +103,7 @@ namespace HolidayMaker.Client
         {
             if (IsLoggedIn == true)
             {
-                mainPageViewModel.CreateBooking();
+                mainPageViewModel.CreateBooking(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
             }
             else
             {
@@ -212,8 +199,35 @@ namespace HolidayMaker.Client
             if (response == true)
             {
                 IsLoggedIn = true;
+                TitleTextBlock.Text = "Logged in as:";
                 mainPageViewModel.User = new User(userName);
+                LoggedInUser.Text = $"{userName}";
             }
+            if (IsLoggedIn == true)
+            {
+                Login_Button.Visibility = Visibility.Collapsed;
+                FirstAppBar.Visibility = Visibility.Collapsed;
+                SecAppBar.Visibility = Visibility.Collapsed;
+                RegisterButton.Visibility = Visibility.Collapsed;
+                LogoutButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LogoutButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            IsLoggedIn = false;
+            TitleTextBlock.Text = "Welcome";
+            mainPageViewModel.User = null;
+            LoggedInUser.Text = "";
+            Login_Button.Visibility = Visibility.Visible;
+            FirstAppBar.Visibility = Visibility.Visible;
+            SecAppBar.Visibility = Visibility.Visible;
+            RegisterButton.Visibility = Visibility.Visible;
+            LogoutButton.Visibility = Visibility.Collapsed;
         }
         private void MyBookings_Click(object sender, RoutedEventArgs e)
         {

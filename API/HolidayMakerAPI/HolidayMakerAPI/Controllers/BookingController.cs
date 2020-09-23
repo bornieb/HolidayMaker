@@ -84,6 +84,28 @@ namespace HolidayMakerAPI.Controllers
 
             return bookings;
         }
+        [HttpGet("booked")]
+        public async Task<IEnumerable<BookingRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
+        {
+            var bookings = await _context.Booking
+                .Where(b => (checkIn >= b.CheckIn && checkIn <= b.CheckOut || checkOut >= b.CheckIn && checkOut <= b.CheckOut || checkIn <= b.CheckIn && checkOut >= b.CheckIn))
+                .Include(b => b.BookedRooms)
+                .ThenInclude(br => br.Room)
+                .ToListAsync();
+
+            foreach(var booking in bookings)
+            {
+                foreach(var bookedRoom in booking.BookedRooms)
+                {
+                    bookedRoom.Booking = null;
+                }
+            }
+
+            IEnumerable<BookingRoom> rooms = bookings.SelectMany(b => b.BookedRooms.Where(br => br.Room.AccommodationID == accommodationId));
+
+
+            return rooms;
+        }
 
         [HttpDelete("all/{email}/{bNumber}")]
         public async Task<ActionResult<Booking>> DeleteUserBooking(string bNumber)

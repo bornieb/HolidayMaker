@@ -28,6 +28,7 @@ namespace HolidayMakerAPI.Controllers
             return await _context.Room.ToListAsync();
         }
 
+
         // GET: api/Room/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)

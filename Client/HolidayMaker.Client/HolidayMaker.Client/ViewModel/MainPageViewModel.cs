@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HolidayMaker.Client.Model;
 using HolidayMaker.Client.Service;
+using Windows.UI.Popups;
 
 namespace HolidayMaker.Client.ViewModel
 {
@@ -23,6 +24,7 @@ namespace HolidayMaker.Client.ViewModel
         AccommodationService accommodationService = new AccommodationService();
         private User user;
         public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Room> availableRooms = new ObservableCollection<Room>();
 
        
 
@@ -36,10 +38,31 @@ namespace HolidayMaker.Client.ViewModel
         //}
         public async void GetAccommodations()
         {
-            var accommodations = await accommodationService.GetAccommodationsAsync();
-            foreach (Accommodation item in accommodations)
+            try
             {
-                ListOfAccommodations.Add(item);
+                var accommodations = await accommodationService.GetAccommodationsAsync();
+                foreach (Accommodation item in accommodations)
+                {
+                    ListOfAccommodations.Add(item);
+                }
+            }
+            catch (System.Net.Http.HttpRequestException)
+            {
+                await new MessageDialog("Failed to load API").ShowAsync();
+            }
+        }
+
+        public async void GetAvailableRooms(Accommodation accommodation, DateTime checkIn, DateTime checkOut)
+        {
+            availableRooms.Clear();
+            if (accommodation == null) return;
+
+            var bookedRooms = await bookingService.GetBookedRooms(accommodation.AccommodationID, checkIn, checkOut);
+
+            IEnumerable<Room> availableEnumerable = accommodation.Rooms.Where((item) => !bookedRooms.Any((item2) => item.RoomId == item2.RoomId));
+            foreach (var room in availableEnumerable)
+            {
+                availableRooms.Add(room);
             }
         }
 
@@ -62,19 +85,21 @@ namespace HolidayMaker.Client.ViewModel
 
         }
 
-        public async void CreateBooking()
+        public async void CreateBooking(DateTime checkIn, DateTime checkOut)
         {
             Booking booking = new Booking();
             booking.BookingNumber = CreateBookingNumber();
-            booking.CheckIn = DateTime.Now;
-            booking.CheckOut = DateTime.Now;
-            booking.TotalPrice = TotalPrice;
+            booking.CheckIn = checkIn;
+            booking.CheckOut = checkOut;
+
+            //booking.TotalPrice = TotalPrice;
+            booking.TotalPrice = booking.TotalPriceBooking;
             booking.BookedRooms = AddedRooms;
             booking.Email = User.Email;
             
             await PostBookingAsync(booking);
         }
-
+        
         public async Task PostBookingAsync(Booking booking)
         {
             await bookingService.PostBooking(booking);
@@ -105,6 +130,7 @@ namespace HolidayMaker.Client.ViewModel
 
         public void CalculateTotalPrice()
         {
+
             TotalPrice = 0;
             foreach (BookedRoom room in AddedRooms)
             {
