@@ -17,6 +17,10 @@ namespace HolidayMakerAPI.Model
         public int RoomID { get; set; }
         public virtual Booking Booking { get; set; }
         public virtual Room Room { get; set; }
+        //public string AccommodationName { get; set; }
+        //public string City { get; set; }
+        //public string RoomType { get; set; }
+        //public decimal Price { get; set; }
         public bool ExtraBedBooked { get; set; }
         public bool FullBoard { get; set; }
         public bool HalfBoard { get; set; }
