@@ -55,7 +55,7 @@ namespace HolidayMaker.Client.View
 
             if (bookingsListview.SelectedItem != null)
             {
-                MessageDialog msg = new MessageDialog("Update information?");
+                MessageDialog msg = new MessageDialog("Updates the booking information", "Update information?");
                 msg.Commands.Clear();
                 msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
                 msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
@@ -64,7 +64,7 @@ namespace HolidayMaker.Client.View
 
                 if ((int)result.Id == 0)
                 {
-                    string bookingInformation = MyBookingsViewModel.PrintBookingInfo((Booking)bookingsListview.SelectedItem);
+                    string bookingInformation = MyBookingsViewModel.PrintUpdatedInfo((Booking)bookingsListview.SelectedItem);
                     var booking = (Booking)bookingsListview.SelectedItem;
 
                     await bookingsViewModel.UpdateBooking(booking);
@@ -87,7 +87,7 @@ namespace HolidayMaker.Client.View
 
             if (bookingsListview.SelectedItem != null)
             {
-                MessageDialog msg = new MessageDialog("Remove booking permanently?", "Remove booking");
+                MessageDialog msg = new MessageDialog("Removes this booking permanently", "Remove booking?");
                 msg.Commands.Clear();
                 msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
                 msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
@@ -101,7 +101,7 @@ namespace HolidayMaker.Client.View
 
                     await bookingsViewModel.DeleteBooking(booking);
 
-                    MessageDialog msg2 = new MessageDialog(bookingInformation, "Deleted booking information");
+                    MessageDialog msg2 = new MessageDialog(bookingInformation, "Removed booking information");
                     await msg2.ShowAsync();
 
                 }
@@ -127,14 +127,36 @@ namespace HolidayMaker.Client.View
             return false;
         }
 
-        private void DeleteRoomButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteRoomButton_Click(object sender, RoutedEventArgs e)
         {
-            var deleteRoom = (BookedRoom)bookingsRoomListview.SelectedItem;
 
-            var ac = (Booking)bookingsListview.SelectedItem;
+            if (bookingsListview.SelectedItem != null)
+            {
+                MessageDialog msg = new MessageDialog("Removes the room from this booking permanently", "Remove room?");
+                msg.Commands.Clear();
+                msg.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
+                msg.Commands.Add(new UICommand { Label = "Cancel", Id = 1 });
 
-            ac.BookedRooms.Remove(deleteRoom);
-            ListOfUserRooms.Remove(deleteRoom);
+                var result = await msg.ShowAsync();
+
+                if ((int)result.Id == 0)
+                {
+
+                    var deleteRoom = (BookedRoom)bookingsRoomListview.SelectedItem;
+                    var ac = (Booking)bookingsListview.SelectedItem;
+                    ac.BookedRooms.Remove(deleteRoom);
+                    ListOfUserRooms.Remove(deleteRoom);
+
+                    MessageDialog msg2 = new MessageDialog("The room was successfully removed", "Removed");
+
+                    await msg2.ShowAsync();
+
+                }
+            }
+           // var deleteRoom = (BookedRoom)bookingsRoomListview.SelectedItem;
+           // var ac = (Booking)bookingsListview.SelectedItem;
+           // ac.BookedRooms.Remove(deleteRoom);
+           // ListOfUserRooms.Remove(deleteRoom);
         }
     }
 }
