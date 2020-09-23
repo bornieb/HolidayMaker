@@ -134,6 +134,7 @@
             Background="Red"
             CornerRadius="20"
             Width="100"
+            Click="DeleteRoomButton_Click"
             />
             <Button
             x:Name="SaveBookingButton"

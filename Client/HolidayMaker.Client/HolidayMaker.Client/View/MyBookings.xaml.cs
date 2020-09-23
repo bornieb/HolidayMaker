@@ -52,6 +52,8 @@ namespace HolidayMaker.Client.View
             var booking = (Booking)bookingsListview.SelectedItem;
             await bookingsViewModel.UpdateBooking(booking);
             //bookingsRoomListview.Items.Clear();
+            //bookingsViewModel.ListOfUserBookings.Clear();
+            
             bookingsViewModel.GetBookings();
         }
 
@@ -77,6 +79,16 @@ namespace HolidayMaker.Client.View
                 return true;
             }
             return false;
+        }
+
+        private void DeleteRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            var deleteRoom = (BookedRoom)bookingsRoomListview.SelectedItem;
+
+            var ac = (Booking)bookingsListview.SelectedItem;
+
+            ac.BookedRooms.Remove(deleteRoom);
+            ListOfUserRooms.Remove(deleteRoom);
         }
     }
 }
