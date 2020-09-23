@@ -41,7 +41,7 @@ namespace HolidayMaker.Client
             this.InitializeComponent();
             mainPageViewModel = new MainPageViewModel();
             userService = new UserService();
-            mainPageViewModel.GetAccommodations();
+            mainPageViewModel.GetAccommodationsAsync();
             
         }
 
@@ -57,7 +57,7 @@ namespace HolidayMaker.Client
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
+            mainPageViewModel.GetAvailableRoomsAsync(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
 
         }
 
@@ -103,7 +103,7 @@ namespace HolidayMaker.Client
         {
             if (IsLoggedIn == true)
             {
-                mainPageViewModel.CreateBooking(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
+                mainPageViewModel.CreateBookingAsync(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace HolidayMaker.Client
                 PasswordTextBlock.Text = "";
                 ConfirmPasswordTextBlock.Text = "";
                 User user = new User(userEmail, password);
-                await userService.PostRegisterUser(user);
+                await userService.PostRegisterUserAsync(user);
                 PasswordTextbox.Password = "";
                 ConfirmPasswordTextbox.Password = "";
                 EmailTextbox.Text = "";
@@ -194,7 +194,7 @@ namespace HolidayMaker.Client
             string userName = UserEmailTextbox.Text;
             string password = UserPasswordTextbox.Password;
 
-            var response = await userService.LogIn(userName, password);
+            var response = await userService.LogInAsync(userName, password);
 
             if (response == true)
             {

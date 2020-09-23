@@ -58,7 +58,7 @@ namespace HolidayMaker.Client.View
             User user = new User(userEmail, password);
 
 
-            await registerUserService.PostRegisterUser(user);
+            await registerUserService.PostRegisterUserAsync(user);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

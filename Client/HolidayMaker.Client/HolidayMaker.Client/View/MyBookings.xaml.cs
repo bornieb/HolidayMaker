@@ -34,7 +34,7 @@ namespace HolidayMaker.Client.View
             this.InitializeComponent();
             bookingsViewModel = new MyBookingsViewModel();
             //bookingsViewModel.Mockdata();
-            bookingsViewModel.GetBookings();
+            bookingsViewModel.GetBookingsAsync();
         }
 
         private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +67,7 @@ namespace HolidayMaker.Client.View
                     string bookingInformation = MyBookingsViewModel.PrintUpdatedInfo((Booking)bookingsListview.SelectedItem);
                     var booking = (Booking)bookingsListview.SelectedItem;
 
-                    await bookingsViewModel.UpdateBooking(booking);
+                    await bookingsViewModel.UpdateBookingAsync(booking);
 
                     MessageDialog msg2 = new MessageDialog(bookingInformation, "Updated booking");
 
@@ -79,7 +79,7 @@ namespace HolidayMaker.Client.View
             //bookingsRoomListview.Items.Clear();
             //bookingsViewModel.ListOfUserBookings.Clear();
             
-            bookingsViewModel.GetBookings();
+            bookingsViewModel.GetBookingsAsync();
         }
 
         private async void DeleteBookingButton_Click(object sender, RoutedEventArgs e)
@@ -99,7 +99,7 @@ namespace HolidayMaker.Client.View
                     string bookingInformation = MyBookingsViewModel.PrintBookingInfo((Booking)bookingsListview.SelectedItem);
                     var booking = (Booking)bookingsListview.SelectedItem;
 
-                    await bookingsViewModel.DeleteBooking(booking);
+                    await bookingsViewModel.DeleteBookingAsync(booking);
 
                     MessageDialog msg2 = new MessageDialog(bookingInformation, "Removed booking information");
                     await msg2.ShowAsync();
@@ -108,7 +108,7 @@ namespace HolidayMaker.Client.View
             }
             
             //bookingsViewModel.ListOfUserBookings.Clear();
-            bookingsViewModel.GetBookings();
+            bookingsViewModel.GetBookingsAsync();
 
         }
 
