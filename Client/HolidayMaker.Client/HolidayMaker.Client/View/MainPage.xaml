@@ -133,15 +133,19 @@
                     >           
                     <StackPanel>
                         <TextBlock    
+                                Foreground="White"
                                 Text="{x:Bind AccommodationName}"                       
                                 FontFamily="Bahnschrift"/>                   
                         <TextBlock    
+                                Foreground="White"
                                 Text="{x:Bind City}"                            
                                 FontFamily="Bahnschrift"/>                        
                         <TextBlock    
+                                Foreground="White"
                                 Text="{x:Bind RoomType}"                     
                                 FontFamily="Bahnschrift"/>                 
                         <TextBlock    
+                                Foreground="White"
                                 Text="{x:Bind Price}"                       
                                 FontFamily="Bahnschrift"/>                   
                     </StackPanel>
@@ -273,6 +277,7 @@
         <ListView 
             x:Name="roomListView"
             FontFamily="Bahnschrift"
+            Foreground="White"
             ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
             >        
             <ListView.ItemTemplate>
@@ -285,7 +290,9 @@
                             />
                         <TextBlock
                         Text="{x:Bind Price}"
-                        Foreground="Black"/>
+                        Foreground="White"
+                        FontFamily="BahnSchrift"   
+                            />
                         <Button 
                             Foreground="White" 
                             Background="Transparent" 
