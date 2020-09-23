@@ -229,5 +229,9 @@ namespace HolidayMaker.Client
             RegisterButton.Visibility = Visibility.Visible;
             LogoutButton.Visibility = Visibility.Collapsed;
         }
+        private void MyBookings_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MyBookings));
+        }
     }
 }

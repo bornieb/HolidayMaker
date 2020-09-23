@@ -1,0 +1,153 @@
+﻿<Page
+    x:Class="HolidayMaker.Client.View.MyBookings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HolidayMaker.Client.View"
+    xmlns:model="using:HolidayMaker.Client.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#e7e7e7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.ColumnSpan="14">
+            <CommandBar.Content>
+                <Button x:Name="BackButton" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="BackButton_Click"></Button>
+            </CommandBar.Content>
+        </CommandBar>
+
+        <TextBlock Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="4" Text="MY BOOKINGS" VerticalAlignment="Center" FontSize="40" Foreground="Black"></TextBlock>
+        
+        <ListView Grid.Column="2" 
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="4" 
+                  Grid.RowSpan="5"
+                  x:Name="bookingsListview"
+                  Background="LightCyan"
+                  ItemsSource="{x:Bind bookingsViewModel.ListOfUserBookings}" 
+                  SelectionMode="Single" 
+                  Margin="2,0,105,0"
+                  SelectionChanged="bookingsListview_SelectionChanged"
+              
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Booking">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind BookingNumber }" Foreground="Black" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        <TextBlock
+                        Text="{x:Bind CheckIn}" Foreground="Black" FontSize="15"/>
+                        <TextBlock
+                        Text="{x:Bind CheckOut }" Foreground="Black" FontSize="15"/>
+                        <TextBlock
+                        Text="{x:Bind TotalPriceBooking }" Foreground="Black" FontSize="15"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            Grid.Row="7"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
+            x:Name="DeleteBookingButton"
+            Content="Ta Bort"
+            Background="Red"
+            CornerRadius="20"
+            Width="100"
+            Click="DeleteBookingButton_Click"
+            />
+
+        <ListView Grid.Column="6" 
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5"
+                  x:Name="bookingsRoomListview"
+                  Background="LightBlue"
+                  SelectionMode="Single"
+                  ItemsSource="{x:Bind ListOfUserRooms}"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:BookedRoom">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind Price}" Foreground="Black"/>
+
+                        <TextBlock
+                        Text="{x:Bind RoomType}" Foreground="Black"/>
+                        <CheckBox 
+                            x:Name="ExtraBedCheckbox"
+                            Content="ExtraBed"
+                            IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="HalfBoardRadioButton"
+                            Content="HalfBoard"
+                            IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="FullBoardRadioButton"
+                            Content="FullBoard"
+                            IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="AllInclusiveRadioButton"
+                            Content="Allinclusive"
+                            IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <StackPanel 
+            Grid.Column="6" 
+            Grid.Row="7"
+            Grid.ColumnSpan="3"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button
+
+            x:Name="DeleteRoomButton"
+            Content="Ta Bort"
+            Background="Red"
+            CornerRadius="20"
+            Width="100"
+            Click="DeleteRoomButton_Click"
+            />
+            <Button
+            x:Name="SaveBookingButton"
+            Content="Save"
+            Background="Green"
+            CornerRadius="20"
+            Width="100"
+            Click="SaveBookingButton_Click"
+            />
+        </StackPanel>
+    </Grid>
+</Page>

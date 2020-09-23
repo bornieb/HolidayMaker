@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HolidayMakerAPI.Data;
 using HolidayMakerAPI.Model;
+using System.Reflection.Metadata;
 
 namespace HolidayMakerAPI.Controllers
 {
@@ -106,6 +107,24 @@ namespace HolidayMakerAPI.Controllers
             return rooms;
         }
 
+        [HttpDelete("all/{email}/{bNumber}")]
+        public async Task<ActionResult<Booking>> DeleteUserBooking(string bNumber)
+        {
+            var booking = await _context.Booking
+                .Include(b => b.BookedRooms)
+                .Where(b => b.BookingNumber == bNumber)
+                .FirstOrDefaultAsync();
+            if (booking == null)
+            {
+                return NotFound();
+            }
+            
+            _context.Booking.Remove(booking);
+            await _context.SaveChangesAsync();
+
+            return booking;
+        }
+
         // PUT: api/Booking/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -126,6 +145,63 @@ namespace HolidayMakerAPI.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!BookingExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("all/{email}/{bookingNumber}")]
+        public async Task<IActionResult> PutUserBooking(string bookingNumber, Booking booking)
+        {
+            var dBbooking = await _context.Booking
+                .Include(b => b.BookedRooms)
+                            .Where(b => b.BookingNumber == bookingNumber)
+                                .FirstOrDefaultAsync();
+
+            //Hämtar ut befintligt objekt för att matcha med db.
+
+            foreach (var item in booking.BookedRooms)
+            {
+                foreach (var db in dBbooking.BookedRooms)
+                {
+                    if(item.RoomID == db.RoomID)
+                    {
+                        db.AllInclusive = item.AllInclusive;
+                        db.ExtraBedBooked = item.ExtraBedBooked;
+                        db.FullBoard = item.FullBoard;
+                        db.HalfBoard = item.HalfBoard;
+                    }
+                }
+            }
+
+            //List<BookingRoom> result = booking.BookedRooms.Where(x => dBbooking.BookedRooms.Any(y => y.RoomID == x.RoomID)).ToList();
+
+            if (dBbooking.BookedRooms.Count > booking.BookedRooms.Count)
+            {
+                dBbooking.BookedRooms = booking.BookedRooms.Where(x => dBbooking.BookedRooms.Any(y => y.RoomID == x.RoomID)).ToList();
+            }
+
+            if (booking == null)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(dBbooking).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(booking.BookingID))
                 {
                     return NotFound();
                 }

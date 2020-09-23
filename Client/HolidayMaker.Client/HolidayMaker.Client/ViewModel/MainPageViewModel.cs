@@ -91,7 +91,9 @@ namespace HolidayMaker.Client.ViewModel
             booking.BookingNumber = CreateBookingNumber();
             booking.CheckIn = checkIn;
             booking.CheckOut = checkOut;
-            booking.TotalPrice = TotalPrice;
+
+            //booking.TotalPrice = TotalPrice;
+            booking.TotalPrice = booking.TotalPriceBooking;
             booking.BookedRooms = AddedRooms;
             booking.Email = User.Email;
             
@@ -128,6 +130,7 @@ namespace HolidayMaker.Client.ViewModel
 
         public void CalculateTotalPrice()
         {
+
             TotalPrice = 0;
             foreach (BookedRoom room in AddedRooms)
             {
