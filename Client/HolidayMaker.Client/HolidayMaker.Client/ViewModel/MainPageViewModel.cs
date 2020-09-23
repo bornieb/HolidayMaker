@@ -77,6 +77,10 @@ namespace HolidayMaker.Client.ViewModel
             bookedRoom.Price = room.Price;
             bookedRoom.RoomType = room.RoomType;
             bookedRoom.RoomId = room.RoomId;
+            bookedRoom.ExtraBedBooked = room.ExtraBedBooked;
+            bookedRoom.FullBoard = room.FullBoard;
+            bookedRoom.HalfBoard = room.HalfBoard;
+            bookedRoom.AllInclusive = room.AllInclusive;
             AddedRooms.Add(bookedRoom);
             CalculateTotalPrice();
             //booking.BookedRooms.Add(bookedRoom);
