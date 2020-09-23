@@ -119,8 +119,7 @@
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
-                        <TextBlock
-                        Text="{x:Bind TotalPriceRoom}" Foreground="Black"/>
+
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
