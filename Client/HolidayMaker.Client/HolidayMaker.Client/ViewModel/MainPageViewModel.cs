@@ -15,27 +15,16 @@ namespace HolidayMaker.Client.ViewModel
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public BookingService bookingService = new BookingService();
-        
+        public AccommodationService accommodationService = new AccommodationService();
         public ObservableCollection<Accommodation> ListOfAccommodations = new ObservableCollection<Accommodation>();
         public ObservableCollection<Accommodation> SearchResult = new ObservableCollection<Accommodation>();
-
         public ObservableCollection<BookedRoom> AddedRooms = new ObservableCollection<BookedRoom>();
-        public decimal TotalPrice = 0;
-        AccommodationService accommodationService = new AccommodationService();
-        private User user;
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Room> availableRooms = new ObservableCollection<Room>();
-
-       
-
-        //public void MockData()
-        //{
-        //    ListOfAccommodations.Add(new Accommodation("Erics Lya", "Malmö", 1.7m));
-        //    ListOfAccommodations.Add(new Accommodation("Rays Lya", "Eslöv", 0.2m));
-        //    ListOfAccommodations.Add(new Accommodation("Mickes hak", "Hjärup", 2.5m));
-        //    ListOfAccommodations.Add(new Accommodation("Jennys Etage", "Los Angeles", 4.9m));
-        //    ListOfAccommodations.Add(new Accommodation("Glenns koja", "Vardagsrummet", 5m));
-        //}
+        public ObservableCollection<Booking> ListOfUserBookings = new ObservableCollection<Booking>();
+        public event PropertyChangedEventHandler PropertyChanged;
+        public decimal TotalPrice = 0;
+        private User user;
+             
         public async void GetAccommodations()
         {
             try
@@ -179,6 +168,84 @@ namespace HolidayMaker.Client.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region MyBookingsViewModel
+        public async void GetBookings()
+        {
+            var bookings = await bookingService.GetBookingsAsync("bajskorv.se");
+            foreach (Booking item in bookings)
+            {
+                ListOfUserBookings.Add(item);
+            }
+        }
+
+        public async Task DeleteBooking(Booking b)
+        {
+            await bookingService.DeleteUserBooking(b);
+        }
+
+        public async Task UpdateBooking(Booking booking)
+        {
+            await bookingService.UpdateUserBooking(booking);
+        }
+
+        //Info printed when removing a booking
+        public static string PrintBookingInfo(Booking booking)
+        {
+
+            string info =
+            $"BookingNumber: {booking.BookingNumber} \n" +
+            $"E-mail: {booking.Email}\n" +
+            $"Total price: {booking.TotalPrice}";
+
+            return info;
+
+        }
+
+
+        //Info printed when updating a booking
+        public static string PrintUpdatedInfo(Booking booking)
+        {
+
+            string addons = "\n";
+            int roomNumber = 0;
+
+            foreach (var item in booking.BookedRooms)
+            {
+                roomNumber++;
+
+                addons += $"\nRoom {roomNumber} \n";
+
+                if (item.ExtraBedBooked)
+                {
+                    addons += "Extra bed \n";
+                }
+
+                if (item.AllInclusive)
+                {
+                    addons += "Allinclusive \n";
+                }
+                else if (item.FullBoard)
+                {
+                    addons += "Fullboard \n";
+                }
+                else if (item.HalfBoard)
+                {
+                    addons += "Halfboard \n";
+                }
+            }
+
+            string info =
+            $"BookingNumber:{booking.BookingNumber} \n" +
+            $"E-mail: {booking.Email}\n" +
+            $"Number of rooms in booking: {booking.BookedRooms.Count}\n" +
+            $"Addons: {addons}\n" +
+            $"Total price: {booking.TotalPrice}";
+
+            return info;
+
+        }
+        #endregion  
     }
 }
 

@@ -27,14 +27,14 @@ namespace HolidayMaker.Client.View
     /// </summary>
     public sealed partial class MyBookings : Page
     {
-        MyBookingsViewModel bookingsViewModel;
+        MainPageViewModel mainPageViewModel;
         public ObservableCollection<BookedRoom> ListOfUserRooms = new ObservableCollection<BookedRoom>();
         public MyBookings()
         {
             this.InitializeComponent();
-            bookingsViewModel = new MyBookingsViewModel();
+            mainPageViewModel = new MainPageViewModel();
             //bookingsViewModel.Mockdata();
-            bookingsViewModel.GetBookings();
+            mainPageViewModel.GetBookings();
         }
 
         private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,10 +64,10 @@ namespace HolidayMaker.Client.View
 
                 if ((int)result.Id == 0)
                 {
-                    string bookingInformation = MyBookingsViewModel.PrintUpdatedInfo((Booking)bookingsListview.SelectedItem);
+                    string bookingInformation = MainPageViewModel.PrintUpdatedInfo((Booking)bookingsListview.SelectedItem);
                     var booking = (Booking)bookingsListview.SelectedItem;
 
-                    await bookingsViewModel.UpdateBooking(booking);
+                    await mainPageViewModel.UpdateBooking(booking);
 
                     MessageDialog msg2 = new MessageDialog(bookingInformation, "Updated booking");
 
@@ -79,7 +79,7 @@ namespace HolidayMaker.Client.View
             //bookingsRoomListview.Items.Clear();
             //bookingsViewModel.ListOfUserBookings.Clear();
             
-            bookingsViewModel.GetBookings();
+            mainPageViewModel.GetBookings();
         }
 
         private async void DeleteBookingButton_Click(object sender, RoutedEventArgs e)
@@ -96,10 +96,10 @@ namespace HolidayMaker.Client.View
 
                 if ((int)result.Id == 0)
                 {
-                    string bookingInformation = MyBookingsViewModel.PrintBookingInfo((Booking)bookingsListview.SelectedItem);
+                    string bookingInformation = MainPageViewModel.PrintBookingInfo((Booking)bookingsListview.SelectedItem);
                     var booking = (Booking)bookingsListview.SelectedItem;
 
-                    await bookingsViewModel.DeleteBooking(booking);
+                    await mainPageViewModel.DeleteBooking(booking);
 
                     MessageDialog msg2 = new MessageDialog(bookingInformation, "Removed booking information");
                     await msg2.ShowAsync();
@@ -108,7 +108,7 @@ namespace HolidayMaker.Client.View
             }
             
             //bookingsViewModel.ListOfUserBookings.Clear();
-            bookingsViewModel.GetBookings();
+            mainPageViewModel.GetBookings();
 
         }
 

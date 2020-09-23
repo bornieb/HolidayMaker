@@ -128,7 +128,6 @@
     <Compile Include="Service\BookingService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="ViewModel\MyBookingsViewModel.cs" />
     <Compile Include="View\MyBookings.xaml.cs">
       <DependentUpon>MyBookings.xaml</DependentUpon>
     </Compile>

@@ -229,10 +229,12 @@
         </StackPanel>
 
         <StackPanel
-            Grid.Row="4"
-            Grid.Column="2"
+            Grid.Row="3"
+            Grid.Column="1"
             Grid.ColumnSpan="2"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            VerticalAlignment="Bottom"
+            Margin="0,30,0,0">
             <TextBox 
             x:Name="SearchTextBox" 
             HorizontalAlignment="Center"
@@ -253,14 +255,15 @@
             IsCompact="True"
             ToolTipService.ToolTip="Sort"
             AutomationProperties.Name="Sort"
-            Height="Auto"
+            Height="35"
+            Margin="5,0,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="White"
-           
            >
                 <AppBarButton.Flyout>
-                    <MenuFlyout>
+                    <MenuFlyout
+                        Placement="BottomEdgeAlignedLeft">
                         <MenuFlyoutItem 
                         Text="By rating" 
                         Click="MenuFlyoutItem_Click_Rating" 
