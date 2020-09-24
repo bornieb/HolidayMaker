@@ -194,7 +194,8 @@
             Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Grid.RowSpan="2">
+            Grid.RowSpan="2"
+            HorizontalAlignment="Center">
         <TextBlock
             x:Name="CheckInTextBlock"
             Text="Check-in"
@@ -241,15 +242,16 @@
             Grid.ColumnSpan="2"
             Orientation="Horizontal"
             VerticalAlignment="Bottom"
-            Margin="0,30,0,0">
+            HorizontalAlignment="Left"
+            Margin="15,30,0,0">
             <TextBox 
             x:Name="SearchTextBox" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="White"
-            Width="150"    
+            Width="90"    
             FontFamily="Bahnschrift"
-            PlaceholderText="SEARCH ME"
+            PlaceholderText="Search"
             PlaceholderForeground="White"
             ToolTipService.ToolTip="Search"
             Background="Transparent"
