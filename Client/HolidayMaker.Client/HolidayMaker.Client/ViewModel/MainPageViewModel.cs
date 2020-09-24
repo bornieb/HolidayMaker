@@ -65,13 +65,12 @@ namespace HolidayMaker.Client.ViewModel
             bookedRoom.Price = room.Price;
             bookedRoom.RoomType = room.RoomType;
             bookedRoom.RoomId = room.RoomId;
+            bookedRoom.ExtraBedBooked = room.ExtraBedBooked;
+            bookedRoom.FullBoard = room.FullBoard;
+            bookedRoom.HalfBoard = room.HalfBoard;
+            bookedRoom.AllInclusive = room.AllInclusive;
             AddedRooms.Add(bookedRoom);
             CalculateTotalPrice();
-            //booking.BookedRooms.Add(bookedRoom);
-            //booking.TotalPrice = CalculateTotalPrice(booking);
-
-            //return booking;
-
         }
 
         public async Task CreateBookingAsync(DateTime checkIn, DateTime checkOut)
@@ -90,6 +89,7 @@ namespace HolidayMaker.Client.ViewModel
         public async Task PostBookingAsync(Booking booking)
         {
             await bookingService.PostBookingAsync(booking);
+            await DisplayMessage($"Bokning med bokningsnummer: {booking.BookingNumber} skapad!");
         }
 
         public string CreateBookingNumber()
@@ -145,12 +145,6 @@ namespace HolidayMaker.Client.ViewModel
             }
         }
 
-        public void SortingFunction()
-        {
-            var sorted = SearchResult.OrderByDescending(x => x.Rating);
-
-        }
-
         public User User
         {
             get
@@ -167,6 +161,11 @@ namespace HolidayMaker.Client.ViewModel
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async Task DisplayMessage(string message)
+        {
+            await new MessageDialog(message).ShowAsync();
         }
 
         #region MyBookingsViewModel

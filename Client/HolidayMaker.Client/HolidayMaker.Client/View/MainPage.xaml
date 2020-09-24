@@ -378,7 +378,23 @@
                         Foreground="White"
                         FontFamily="BahnSchrift"   
                             />
-                        <Button 
+                            <CheckBox 
+                            x:Name="ExtraBedCheckbox"
+                            Content="ExtraBed"
+                            IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
+                            <RadioButton 
+                            x:Name="HalfBoardRadioButton"
+                            Content="HalfBoard"
+                            IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
+                            <RadioButton 
+                            x:Name="FullBoardRadioButton"
+                            Content="FullBoard"
+                            IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
+                            <RadioButton 
+                            x:Name="AllInclusiveRadioButton"
+                            Content="Allinclusive"
+                            IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
+                            <Button 
                             Foreground="White" 
                             Background="Transparent" 
                             FontFamily="Bahnschrift"
@@ -438,7 +454,7 @@
                             FontFamily="Bahnschrift"
                             FontSize="15"/>
                         <TextBlock
-                            Text="{x:Bind TotalPriceBooking }" 
+                            Text="{x:Bind TotalPrice}" 
                             Foreground="White" 
                             FontFamily="Bahnschrift"
                             FontSize="15"/>
@@ -460,7 +476,7 @@
                 <DataTemplate x:DataType="model:BookedRoom">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind Price}" 
+                        Text="{x:Bind TotalPriceRoom}" 
                             Foreground="White"
                             FontFamily="Bahnschrift"/>
                         <TextBlock

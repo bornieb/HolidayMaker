@@ -32,6 +32,12 @@ namespace HolidayMakerAPI.Controllers
                 r.AccommodationName,
                 r.City,
                 r.Rating,
+                r.HasPool,
+                r.HasEntertainment,
+                r.HasKidsClub,
+                r.HasRestaurant,
+                r.DistanceToBeach,
+                r.DistanceToCenter,
                 Rooms = r.Rooms.Select
                 (ac => new
                 {
