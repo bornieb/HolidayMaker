@@ -38,7 +38,7 @@ namespace HolidayMaker.Client.ViewModel
             ListOfUserBookings.Add(booking);
         }
 
-        public async void GetBookings()
+        public async Task GetBookingsAsync()
         {
             var bookings = await bookingService.GetBookingsAsync("bajskorv.se");
             foreach (Booking item in bookings)
@@ -47,14 +47,14 @@ namespace HolidayMaker.Client.ViewModel
             }
         }
 
-        public async Task DeleteBooking(Booking b)
+        public async Task DeleteBookingAsync(Booking b)
         {
-            await bookingService.DeleteUserBooking(b);
+            await bookingService.DeleteUserBookingAsync(b);
         }
 
-        public async Task UpdateBooking(Booking booking)
+        public async Task UpdateBookingAsync(Booking booking)
         {
-            await bookingService.UpdateUserBooking(booking);
+            await bookingService.UpdateUserBookingAsync(booking);
         }
 
         //Info printed when removing a booking

@@ -23,7 +23,7 @@ namespace HolidayMaker.Client.Service
             httpClient = new HttpClient();
         }
 
-        public async Task PostBooking(Booking booking)
+        public async Task PostBookingAsync(Booking booking)
         {
             var jsonBooking = JsonConvert.SerializeObject(booking);
             HttpContent httpContent = new StringContent(jsonBooking);
@@ -39,7 +39,7 @@ namespace HolidayMaker.Client.Service
             return bookings;
         }
 
-        public async Task<bool> UpdateUserBooking(Booking booking)
+        public async Task<bool> UpdateUserBookingAsync(Booking booking)
         {
             string update = aUrl + booking.Email + "/" + booking.BookingNumber;
             var updatedBooking = JsonConvert.SerializeObject(booking);
@@ -51,7 +51,7 @@ namespace HolidayMaker.Client.Service
             return response.IsSuccessStatusCode; //om allt går bra är denna true
         }
 
-        public async Task DeleteUserBooking(Booking b)
+        public async Task DeleteUserBookingAsync(Booking b)
         {
             string delete = aUrl + b.Email + "/" + b.BookingNumber;
             var deletedBooking = JsonConvert.SerializeObject(b);
@@ -62,7 +62,7 @@ namespace HolidayMaker.Client.Service
          
         }
 
-        public async Task<ObservableCollection<BookedRoom>> GetBookedRooms(int accommodationId, DateTime checkIn, DateTime checkOut)
+        public async Task<ObservableCollection<BookedRoom>> GetBookedRoomsAsync(int accommodationId, DateTime checkIn, DateTime checkOut)
         {
             var bookedRooms = new ObservableCollection<BookedRoom>();
             var jsonBookedRooms = await httpClient.GetStringAsync(url + $"booked?accommodationId={accommodationId}&checkIn={checkIn}&checkOut={checkOut}");
