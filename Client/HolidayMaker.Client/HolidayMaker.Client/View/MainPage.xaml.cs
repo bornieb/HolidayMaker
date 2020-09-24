@@ -62,16 +62,24 @@ namespace HolidayMaker.Client
 
         }
 
-        private void AddRoom_Clicked(object sender, RoutedEventArgs e)
+        private async void AddRoom_Clicked(object sender, RoutedEventArgs e)
         {
-            Room clickedRoom = roomListView.SelectedItem as Room;
-            Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;
-            clickedRoom.IsAvailable = false;
-            ListOfRooms.Remove(clickedRoom);
-            mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
-            BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
-            ShowBookingButton();
-            SearchTextBox.Text = "";
+            
+                Room clickedRoom = roomListView.SelectedItem as Room;
+                Accommodation clickedAccommodation = accListView.SelectedItem as Accommodation;
+            if (clickedRoom != null)
+            {
+                clickedRoom.IsAvailable = false;
+                ListOfRooms.Remove(clickedRoom);
+                mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
+                BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
+                ShowBookingButton();
+                SearchTextBox.Text = "";
+            }
+            else
+            {
+                await new MessageDialog("Please select a room to add it").ShowAsync();
+            }
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)

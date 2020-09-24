@@ -89,7 +89,7 @@ namespace HolidayMaker.Client.ViewModel
         public async Task PostBookingAsync(Booking booking)
         {
             await bookingService.PostBookingAsync(booking);
-            await DisplayMessage($"Bokning med bokningsnummer: {booking.BookingNumber} skapad!");
+            await DisplayMessage($"Booking with bookingnumber: {booking.BookingNumber} created!");
         }
 
         public string CreateBookingNumber()
