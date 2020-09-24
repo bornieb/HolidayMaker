@@ -284,11 +284,12 @@
             </AppBarButton>
         </StackPanel>
         <StackPanel
-            Grid.Column="2"
-            Grid.Row="5"
+            Grid.Column="1"
+            Grid.Row="4"
             Grid.ColumnSpan="4"
             Grid.RowSpan="3"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Margin="0,10,0,0">
             <ListView 
             FontFamily="Bahnschrift"
             x:Name="accListView"
@@ -319,6 +320,7 @@
             x:Name="roomListView"
             FontFamily="Bahnschrift"
             Foreground="White"
+            Margin="10,0,0,0"
             ItemsSource="{x:Bind mainPageViewModel.availableRooms}"
             >        
             <ListView.ItemTemplate>
@@ -357,8 +359,116 @@
             	FontSize="12" 
             	FontFamily="Bahnschrift"
            		Foreground="White"
-                Visibility="Collapsed"/>
-        
+                Visibility="Visible"/>
+
+        <ListView 
+                  Grid.Column="7" 
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="4"
+                  x:Name="bookingsListview"
+                  Background="Transparent"
+                  ItemsSource="{x:Bind mainPageViewModel.ListOfUserBookings}" 
+                  SelectionMode="Single" 
+                  VerticalAlignment="Top"
+                  SelectionChanged="bookingsListview_SelectionChanged"
+              
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Booking">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind BookingNumber }" Foreground="Black" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        <TextBlock
+                        Text="{x:Bind CheckIn}" Foreground="Black" FontSize="15"/>
+                        <TextBlock
+                        Text="{x:Bind CheckOut }" Foreground="Black" FontSize="15"/>
+                        <TextBlock
+                        Text="{x:Bind TotalPriceBooking }" Foreground="Black" FontSize="15"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            Grid.Row="7"
+            Grid.Column="8"
+            Grid.ColumnSpan="2"
+            x:Name="DeleteBookingButton"
+            Content="Remove booking"
+            Background="Transparent"
+            BorderThickness="3"
+            BorderBrush="Red"
+            Foreground="White"
+            Click="DeleteBookingButton_Click"
+            />
+
+        <ListView Grid.Column="11" 
+                  Grid.Row="2" 
+                  Grid.ColumnSpan="3" 
+                  Grid.RowSpan="5"
+                  HorizontalAlignment="Center"
+                  x:Name="bookingsRoomListview"
+                  Background="Transparent"
+                  SelectionMode="Single"
+                  ItemsSource="{x:Bind ListOfUserRooms}"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:BookedRoom">
+                    <StackPanel>
+                        <TextBlock
+                        Text="{x:Bind Price}" Foreground="Black"/>
+
+                        <TextBlock
+                        Text="{x:Bind RoomType}" Foreground="Black"/>
+                        <CheckBox 
+                            x:Name="ExtraBedCheckbox"
+                            Content="ExtraBed"
+                            IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="HalfBoardRadioButton"
+                            Content="HalfBoard"
+                            IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="FullBoardRadioButton"
+                            Content="FullBoard"
+                            IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
+                        <RadioButton 
+                            x:Name="AllInclusiveRadioButton"
+                            Content="Allinclusive"
+                            IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <StackPanel 
+            Grid.Column="10" 
+            Grid.Row="7"
+            Grid.ColumnSpan="3"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button
+            x:Name="DeleteRoomButton"
+            Content="Remove room"
+            Background="Transparent"
+            BorderBrush="Red"
+            BorderThickness="3"
+            Click="DeleteRoomButton_Click"
+            Foreground="White"    
+            />
+            <Button
+            x:Name="SaveBookingButton"
+            Content="Save changes"
+            Background="Transparent"
+            BorderBrush="Green"
+            BorderThickness="3"
+            Foreground="White"
+            Margin="15,0,0,0"    
+            Click="SaveBookingButton_Click"
+            />
+        </StackPanel>
+
         <ContentDialog
             x:Name="RegisterContent"
             Title="Register"
@@ -461,5 +571,10 @@
                     Click="Register_Hyperbutton_Click"/>
             </StackPanel>
         </ContentDialog>
+
+
+
+
+
     </Grid>
 </Page>
