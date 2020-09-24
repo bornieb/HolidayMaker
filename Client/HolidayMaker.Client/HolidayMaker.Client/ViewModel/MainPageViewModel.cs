@@ -25,7 +25,7 @@ namespace HolidayMaker.Client.ViewModel
         public decimal TotalPrice = 0;
         private User user;
              
-        public async Task GetAccommodations()
+        public async void GetAccommodationsAsync()
         {
             try
             {
@@ -181,12 +181,12 @@ namespace HolidayMaker.Client.ViewModel
 
         public async Task DeleteBooking(Booking b)
         {
-            await bookingService.DeleteUserBooking(b);
+            await bookingService.DeleteUserBookingAsync(b);
         }
 
         public async Task UpdateBooking(Booking booking)
         {
-            await bookingService.UpdateUserBooking(booking);
+            await bookingService.UpdateUserBookingAsync(booking);
         }
 
         //Info printed when removing a booking
