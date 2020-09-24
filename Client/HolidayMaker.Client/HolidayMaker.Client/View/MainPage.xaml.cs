@@ -35,6 +35,7 @@ namespace HolidayMaker.Client
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
         public ObservableCollection<BookedRoom> ListOfUserRooms = new ObservableCollection<BookedRoom>();
         public bool IsLoggedIn = false;
+        public User user;
 
         public MainPage()
         {
@@ -42,10 +43,7 @@ namespace HolidayMaker.Client
             mainPageViewModel = new MainPageViewModel();
             userService = new UserService();
             mainPageViewModel.GetAccommodationsAsync();
-            mainPageViewModel.GetBookings();
             ShowBookingButton();
-            ShowSaveDeleteRoomButton();
-            ShowDeletebutton();
             Emptydate();
         }
 
@@ -73,6 +71,7 @@ namespace HolidayMaker.Client
             mainPageViewModel.AddToBooking(clickedRoom, clickedAccommodation);
             BookingListview.ItemsSource = mainPageViewModel.AddedRooms;
             ShowBookingButton();
+            SearchTextBox.Text = "";
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -93,6 +92,7 @@ namespace HolidayMaker.Client
             {
                 await new MessageDialog("Du måste logga in").ShowAsync();
             }
+            ClearFields();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -118,6 +118,17 @@ namespace HolidayMaker.Client
             accListView.ItemsSource = sorted;
         }
 
+        private void MenuFlyoutItem_Click_Beach(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(b => b.DistanceToBeach);
+            accListView.ItemsSource = sorted;
+        }
+
+        private void MenuFlyoutItem_Click_Center(object sender, RoutedEventArgs e)
+        {
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(c => c.DistanceToCenter);
+            accListView.ItemsSource = sorted;
+        }
         private void CheckInDate_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
         {
             Emptydate();
@@ -193,6 +204,9 @@ namespace HolidayMaker.Client
             {
                 LoggedInVisibility();
             }
+
+            UserEmailTextbox.Text = "";
+            UserPasswordTextbox.Password = "";
             
           
         }
@@ -202,14 +216,18 @@ namespace HolidayMaker.Client
             IsLoggedIn = false;
             mainPageViewModel.User = null;
             LoggedOutVisibility();
+            ClearFields();
         }
 
           
         private void MyBookingsButton_Click(object sender, RoutedEventArgs e)
         {
+            
             MyBookingsText.Visibility = Visibility.Visible;
-            ShowSaveDeleteRoomButton();
-            ShowDeletebutton();
+            mainPageViewModel.GetUserBookings(mainPageViewModel.User.Email);
+            SaveBookingButton.Visibility = Visibility.Visible;
+            DeleteRoomButton.Visibility = Visibility.Visible;
+            DeleteBookingButton.Visibility = Visibility.Visible;
         }
 
         private void LoggedInVisibility()
@@ -255,31 +273,6 @@ namespace HolidayMaker.Client
             }
         }
 
-        public void ShowSaveDeleteRoomButton()
-        {
-            if(ListOfUserRooms.Count == 0)
-            {
-                SaveBookingButton.Visibility = Visibility.Collapsed;
-                DeleteRoomButton.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                SaveBookingButton.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void ShowDeletebutton()
-        {
-            if(mainPageViewModel.ListOfUserBookings.Count == 0)
-            {
-                DeleteBookingButton.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                DeleteBookingButton.Visibility = Visibility.Visible;
-            }
-        }
-
         public void Emptydate()
         {
             if (CheckInDate.Date.DateTime < DateTime.Now.Date)
@@ -292,6 +285,25 @@ namespace HolidayMaker.Client
             }
         }
 
+        public void ClearFields()
+        {
+            ShowBookingButton();
+            mainPageViewModel.availableRooms.Clear();
+            ListOfRooms.Clear();
+            mainPageViewModel.AddedRooms.Clear();
+            ShowBookingButton();
+            CheckInDate.Date = DateTime.Now;
+            CheckOutDate.Date = DateTime.Now;
+            SearchTextBox.Text = "";
+        }
+
+        private void DeleteButtonRoom_Click(object sender, RoutedEventArgs e)
+        {
+            BookedRoom bookedRoom = (BookedRoom)((FrameworkElement)sender).DataContext;
+            mainPageViewModel.AddedRooms.Remove(bookedRoom);
+            ShowBookingButton();
+        }
+
         #region MyBookings
         private void bookingsListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -299,15 +311,17 @@ namespace HolidayMaker.Client
 
             var ac = (Booking)bookingsListview.SelectedItem;
 
-            foreach (var item in ac.BookedRooms)
+            if (ac != null && ac.BookedRooms.Count > 0)
             {
-                ListOfUserRooms.Add(item);
+                foreach (var item in ac.BookedRooms)
+                {
+                    ListOfUserRooms.Add(item);
+                }
             }
         }
 
         private async void SaveBookingButton_Click(object sender, RoutedEventArgs e)
         {
-            //var booking = (Booking)bookingsListview.SelectedItem;
 
             if (bookingsListview.SelectedItem != null)
             {
@@ -331,8 +345,8 @@ namespace HolidayMaker.Client
 
                 }
             }
-
-            mainPageViewModel.GetBookings();
+            mainPageViewModel.ListOfUserBookings.Clear();
+            mainPageViewModel.GetUserBookings(mainPageViewModel.User.Email);
         }
 
         private async void DeleteBookingButton_Click(object sender, RoutedEventArgs e)
@@ -359,7 +373,8 @@ namespace HolidayMaker.Client
 
                 }
             }
-            mainPageViewModel.GetBookings();
+            mainPageViewModel.ListOfUserBookings.Clear();
+            mainPageViewModel.GetUserBookings(mainPageViewModel.User.Email);
 
         }
 
@@ -390,8 +405,9 @@ namespace HolidayMaker.Client
                 }
             }
         }
+
         #endregion
 
-       
+        
     }
 }

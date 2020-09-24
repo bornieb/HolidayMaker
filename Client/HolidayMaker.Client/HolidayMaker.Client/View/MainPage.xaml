@@ -165,8 +165,14 @@
                         <TextBlock    
                                 Foreground="White"
                                 Text="{x:Bind Price}"                       
-                                FontFamily="Bahnschrift"/>                   
-                    </StackPanel>
+                                FontFamily="Bahnschrift"/>
+                        <Button 
+                                x:Name="DeleteButtonRoom"                   
+                                Background="Transparent"                                  
+                                FontFamily="Segoe UI Emoji"                 
+                                Content="&#x1F5D1;"                                   
+                                Click="DeleteButtonRoom_Click"/>                 
+                        </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -280,6 +286,17 @@
                         Click="MenuFlyoutItem_Click_Name_Descend" 
                         Tag="name"
                         FontFamily="Bahnschrift"/>
+                        <MenuFlyoutItem 
+                        Text="Sort by closest beach" 
+                        Click="MenuFlyoutItem_Click_Beach" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
+                        <MenuFlyoutItem 
+                        Text="Sort by closest to city center" 
+                        Click="MenuFlyoutItem_Click_Center" 
+                        Tag="name"
+                        FontFamily="Bahnschrift"/>
+                        
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
@@ -310,6 +327,30 @@
                      
                             <TextBlock
                                 Text="{x:Bind Rating}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasPool}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasKidsClub}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasEntertainment}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccHasRestaurant}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccDistanceToBeach}" 
+                                Foreground="White"
+                                FontFamily="Bahnschrift"/>
+                            <TextBlock
+                                Text="{x:Bind AccDistanceToCenter}" 
                                 Foreground="White"
                                 FontFamily="Bahnschrift"/>
                         </StackPanel>
@@ -362,11 +403,13 @@
            		Foreground="White"
                 Visibility="Collapsed"/>
 
-        <ListView 
+        <StackPanel
                   Grid.Column="7" 
                   Grid.Row="3" 
                   Grid.ColumnSpan="3" 
-                  Grid.RowSpan="4"
+                  Grid.RowSpan="3"
+                  Orientation="Horizontal"  >
+        <ListView 
                   x:Name="bookingsListview"
                   Background="Transparent"
                   ItemsSource="{x:Bind mainPageViewModel.ListOfUserBookings}" 
@@ -403,25 +446,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button
-            Grid.Row="7"
-            Grid.Column="8"
-            Grid.ColumnSpan="2"
-            x:Name="DeleteBookingButton"
-            Content="Remove booking"
-            Background="Transparent"
-            BorderThickness="3"
-            BorderBrush="Red"
-            Foreground="White"
-            FontFamily="Bahnschrift"
-            Click="DeleteBookingButton_Click"
-            Visibility="Collapsed"
-            />
+       
 
-        <ListView Grid.Column="11" 
-                  Grid.Row="2" 
-                  Grid.ColumnSpan="3" 
-                  Grid.RowSpan="5"
+        <ListView 
+                  Margin="15,0,0,0"  
                   HorizontalAlignment="Center"
                   x:Name="bookingsRoomListview"
                   Background="Transparent"
@@ -469,6 +497,21 @@
             </ListView.ItemTemplate>
 
         </ListView>
+        </StackPanel>
+        <Button
+            Grid.Row="7"
+            Grid.Column="8"
+            Grid.ColumnSpan="2"
+            x:Name="DeleteBookingButton"
+            Content="Remove booking"
+            Background="Transparent"
+            BorderThickness="3"
+            BorderBrush="Red"
+            Foreground="White"
+            FontFamily="Bahnschrift"
+            Click="DeleteBookingButton_Click"
+            Visibility="Collapsed"
+            />
         <StackPanel 
             Grid.Column="10" 
             Grid.Row="7"

@@ -170,9 +170,9 @@ namespace HolidayMaker.Client.ViewModel
         }
 
         #region MyBookingsViewModel
-        public async void GetBookings()
+        public async void GetUserBookings(string email)
         {
-            var bookings = await bookingService.GetBookingsAsync("bajskorv.se");
+            var bookings = await bookingService.GetBookingsAsync(email);
             foreach (Booking item in bookings)
             {
                 ListOfUserBookings.Add(item);
