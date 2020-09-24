@@ -80,6 +80,7 @@ namespace HolidayMaker.Client
            
             accListView.ItemsSource = mainPageViewModel.SearchResult;
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
+            mainPageViewModel.availableRooms.Clear();
         }
 
         private async void CreateBooking_Click(object sender, RoutedEventArgs e)
