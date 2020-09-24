@@ -36,6 +36,19 @@ namespace HolidayMaker.Client.Service
             var bookings = new ObservableCollection<Booking>();
             var jsonBookings = await httpClient.GetStringAsync(bUrl + email);
             bookings = JsonConvert.DeserializeObject<ObservableCollection<Booking>>(jsonBookings);
+
+            //get room price
+            foreach (Booking booking in bookings)
+            {
+                foreach (BookedRoom bookedRoom in booking.BookedRooms)
+                {
+                    var jsonRoom = await httpClient.GetStringAsync("http://localhost:59571/api/Room/" + bookedRoom.RoomId);
+                    var room = JsonConvert.DeserializeObject<Room>(jsonRoom);
+
+                    bookedRoom.Price = room.Price;
+                }
+            }
+
             return bookings;
         }
 

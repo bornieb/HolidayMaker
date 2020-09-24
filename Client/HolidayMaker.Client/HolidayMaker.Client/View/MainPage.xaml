@@ -454,7 +454,7 @@
                             FontFamily="Bahnschrift"
                             FontSize="15"/>
                         <TextBlock
-                            Text="{x:Bind TotalPrice}" 
+                            Text="{x:Bind TotalPriceBooking}" 
                             Foreground="White" 
                             FontFamily="Bahnschrift"
                             FontSize="15"/>
