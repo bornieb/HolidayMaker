@@ -12,7 +12,6 @@ namespace HolidayMaker.Client.Service
 {
     public class AccommodationService
     {
-        private string foo = "";
         private static readonly string url = "http://localhost:59571/api/accommodation";
         HttpClient httpClient;
 
@@ -30,11 +29,5 @@ namespace HolidayMaker.Client.Service
             return accommodations;
         }
 
-        //public async Task<ObservableCollection<Room>> GetAccRoomsAsync(int accId)
-        //{
-        //    var jsonRooms = await httpClient.GetStringAsync(url);
-        //    var rooms = JsonConvert.DeserializeObject<ObservableCollection<Room>>(jsonRooms);
-        //    return rooms;
-        //}
     }
 }

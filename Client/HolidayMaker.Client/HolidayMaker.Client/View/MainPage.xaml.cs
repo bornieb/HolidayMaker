@@ -16,7 +16,6 @@ using HolidayMaker.Client.ViewModel;
 using HolidayMaker.Client.Model;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.ObjectModel;
-using HolidayMaker.Client.View;
 using HolidayMaker.Client.Service;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -160,6 +159,7 @@ namespace HolidayMaker.Client
                 args.Cancel = true;
                 PasswordErrorTextBlock.Text = "Password is a required field";
             } 
+            
 
             if (password == confirmPassword)
             {
@@ -178,7 +178,11 @@ namespace HolidayMaker.Client
                 ConfirmPasswordTextBlock.Text = "Passwords don't match";
             }
 
-          
+            
+            PasswordTextbox.Password = "";
+            ConfirmPasswordTextbox.Password = "";
+
+
         }
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -207,6 +211,10 @@ namespace HolidayMaker.Client
                 TitleTextBlock.Text = "Logged in as:";
                 mainPageViewModel.User = new User(userName);
                 LoggedInUser.Text = $"{userName}";
+            }
+            else if(response == false)
+            {
+                await new MessageDialog("Something went wrong\nPlease check your email and password").ShowAsync();
             }
             if (IsLoggedIn == true)
             {
@@ -295,7 +303,6 @@ namespace HolidayMaker.Client
 
         public void ClearFields()
         {
-            ShowBookingButton();
             mainPageViewModel.availableRooms.Clear();
             ListOfRooms.Clear();
             mainPageViewModel.AddedRooms.Clear();
@@ -303,6 +310,17 @@ namespace HolidayMaker.Client
             CheckInDate.Date = DateTime.Now;
             CheckOutDate.Date = DateTime.Now;
             SearchTextBox.Text = "";
+        }
+
+        private void BookingsButton()
+        {
+            if(ListOfUserRooms.Count == 0)
+            {
+                SaveBookingButton.Visibility = Visibility.Collapsed;
+                DeleteBookingButton.Visibility = Visibility.Collapsed;
+                DeleteRoomButton.Visibility = Visibility.Collapsed;
+                MyBookingsText.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void DeleteButtonRoom_Click(object sender, RoutedEventArgs e)
@@ -382,6 +400,7 @@ namespace HolidayMaker.Client
                 }
             }
             mainPageViewModel.ListOfUserBookings.Clear();
+            BookingsButton();
             mainPageViewModel.GetUserBookings(mainPageViewModel.User.Email);
 
         }

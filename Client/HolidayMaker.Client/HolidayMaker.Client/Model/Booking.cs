@@ -23,16 +23,17 @@ namespace HolidayMaker.Client.Model
             set
             {
                 displayTotal = value;
-                NotifyPropertyChanged("TotalPriceRoom");
+                NotifyPropertyChanged("TotalPriceBooking");
             }
         }
 
         public decimal TotalPriceBookingMethod()
         {
             decimal totalPriceBooking = 0;
+            int diff = (int)Math.Ceiling((CheckOut - CheckIn).TotalDays);
             foreach (var item in BookedRooms)
             {
-                totalPriceBooking+=item.TotalPriceRoom;
+                totalPriceBooking+=item.TotalPriceRoom*diff;
             }
             
 

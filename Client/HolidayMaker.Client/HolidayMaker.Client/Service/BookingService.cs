@@ -58,8 +58,6 @@ namespace HolidayMaker.Client.Service
             var updatedBooking = JsonConvert.SerializeObject(booking);
             HttpContent httpContent = new StringContent(updatedBooking);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            //await httpClient.PutAsync(update, httpContent);
             var response = await httpClient.PutAsync(update, httpContent);
             return response.IsSuccessStatusCode; //om allt går bra är denna true
         }

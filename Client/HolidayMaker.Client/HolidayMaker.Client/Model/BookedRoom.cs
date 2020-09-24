@@ -29,8 +29,6 @@ namespace HolidayMaker.Client.Model
                 }
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
         public decimal TotalPriceRoomMethod()
         {
             decimal totalPriceRoom = Price;

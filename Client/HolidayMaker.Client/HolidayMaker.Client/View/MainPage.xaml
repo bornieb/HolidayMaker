@@ -164,7 +164,7 @@
                                 FontFamily="Bahnschrift"/>                 
                         <TextBlock    
                                 Foreground="White"
-                                Text="{x:Bind Price}"                       
+                                Text="{x:Bind TotalPriceRoom}"                       
                                 FontFamily="Bahnschrift"/>
                         <Button 
                                 x:Name="DeleteButtonRoom"                   
@@ -321,7 +321,8 @@
                             <TextBlock
                                 Text="{x:Bind AccommodationName}" 
                                 Foreground="White"
-                                FontFamily="Bahnschrift"/>
+                                FontFamily="Bahnschrift"
+                                FontSize="16"/>
                             <TextBlock
                                 Text="{x:Bind City}" 
                                 Foreground="White"
@@ -383,18 +384,26 @@
                             <CheckBox 
                             x:Name="ExtraBedCheckbox"
                             Content="ExtraBed"
+                            FontFamily="Bahnschrift"
+                            Foreground="White"
                             IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
                             <RadioButton 
                             x:Name="HalfBoardRadioButton"
                             Content="HalfBoard"
+                            FontFamily="Bahnschrift" 
+                            Foreground="White"    
                             IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
                             <RadioButton 
                             x:Name="FullBoardRadioButton"
                             Content="FullBoard"
+                            FontFamily="Bahnschrift"
+                            Foreground="White"    
                             IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
                             <RadioButton 
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
+                            FontFamily="Bahnschrift" 
+                            Foreground="White"    
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
                             <Button 
                             Foreground="White" 
@@ -456,7 +465,7 @@
                             FontFamily="Bahnschrift"
                             FontSize="15"/>
                         <TextBlock
-                            Text="{x:Bind TotalPriceBooking}" 
+                            Text="{x:Bind TotalPrice}" 
                             Foreground="White" 
                             FontFamily="Bahnschrift"
                             FontSize="15"/>

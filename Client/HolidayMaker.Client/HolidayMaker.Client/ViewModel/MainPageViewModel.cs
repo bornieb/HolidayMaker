@@ -94,19 +94,17 @@ namespace HolidayMaker.Client.ViewModel
 
         public string CreateBookingNumber()
         {
-            //bookingNumber += 1;
-            //return bookingNumber;
             Random rndGenerator = new Random();
             StringBuilder myRandomString = new StringBuilder();
 
-            for (int i = 0; i < 10; i++) // set how many random characters we want to generate
+            for (int i = 0; i < 10; i++) 
             {
                 bool isAlpha = Convert.ToBoolean(rndGenerator.Next(0, 2));
-                int rndNumber = isAlpha ? rndGenerator.Next(0, 26) : rndGenerator.Next(0, 10); // set the boundry 26 letters in alphabet, 10 numbers
+                int rndNumber = isAlpha ? rndGenerator.Next(0, 26) : rndGenerator.Next(0, 10); 
                 if (isAlpha)
                 {
                     bool isUpper = Convert.ToBoolean(rndGenerator.Next(0, 2));
-                    rndNumber += isUpper ? 65 : 97; // add an offset of 65 which gets us to an A in the ASCII table, 97 is same for a
+                    rndNumber += isUpper ? 65 : 97; 
                 }
 
                 myRandomString.Append(isAlpha ? ((char)rndNumber).ToString() : rndNumber.ToString());
