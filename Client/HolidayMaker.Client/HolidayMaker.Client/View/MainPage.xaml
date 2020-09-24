@@ -359,7 +359,7 @@
             	FontSize="12" 
             	FontFamily="Bahnschrift"
            		Foreground="White"
-                Visibility="Visible"/>
+                Visibility="Collapsed"/>
 
         <ListView 
                   Grid.Column="7" 
@@ -378,13 +378,26 @@
                 <DataTemplate x:DataType="model:Booking">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind BookingNumber }" Foreground="Black" Style="{ThemeResource BaseTextBlockStyle}" FontSize="20"/>
+                        Text="{x:Bind BookingNumber }" 
+                            Foreground="White" 
+                            Style="{ThemeResource BaseTextBlockStyle}"
+                            FontFamily="Bahnschrift"
+                            FontSize="20"/>
                         <TextBlock
-                        Text="{x:Bind CheckIn}" Foreground="Black" FontSize="15"/>
+                        Text="{x:Bind CheckIn}" 
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
+                            FontSize="15"/>
                         <TextBlock
-                        Text="{x:Bind CheckOut }" Foreground="Black" FontSize="15"/>
+                            Text="{x:Bind CheckOut }" 
+                            Foreground="White" 
+                            FontFamily="Bahnschrift"
+                            FontSize="15"/>
                         <TextBlock
-                        Text="{x:Bind TotalPriceBooking }" Foreground="Black" FontSize="15"/>
+                            Text="{x:Bind TotalPriceBooking }" 
+                            Foreground="White" 
+                            FontFamily="Bahnschrift"
+                            FontSize="15"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -399,7 +412,9 @@
             BorderThickness="3"
             BorderBrush="Red"
             Foreground="White"
+            FontFamily="Bahnschrift"
             Click="DeleteBookingButton_Click"
+            Visibility="Collapsed"
             />
 
         <ListView Grid.Column="11" 
@@ -416,25 +431,36 @@
                 <DataTemplate x:DataType="model:BookedRoom">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind Price}" Foreground="Black"/>
-
+                        Text="{x:Bind Price}" 
+                            Foreground="White"
+                            FontFamily="Bahnschrift"/>
                         <TextBlock
-                        Text="{x:Bind RoomType}" Foreground="Black"/>
+                        Text="{x:Bind RoomType}" 
+                            Foreground="White"
+                            FontFamily="Bahnschrift"/>
                         <CheckBox 
                             x:Name="ExtraBedCheckbox"
                             Content="ExtraBed"
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
                             IsChecked="{x:Bind ExtraBedBooked, Mode=TwoWay}"/>
                         <RadioButton 
                             x:Name="HalfBoardRadioButton"
                             Content="HalfBoard"
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
                             IsChecked="{x:Bind HalfBoard, Mode=TwoWay}"/>
                         <RadioButton 
                             x:Name="FullBoardRadioButton"
                             Content="FullBoard"
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
                             IsChecked="{x:Bind FullBoard, Mode=TwoWay}"/>
                         <RadioButton 
                             x:Name="AllInclusiveRadioButton"
                             Content="Allinclusive"
+                            Foreground="White"
+                            FontFamily="Bahnschrift"
                             IsChecked="{x:Bind AllInclusive, Mode=TwoWay}"/>
 
                     </StackPanel>
@@ -455,7 +481,9 @@
             BorderBrush="Red"
             BorderThickness="3"
             Click="DeleteRoomButton_Click"
-            Foreground="White"    
+            Foreground="White" 
+            FontFamily="Bahnschrift"
+            Visibility="Collapsed"    
             />
             <Button
             x:Name="SaveBookingButton"
@@ -464,8 +492,10 @@
             BorderBrush="Green"
             BorderThickness="3"
             Foreground="White"
+            FontFamily="Bahnschrift"    
             Margin="15,0,0,0"    
             Click="SaveBookingButton_Click"
+            Visibility="Collapsed"    
             />
         </StackPanel>
 

@@ -34,9 +34,7 @@ namespace HolidayMaker.Client
         UserService userService;
         public ObservableCollection<Room> ListOfRooms = new ObservableCollection<Room>();
         public ObservableCollection<BookedRoom> ListOfUserRooms = new ObservableCollection<BookedRoom>();
-
         public bool IsLoggedIn = false;
-        User user;
 
         public MainPage()
         {
@@ -46,6 +44,8 @@ namespace HolidayMaker.Client
             mainPageViewModel.GetAccommodations();
             mainPageViewModel.GetBookings();
             ShowBookingButton();
+            ShowSaveDeleteRoomButton();
+            ShowDeletebutton();
         }
 
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,7 +55,6 @@ namespace HolidayMaker.Client
                 return;
             }
 
-            //Accommodation ac = accListView.SelectedItem as Accommodation;
             ListOfRooms.Clear();
 
             var ac = (Accommodation)accListView.SelectedItem;
@@ -81,13 +80,6 @@ namespace HolidayMaker.Client
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
         }
 
-        //private void SortingButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var sorted = mainPageViewModel.SearchResult.OrderBy(x => x.Rating);
-        //    accListView.ItemsSource = sorted;
-
-        //}
-
         private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -108,7 +100,6 @@ namespace HolidayMaker.Client
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             await RegisterContent.ShowAsync();
-            //this.Frame.Navigate(typeof(BlankPage1));
         }
 
         private void MenuFlyoutItem_Click_Rating(object sender, RoutedEventArgs e)
@@ -216,7 +207,8 @@ namespace HolidayMaker.Client
         private void MyBookingsButton_Click(object sender, RoutedEventArgs e)
         {
             MyBookingsText.Visibility = Visibility.Visible;
-            //this.Frame.Navigate(typeof(MyBookings));
+            ShowSaveDeleteRoomButton();
+            ShowDeletebutton();
         }
 
         private void LoggedInVisibility()
@@ -244,6 +236,9 @@ namespace HolidayMaker.Client
             MyBookingsButton.Visibility = Visibility.Collapsed;
             LogoutButton.Visibility = Visibility.Collapsed;
             MyBookingsText.Visibility = Visibility.Collapsed;
+            SaveBookingButton.Visibility = Visibility.Collapsed;
+            DeleteBookingButton.Visibility = Visibility.Collapsed;
+            DeleteRoomButton.Visibility = Visibility.Collapsed;
         }
 
         public void ShowBookingButton()
@@ -255,6 +250,31 @@ namespace HolidayMaker.Client
             else
             {
                 CreateBooking.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void ShowSaveDeleteRoomButton()
+        {
+            if(ListOfUserRooms.Count == 0)
+            {
+                SaveBookingButton.Visibility = Visibility.Collapsed;
+                DeleteRoomButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SaveBookingButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void ShowDeletebutton()
+        {
+            if(mainPageViewModel.ListOfUserBookings.Count == 0)
+            {
+                DeleteBookingButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                DeleteBookingButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -298,9 +318,6 @@ namespace HolidayMaker.Client
                 }
             }
 
-            //bookingsRoomListview.Items.Clear();
-            //bookingsViewModel.ListOfUserBookings.Clear();
-
             mainPageViewModel.GetBookings();
         }
 
@@ -328,25 +345,8 @@ namespace HolidayMaker.Client
 
                 }
             }
-
-            //bookingsViewModel.ListOfUserBookings.Clear();
             mainPageViewModel.GetBookings();
 
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            On_BackRequested();
-        }
-
-        private bool On_BackRequested()
-        {
-            if (this.Frame.CanGoBack)
-            {
-                this.Frame.GoBack();
-                return true;
-            }
-            return false;
         }
 
         private async void DeleteRoomButton_Click(object sender, RoutedEventArgs e)
@@ -375,10 +375,6 @@ namespace HolidayMaker.Client
 
                 }
             }
-            // var deleteRoom = (BookedRoom)bookingsRoomListview.SelectedItem;
-            // var ac = (Booking)bookingsListview.SelectedItem;
-            // ac.BookedRooms.Remove(deleteRoom);
-            // ListOfUserRooms.Remove(deleteRoom);
         }
         #endregion
     }
