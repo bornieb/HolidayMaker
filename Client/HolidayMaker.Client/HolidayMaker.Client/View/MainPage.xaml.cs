@@ -49,7 +49,7 @@ namespace HolidayMaker.Client
             Emptydate();
         }
 
-        private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (accListView.SelectedItem == null)
             {
@@ -60,7 +60,7 @@ namespace HolidayMaker.Client
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            mainPageViewModel.GetAvailableRoomsAsync(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
+            await mainPageViewModel.GetAvailableRoomsAsync(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
 
         }
 
@@ -87,7 +87,7 @@ namespace HolidayMaker.Client
         {
             if (IsLoggedIn == true)
             {
-                mainPageViewModel.CreateBookingAsync(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
+                await mainPageViewModel.CreateBookingAsync(CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime);
             }
             else
             {
