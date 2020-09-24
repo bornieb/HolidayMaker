@@ -46,6 +46,7 @@ namespace HolidayMaker.Client
             ShowBookingButton();
             ShowSaveDeleteRoomButton();
             ShowDeletebutton();
+            Emptydate();
         }
 
         private void accListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,7 +60,7 @@ namespace HolidayMaker.Client
 
             var ac = (Accommodation)accListView.SelectedItem;
 
-            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime, CheckOutDate.Date.DateTime.Date);
+            mainPageViewModel.GetAvailableRooms(ac, CheckInDate.Date.DateTime.Date, CheckOutDate.Date.DateTime.Date);
 
         }
 
@@ -76,13 +77,9 @@ namespace HolidayMaker.Client
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+           
             accListView.ItemsSource = mainPageViewModel.SearchResult;
             mainPageViewModel.SearchFunction(SearchTextBox.Text);
-        }
-
-        private void SplitViewMenuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private async void CreateBooking_Click(object sender, RoutedEventArgs e)
@@ -120,7 +117,10 @@ namespace HolidayMaker.Client
             accListView.ItemsSource = sorted;
         }
 
-       
+        private void CheckInDate_SelectedDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs args)
+        {
+            Emptydate();
+        }
 
         private async void RegisterContent_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -239,6 +239,7 @@ namespace HolidayMaker.Client
             SaveBookingButton.Visibility = Visibility.Collapsed;
             DeleteBookingButton.Visibility = Visibility.Collapsed;
             DeleteRoomButton.Visibility = Visibility.Collapsed;
+            mainPageViewModel.ListOfUserBookings.Clear();
         }
 
         public void ShowBookingButton()
@@ -275,6 +276,18 @@ namespace HolidayMaker.Client
             else
             {
                 DeleteBookingButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void Emptydate()
+        {
+            if (CheckInDate.Date.DateTime < DateTime.Now.Date)
+            {
+                SearchTextBox.IsEnabled = false;
+            }
+            else
+            {
+                SearchTextBox.IsEnabled = true;
             }
         }
 
@@ -377,5 +390,7 @@ namespace HolidayMaker.Client
             }
         }
         #endregion
+
+       
     }
 }

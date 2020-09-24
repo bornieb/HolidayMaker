@@ -206,6 +206,7 @@
             Grid.Row="7" 
             FontFamily="Bahnschrift"
             Foreground="White"
+            SelectedDateChanged="CheckInDate_SelectedDateChanged"
             />
         <TextBlock
             x:Name="CheckOutTextBlock"
