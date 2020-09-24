@@ -55,6 +55,9 @@ namespace HolidayMaker.Client.ViewModel
 
         public async Task UpdateBooking(Booking booking)
         {
+            //Updaterar TotalPrice
+            booking.TotalPrice = booking.TotalPriceBooking;
+
             await bookingService.UpdateUserBooking(booking);
         }
 

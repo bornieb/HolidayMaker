@@ -74,7 +74,7 @@
                         <TextBlock
                         Text="{x:Bind CheckOut }" Foreground="Black" FontSize="15"/>
                         <TextBlock
-                        Text="{x:Bind TotalPrice }" Foreground="Black" FontSize="15"/>
+                        Text="{x:Bind TotalPriceBooking }" Foreground="Black" FontSize="15"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -104,7 +104,7 @@
                 <DataTemplate x:DataType="model:BookedRoom">
                     <StackPanel>
                         <TextBlock
-                        Text="{x:Bind Price}" Foreground="Black"/>
+                        Text="{x:Bind TotalPriceRoom}" Foreground="Black"/>
 
                         <TextBlock
                         Text="{x:Bind RoomType}" Foreground="Black"/>

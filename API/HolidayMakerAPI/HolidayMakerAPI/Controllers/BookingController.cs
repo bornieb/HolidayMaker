@@ -165,6 +165,9 @@ namespace HolidayMakerAPI.Controllers
                             .Where(b => b.BookingNumber == bookingNumber)
                                 .FirstOrDefaultAsync();
 
+            //Price
+            dBbooking.TotalPrice = booking.TotalPrice;
+
             //Hämtar ut befintligt objekt för att matcha med db.
 
             foreach (var item in booking.BookedRooms)
