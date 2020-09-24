@@ -241,12 +241,14 @@ namespace HolidayMaker.Client
 
         private void MenuFlyoutItem_Click_Beach(object sender, RoutedEventArgs e)
         {
-            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.DistanceToBeach);
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(b => b.DistanceToBeach);
+            accListView.ItemsSource = sorted;
         }
 
         private void MenuFlyoutItem_Click_Center(object sender, RoutedEventArgs e)
         {
-            var sorted = mainPageViewModel.SearchResult.OrderByDescending(x => x.DistanceToCenter);
+            var sorted = mainPageViewModel.SearchResult.OrderByDescending(c => c.DistanceToCenter);
+            accListView.ItemsSource = sorted;
         }
     }
 }
