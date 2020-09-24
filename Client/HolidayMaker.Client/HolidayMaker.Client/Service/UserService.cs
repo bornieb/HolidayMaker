@@ -20,7 +20,7 @@ namespace HolidayMaker.Client.Service
             httpClient = new HttpClient();
         }
 
-        public async Task PostRegisterUser(User user)
+        public async Task PostRegisterUserAsync(User user)
         {
             var jsonUser = JsonConvert.SerializeObject(user);
             HttpContent httpContent = new StringContent(jsonUser);
@@ -29,7 +29,7 @@ namespace HolidayMaker.Client.Service
             var response = await jsonUserDB.Content.ReadAsStringAsync();
         }
 
-        public async Task<bool> LogIn(string email, string password)
+        public async Task<bool> LogInAsync(string email, string password)
         {
             var data = new { email, password };
             var jsonData = JsonConvert.SerializeObject(data);
