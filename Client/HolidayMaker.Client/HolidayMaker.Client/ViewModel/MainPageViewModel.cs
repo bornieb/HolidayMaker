@@ -38,6 +38,7 @@ namespace HolidayMaker.Client.ViewModel
             catch (System.Net.Http.HttpRequestException)
             {
                 await new MessageDialog("Failed to load API").ShowAsync();
+
             }
         }
 

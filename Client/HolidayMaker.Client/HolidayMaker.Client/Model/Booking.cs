@@ -30,7 +30,7 @@ namespace HolidayMaker.Client.Model
         public decimal TotalPriceBookingMethod()
         {
             decimal totalPriceBooking = 0;
-            int diff = (int)Math.Ceiling((CheckOut - CheckIn).TotalDays);
+            int diff = (CheckOut - CheckIn).Days;
             foreach (var item in BookedRooms)
             {
                 totalPriceBooking+=item.TotalPriceRoom*diff;
